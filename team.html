@@ -1,124 +1,189 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meet the Team | Homely Health Care</title>
+    <title>Meet the Team | Homely Health Care | Bespoke Private Care</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: { gold: '#C5A059', 'navy-blue': '#0A1128', 'soft-white': '#F8F9FA' },
-                    fontFamily: { serif: ['Playfair Display', 'serif'], sans: ['Montserrat', 'sans-serif'] }
-                }
-            }
-        }
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        .reveal-up { opacity: 0; transform: translateY(30px); }
-        .member-card { overflow: hidden; position: relative; }
-        .member-img { transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-        .member-card:hover .member-img { transform: scale(1.05); }
-        .member-overlay { 
-            position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,17,40,0.9), transparent);
-            opacity: 0; transition: opacity 0.5s ease; display: flex; align-items: flex-end; padding: 2rem;
-        }
-        .member-card:hover .member-overlay { opacity: 1; }
-        .noise-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.03; z-index: 9999; background: url('https://grainy-gradients.vercel.app/noise.svg'); }
+        :root { --gold: #D4AF37; --dark-blue: #0A1128; --soft-white: #F8F9FA; }
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--dark-blue); color: white; overflow-x: hidden; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        .gold-text { color: var(--gold); }
+        .nav-link { position: relative; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .nav-link::after { content: ''; position: absolute; width: 0; height: 1px; bottom: -5px; left: 0; background-color: var(--gold); transition: width 0.4s; }
+        .nav-link:hover::after { width: 100%; }
+        .nav-link:hover { color: var(--gold); }
+        canvas#webgl { position: fixed; top: 0; left: 0; z-index: 0; pointer-events: none; }
+        .glass-panel { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .member-card { transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1); overflow: hidden; }
+        .member-card:hover { transform: translateY(-20px); border-color: var(--gold); }
+        .member-card:hover img { transform: scale(1.1); }
+        img { transition: transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1); }
     </style>
 </head>
-<body class="bg-soft-white font-sans text-navy-blue overflow-x-hidden">
-    <div class="noise-bg"></div>
+<body class="selection:bg-gold/30">
+    <canvas id="webgl"></canvas>
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 py-8 px-12 flex justify-between items-center bg-white/80 backdrop-blur-md shadow-sm">
-        <div class="flex items-center space-x-3 group cursor-pointer">
-            <div class="w-12 h-12 bg-navy-blue flex items-center justify-center rounded-sm">
-                <span class="text-gold font-serif text-2xl">H</span>
-            </div>
-            <span class="text-xl font-serif tracking-widest uppercase">Homely</span>
+    <nav class="fixed w-full z-50 py-8 px-12 flex justify-between items-center transition-all duration-500" id="navbar">
+        <div class="flex items-center space-x-4">
+            <div class="w-12 h-12 border border-gold flex items-center justify-center text-gold text-2xl font-bold">H</div>
+            <span class="text-xl font-light tracking-[0.3em] hidden md:block uppercase">Homely Health Care</span>
         </div>
-        <div class="hidden md:flex space-x-12 text-xs tracking-widest uppercase font-semibold">
-            <a href="index.html" class="hover:text-gold transition-colors">Home</a>
-            <a href="about.html" class="hover:text-gold transition-colors">About Us</a>
-            <a href="services.html" class="hover:text-gold transition-colors">Services</a>
-            <a href="team.html" class="text-gold border-b border-gold pb-1">Team</a>
-            <a href="careers.html" class="hover:text-gold transition-colors">Careers</a>
-            <a href="contact.html" class="hover:text-gold transition-colors">Contact</a>
+        <div class="hidden lg:flex items-center space-x-12">
+            <a href="index.html" class="nav-link text-xs uppercase tracking-widest">Home</a>
+            <a href="services.html" class="nav-link text-xs uppercase tracking-widest">Services</a>
+            <a href="team.html" class="nav-link text-xs uppercase tracking-widest gold-text">Team</a>
+            <a href="careers.html" class="nav-link text-xs uppercase tracking-widest">Careers</a>
+            <a href="contact.html" class="border border-gold px-8 py-3 text-xs uppercase tracking-widest hover:bg-gold hover:text-dark-blue transition-all">Contact</a>
         </div>
-        <button class="bg-navy-blue text-soft-white px-8 py-3 text-xs tracking-widest uppercase hover:bg-gold transition-all">Book Now</button>
     </nav>
 
     <!-- Header -->
-    <header class="pt-56 pb-32 px-12 bg-navy-blue text-soft-white text-center">
-        <span class="text-gold font-serif italic text-2xl mb-6 block reveal-up">The Faces of Excellence</span>
-        <h1 class="text-6xl md:text-8xl font-serif mb-8 reveal-up">Our Distinguished Team</h1>
-        <p class="text-xl font-light tracking-wide max-w-2xl mx-auto opacity-70 reveal-up">
-            A curated collective of elite healthcare professionals dedicated to the art of private care.
-        </p>
+    <header class="pt-60 pb-32 relative">
+        <div class="container mx-auto px-12 text-center relative z-10">
+            <span class="gold-text uppercase tracking-[0.5em] text-xs mb-6 block font-medium italic reveal-up">The Faces of Excellence</span>
+            <h1 class="text-7xl md:text-9xl font-bold mb-12 reveal-up leading-none">Our <br>Distinguished <br>Team</h1>
+            <p class="text-xl text-white/50 max-w-2xl mx-auto font-light leading-relaxed reveal-up">
+                A symphony of clinical brilliance and empathetic service, dedicated to your holistic wellbeing.
+            </p>
+        </div>
     </header>
 
     <!-- Team Grid -->
-    <section class="py-32 px-12 max-w-7xl mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-            
-            <!-- Member 1 -->
-            <div class="member-card aspect-[3/4] bg-gray-200 reveal-up">
-                <img src="https://images.unsplash.com/photo-1559839734-2b71f1e3c770?auto=format&fit=crop&q=80" alt="Dr. Elena Rossi" class="member-img w-full h-full object-cover">
-                <div class="member-overlay">
-                    <div class="text-soft-white">
-                        <span class="text-gold text-xs tracking-widest uppercase font-bold">Clinical Director</span>
-                        <h3 class="text-3xl font-serif mt-2">Dr. Elena Rossi</h3>
-                        <p class="text-sm opacity-70 mt-4 leading-relaxed">Expert in geriatric medicine with over 20 years of experience in London's leading hospitals.</p>
+    <section class="py-32 relative">
+        <div class="container mx-auto px-12">
+            <div class="grid lg:grid-cols-3 gap-12">
+                <!-- Member 1 -->
+                <div class="member-card glass-panel rounded-sm reveal-up">
+                    <div class="h-[400px] overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71f1536783?auto=format&fit=crop&q=80" alt="Clinical Director" class="w-full h-full object-cover grayscale hover:grayscale-0">
+                    </div>
+                    <div class="p-10">
+                        <h3 class="text-3xl font-bold mb-2">Dr. Elena Thorne</h3>
+                        <p class="gold-text uppercase tracking-widest text-xs mb-6 italic">Clinical Director</p>
+                        <p class="text-white/40 font-light leading-relaxed">
+                            Over 20 years of experience in specialized private medicine, ensuring the highest clinical standards across our service.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Member 2 -->
+                <div class="member-card glass-panel rounded-sm reveal-up">
+                    <div class="h-[400px] overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80" alt="Head of Nursing" class="w-full h-full object-cover grayscale hover:grayscale-0">
+                    </div>
+                    <div class="p-10">
+                        <h3 class="text-3xl font-bold mb-2">Marcus Vane</h3>
+                        <p class="gold-text uppercase tracking-widest text-xs mb-6 italic">Head of Private Nursing</p>
+                        <p class="text-white/40 font-light leading-relaxed">
+                            Dedicated to providing bespoke nursing solutions for complex medical needs with absolute discretion.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Member 3 -->
+                <div class="member-card glass-panel rounded-sm reveal-up">
+                    <div class="h-[400px] overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&q=80" alt="Lifestyle Manager" class="w-full h-full object-cover grayscale hover:grayscale-0">
+                    </div>
+                    <div class="p-10">
+                        <h3 class="text-3xl font-bold mb-2">Sophia Aris</h3>
+                        <p class="gold-text uppercase tracking-widest text-xs mb-6 italic">Bespoke Lifestyle Manager</p>
+                        <p class="text-white/40 font-light leading-relaxed">
+                            Crafting seamless lifestyle and care integrations for our distinguished international clientele.
+                        </p>
                     </div>
                 </div>
             </div>
-
-            <!-- Member 2 -->
-            <div class="member-card aspect-[3/4] bg-gray-200 reveal-up" style="transition-delay: 100ms;">
-                <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&q=80" alt="Julian Montgomery" class="member-img w-full h-full object-cover">
-                <div class="member-overlay">
-                    <div class="text-soft-white">
-                        <span class="text-gold text-xs tracking-widest uppercase font-bold">Head of Concierge</span>
-                        <h3 class="text-3xl font-serif mt-2">Julian Montgomery</h3>
-                        <p class="text-sm opacity-70 mt-4 leading-relaxed">Dedicated to ensuring a seamless and personalized experience for every client.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Member 3 -->
-            <div class="member-card aspect-[3/4] bg-gray-200 reveal-up" style="transition-delay: 200ms;">
-                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80" alt="Sarah Jenkins" class="member-img w-full h-full object-cover">
-                <div class="member-overlay">
-                    <div class="text-soft-white">
-                        <span class="text-gold text-xs tracking-widest uppercase font-bold">Nursing Supervisor</span>
-                        <h3 class="text-3xl font-serif mt-2">Sarah Jenkins</h3>
-                        <p class="text-sm opacity-70 mt-4 leading-relaxed">Leading our team of registered nurses with a focus on palliative care and rehabilitation.</p>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-soft-white py-24 px-12 border-t border-gray-200 text-center">
-        <p class="text-gray-400 text-xs tracking-[0.3em] uppercase">
-            &copy; 2024 Homely Health Care. Defined by Excellence.
-        </p>
+    <footer class="py-20 border-t border-white/10 text-white/40">
+        <div class="container mx-auto px-12 flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0 text-xs tracking-widest uppercase text-center">
+            <p>&copy; 2026 Homely Health Care. All Rights Reserved.</p>
+            <p class="gold-text italic font-serif normal-case text-lg">Curating care, elevating lives.</p>
+        </div>
     </footer>
 
     <script>
+        // WebGL - Interactive Stars Background
+        const canvas = document.querySelector('#webgl');
+        const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+        camera.position.z = 10;
+
+        const count = 2000;
+        const positions = new Float32Array(count * 3);
+        for(let i = 0; i < count * 3; i++) {
+            positions[i] = (Math.random() - 0.5) * 30;
+        }
+
+        const geometry = new THREE.BufferGeometry();
+        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+        const material = new THREE.PointsMaterial({
+            size: 0.02,
+            color: 0xD4AF37,
+            transparent: true,
+            opacity: 0.5
+        });
+
+        const points = new THREE.Points(geometry, material);
+        scene.add(points);
+
+        let mouseX = 0, mouseY = 0;
+        window.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth - 0.5);
+            mouseY = -(e.clientY / window.innerHeight - 0.5);
+        });
+
+        const tick = () => {
+            points.rotation.y += 0.001;
+            points.position.x += (mouseX * 2 - points.position.x) * 0.05;
+            points.position.y += (mouseY * 2 - points.position.y) * 0.05;
+            renderer.render(scene, camera);
+            requestAnimationFrame(tick);
+        };
+        tick();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // GSAP
         gsap.registerPlugin(ScrollTrigger);
-        gsap.utils.toArray('.reveal-up').forEach((elem) => {
-            gsap.fromTo(elem, { opacity: 0, y: 50 }, { 
-                opacity: 1, y: 0, duration: 1.2, ease: "power4.out",
-                scrollTrigger: { trigger: elem, start: "top 85%", toggleActions: "play none none none" }
+        gsap.utils.toArray('.reveal-up').forEach(elem => {
+            gsap.from(elem, {
+                scrollTrigger: { trigger: elem, start: "top 90%" },
+                y: 100,
+                opacity: 0,
+                duration: 1.5,
+                ease: "power4.out"
             });
+        });
+
+        ScrollTrigger.create({
+            start: "top -50",
+            onUpdate: self => {
+                if (self.direction === 1) {
+                    gsap.to("#navbar", { backgroundColor: "rgba(10, 17, 40, 0.9)", backdropFilter: "blur(10px)", py: "1.5rem" });
+                } else {
+                    gsap.to("#navbar", { backgroundColor: "transparent", backdropFilter: "blur(0px)", py: "2rem" });
+                }
+            }
         });
     </script>
 </body>

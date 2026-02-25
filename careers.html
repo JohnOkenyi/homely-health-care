@@ -1,220 +1,194 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Careers | Homely Health Care | Excellence in Private Care</title>
+    <title>Careers | Homely Health Care | Bespoke Private Care</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        :root { --gold: #D4AF37; --dark: #1A1A1A; }
-        body { font-family: 'Montserrat', sans-serif; background-color: #fcfcfc; color: var(--dark); overflow-x: hidden; }
+        :root { --gold: #D4AF37; --dark-blue: #0A1128; --soft-white: #F8F9FA; }
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--dark-blue); color: white; overflow-x: hidden; }
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
-        .nav-link { position: relative; transition: color 0.3s; }
-        .nav-link::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -4px; left: 0; background-color: var(--gold); transition: width 0.3s; }
-        .nav-link:hover::after { width: 100%; }
         .gold-text { color: var(--gold); }
-        .gold-bg { background-color: var(--gold); }
-        .hero-gradient { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80'); background-size: cover; background-position: center; }
-        .job-card { transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); border-left: 0px solid var(--gold); }
-        .job-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); border-left: 5px solid var(--gold); }
-        .animate-float { animation: float 6s ease-in-out infinite; }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
-        canvas#webgl { position: fixed; top: 0; left: 0; pointer-events: none; z-index: -1; opacity: 0.1; }
+        .nav-link { position: relative; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .nav-link::after { content: ''; position: absolute; width: 0; height: 1px; bottom: -5px; left: 0; background-color: var(--gold); transition: width 0.4s; }
+        .nav-link:hover::after { width: 100%; }
+        .nav-link:hover { color: var(--gold); }
+        canvas#webgl { position: fixed; top: 0; left: 0; z-index: 0; pointer-events: none; }
+        .glass-panel { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .job-card { transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); }
+        .job-card:hover { transform: scale(1.02); border-color: var(--gold); background: rgba(212, 175, 55, 0.03); }
     </style>
 </head>
-<body>
+<body class="selection:bg-gold/30">
     <canvas id="webgl"></canvas>
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 py-4">
-        <div class="container mx-auto px-6 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold tracking-tighter gold-text">HOMELY HEALTH CARE</a>
-            <div class="hidden md:flex space-x-8 items-center">
-                <a href="index.html" class="nav-link text-sm uppercase tracking-widest font-semibold">Home</a>
-                <a href="services.html" class="nav-link text-sm uppercase tracking-widest font-semibold">Services</a>
-                <a href="team.html" class="nav-link text-sm uppercase tracking-widest font-semibold">Our Team</a>
-                <a href="careers.html" class="nav-link text-sm uppercase tracking-widest font-semibold gold-text">Careers</a>
-                <a href="contact.html" class="px-6 py-2 gold-bg text-white text-sm uppercase tracking-widest font-semibold rounded-full hover:bg-black transition-colors">Contact</a>
-            </div>
+    <nav class="fixed w-full z-50 py-8 px-12 flex justify-between items-center transition-all duration-500" id="navbar">
+        <div class="flex items-center space-x-4">
+            <div class="w-12 h-12 border border-gold flex items-center justify-center text-gold text-2xl font-bold">H</div>
+            <span class="text-xl font-light tracking-[0.3em] hidden md:block uppercase">Homely Health Care</span>
+        </div>
+        <div class="hidden lg:flex items-center space-x-12">
+            <a href="index.html" class="nav-link text-xs uppercase tracking-widest">Home</a>
+            <a href="services.html" class="nav-link text-xs uppercase tracking-widest">Services</a>
+            <a href="team.html" class="nav-link text-xs uppercase tracking-widest">Team</a>
+            <a href="careers.html" class="nav-link text-xs uppercase tracking-widest gold-text">Careers</a>
+            <a href="contact.html" class="border border-gold px-8 py-3 text-xs uppercase tracking-widest hover:bg-gold hover:text-dark-blue transition-all">Contact</a>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="h-[70vh] hero-gradient flex items-center justify-center relative overflow-hidden">
-        <div class="container mx-auto px-6 text-center text-white z-10">
-            <h1 class="text-5xl md:text-7xl font-bold mb-6 reveal-up">Join the Elite</h1>
-            <p class="text-xl md:text-2xl max-w-2xl mx-auto font-light mb-8 reveal-up">Crafting extraordinary care experiences for distinguished individuals.</p>
-            <a href="#openings" class="inline-block px-10 py-4 border-2 border-white text-white uppercase tracking-widest hover:bg-white hover:text-black transition-all reveal-up">Explore Roles</a>
+    <!-- Header -->
+    <header class="pt-60 pb-32 relative">
+        <div class="container mx-auto px-12 text-center relative z-10">
+            <span class="gold-text uppercase tracking-[0.5em] text-xs mb-6 block font-medium italic reveal-up">Join Our Elite Team</span>
+            <h1 class="text-7xl md:text-9xl font-bold mb-12 reveal-up leading-none">The <br>Standard of <br>Nursing</h1>
+            <p class="text-xl text-white/50 max-w-2xl mx-auto font-light leading-relaxed reveal-up">
+                We seek exceptional clinical professionals who embody the art of discretion and the pursuit of medical perfection.
+            </p>
         </div>
     </header>
 
-    <!-- Philosophy -->
-    <section class="py-24 bg-white">
-        <div class="container mx-auto px-6 text-center">
-            <span class="gold-text uppercase tracking-[0.3em] text-sm mb-4 block reveal-up">The Standard of Excellence</span>
-            <h2 class="text-4xl md:text-5xl font-bold mb-12 reveal-up">Why Professionalism Matters</h2>
-            <div class="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto">
-                <div class="reveal-up">
-                    <h3 class="text-2xl font-bold mb-4">Integrity</h3>
-                    <p class="text-gray-600 leading-relaxed">We uphold the highest ethical standards in every interaction, ensuring absolute trust and discretion.</p>
-                </div>
-                <div class="reveal-up">
-                    <h3 class="text-2xl font-bold mb-4">Precision</h3>
-                    <p class="text-gray-600 leading-relaxed">Our care is meticulous, tailored to the unique rhythms and requirements of our clients' lives.</p>
-                </div>
-                <div class="reveal-up">
-                    <h3 class="text-2xl font-bold mb-4">Empathy</h3>
-                    <p class="text-gray-600 leading-relaxed">Beyond clinical skill, we seek individuals with the emotional intelligence to connect deeply.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Openings -->
-    <section id="openings" class="py-24 bg-gray-50">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-16">
-                <div>
-                    <span class="gold-text uppercase tracking-[0.3em] text-sm mb-4 block reveal-up">Current Opportunities</span>
-                    <h2 class="text-4xl md:text-5xl font-bold reveal-up">Join Our Community</h2>
-                </div>
-                <p class="text-gray-500 max-w-md mt-4 md:mt-0 reveal-up">We are always looking for exceptional talent to redefine the landscape of private healthcare.</p>
-            </div>
-
-            <div class="grid gap-8">
-                <div class="job-card bg-white p-8 md:p-12 flex flex-col md:flex-row justify-between items-center rounded-lg reveal-up">
+    <!-- Job Grid -->
+    <section class="py-32 relative">
+        <div class="container mx-auto px-12">
+            <div class="space-y-8">
+                <!-- Job 1 -->
+                <div class="job-card glass-panel p-12 flex flex-col md:flex-row justify-between items-center rounded-sm reveal-up">
                     <div>
-                        <span class="text-xs gold-text uppercase tracking-widest mb-2 block">Full-Time | London</span>
-                        <h3 class="text-3xl font-bold mb-2">Senior Private Registered Nurse</h3>
-                        <p class="text-gray-600">Leading clinical care for high-net-worth individuals in domestic settings.</p>
+                        <span class="gold-text uppercase tracking-widest text-xs mb-4 block italic">London | Full-time</span>
+                        <h3 class="text-4xl font-bold mb-4">Senior Private Registered Nurse</h3>
+                        <p class="text-white/40 font-light max-w-xl">
+                            Leading elite clinical care for distinguished individuals, focusing on post-operative recovery and long-term wellness management.
+                        </p>
                     </div>
-                    <a href="contact.html?role=nurse" class="mt-6 md:mt-0 px-8 py-3 bg-black text-white rounded-full hover:bg-gold transition-all">Apply Now</a>
+                    <a href="contact.html?role=nurse" class="mt-8 md:mt-0 border border-white/20 px-12 py-4 text-xs uppercase tracking-widest hover:bg-gold hover:text-dark-blue hover:border-gold transition-all font-bold">Inquire</a>
                 </div>
 
-                <div class="job-card bg-white p-8 md:p-12 flex flex-col md:flex-row justify-between items-center rounded-lg reveal-up">
+                <!-- Job 2 -->
+                <div class="job-card glass-panel p-12 flex flex-col md:flex-row justify-between items-center rounded-sm reveal-up">
                     <div>
-                        <span class="text-xs gold-text uppercase tracking-widest mb-2 block">Part-Time | Oxfordshire</span>
-                        <h3 class="text-3xl font-bold mb-2">Luxury Care Companion</h3>
-                        <p class="text-gray-600">Providing sophisticated support and lifestyle management for seniors.</p>
+                        <span class="gold-text uppercase tracking-widest text-xs mb-4 block italic">Oxfordshire | Bespoke</span>
+                        <h3 class="text-4xl font-bold mb-4">Elite Companion Specialist</h3>
+                        <p class="text-white/40 font-light max-w-xl">
+                            Providing sophisticated lifestyle support and specialized companionship with a focus on intellectual engagement and social management.
+                        </p>
                     </div>
-                    <a href="contact.html?role=companion" class="mt-6 md:mt-0 px-8 py-3 bg-black text-white rounded-full hover:bg-gold transition-all">Apply Now</a>
+                    <a href="contact.html?role=companion" class="mt-8 md:mt-0 border border-white/20 px-12 py-4 text-xs uppercase tracking-widest hover:bg-gold hover:text-dark-blue hover:border-gold transition-all font-bold">Inquire</a>
                 </div>
 
-                <div class="job-card bg-white p-8 md:p-12 flex flex-col md:flex-row justify-between items-center rounded-lg reveal-up">
+                <!-- Job 3 -->
+                <div class="job-card glass-panel p-12 flex flex-col md:flex-row justify-between items-center rounded-sm reveal-up">
                     <div>
-                        <span class="text-xs gold-text uppercase tracking-widest mb-2 block">Full-Time | Nationwide</span>
-                        <h3 class="text-3xl font-bold mb-2">Live-in Care Specialist</h3>
-                        <p class="text-gray-600">Round-the-clock bespoke care with a focus on holistic wellbeing.</p>
+                        <span class="gold-text uppercase tracking-widest text-xs mb-4 block italic">UK Wide | Live-in</span>
+                        <h3 class="text-4xl font-bold mb-4">Palliative Care Specialist</h3>
+                        <p class="text-white/40 font-light max-w-xl">
+                            Delivering compassionate and expert end-of-life care with the highest standards of dignity, pain management, and absolute discretion.
+                        </p>
                     </div>
-                    <a href="contact.html?role=livein" class="mt-6 md:mt-0 px-8 py-3 bg-black text-white rounded-full hover:bg-gold transition-all">Apply Now</a>
+                    <a href="contact.html?role=palliative" class="mt-8 md:mt-0 border border-white/20 px-12 py-4 text-xs uppercase tracking-widest hover:bg-gold hover:text-dark-blue hover:border-gold transition-all font-bold">Inquire</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-black text-white py-20">
-        <div class="container mx-auto px-6 grid md:grid-cols-4 gap-12">
-            <div class="col-span-2">
-                <h3 class="text-3xl font-bold gold-text mb-6 tracking-tighter">HOMELY HEALTH CARE</h3>
-                <p class="text-gray-400 max-w-sm leading-relaxed mb-8">Pioneering the future of private health care through unwavering commitment to excellence and personalized service.</p>
-                <div class="flex space-x-4">
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Instagram</a>
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors">LinkedIn</a>
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Twitter</a>
-                </div>
-            </div>
-            <div>
-                <h4 class="text-lg font-bold mb-6">Quick Links</h4>
-                <ul class="space-y-4 text-gray-400">
-                    <li><a href="index.html" class="hover:text-gold transition-colors">Home</a></li>
-                    <li><a href="services.html" class="hover:text-gold transition-colors">Services</a></li>
-                    <li><a href="team.html" class="hover:text-gold transition-colors">Our Team</a></li>
-                    <li><a href="careers.html" class="hover:text-gold transition-colors">Careers</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="text-lg font-bold mb-6">Contact Us</h4>
-                <p class="text-gray-400 mb-4">Mayfair, London<br>United Kingdom</p>
-                <p class="text-gray-400">enquiries@homelyhealthcare.uk<br>+44 20 7946 0000</p>
-            </div>
-        </div>
-        <div class="container mx-auto px-6 mt-20 pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
-            <p>&copy; 2024 Homely Health Care. All Rights Reserved.</p>
+    <footer class="py-20 border-t border-white/10 text-white/40">
+        <div class="container mx-auto px-12 flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0 text-xs tracking-widest uppercase text-center">
+            <p>&copy; 2026 Homely Health Care. All Rights Reserved.</p>
+            <p class="gold-text italic font-serif normal-case text-lg">Defined by excellence, driven by care.</p>
         </div>
     </footer>
 
     <script>
-        gsap.registerPlugin(ScrollTrigger);
+        // WebGL - Interactive Wave Particles
+        const canvas = document.querySelector('#webgl');
+        const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-        // Entrance animations
-        gsap.utils.toArray('.reveal-up').forEach((elem) => {
-            gsap.fromTo(elem, 
-                { opacity: 0, y: 50 },
-                {
-                    opacity: 1, 
-                    y: 0, 
-                    duration: 1.2, 
-                    ease: "power4.out",
-                    scrollTrigger: {
-                        trigger: elem,
-                        start: "top 85%",
-                        toggleActions: "play none none none"
-                    }
-                }
-            );
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+        camera.position.z = 20;
+
+        const amountX = 50;
+        const amountY = 50;
+        const count = amountX * amountY;
+        const positions = new Float32Array(count * 3);
+        const geometry = new THREE.BufferGeometry();
+
+        let i = 0;
+        for (let ix = 0; ix < amountX; ix++) {
+            for (let iy = 0; iy < amountY; iy++) {
+                positions[i] = ix * 2 - (amountX * 1); // x
+                positions[i + 1] = 0; // y
+                positions[i + 2] = iy * 2 - (amountY * 1); // z
+                i += 3;
+            }
+        }
+
+        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        const material = new THREE.PointsMaterial({ size: 0.05, color: 0xD4AF37, transparent: true, opacity: 0.3 });
+        const points = new THREE.Points(geometry, material);
+        scene.add(points);
+
+        let mouseX = 0;
+        window.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth - 0.5);
         });
 
-        // Simple Canvas Particle Background for digital effect
-        const canvas = document.getElementById('webgl');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-        
-        function resize() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resize);
-        resize();
+        const clock = new THREE.Clock();
+        const tick = () => {
+            const elapsedTime = clock.getElapsedTime();
+            const pos = geometry.attributes.position.array;
 
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 1;
-                this.speedX = Math.random() * 0.5 - 0.25;
-                this.speedY = Math.random() * 0.5 - 0.25;
+            let i = 0;
+            for (let ix = 0; ix < amountX; ix++) {
+                for (let iy = 0; iy < amountY; iy++) {
+                    pos[i + 1] = (Math.sin((ix + elapsedTime) * 0.3) * 2) + (Math.sin((iy + elapsedTime) * 0.5) * 2);
+                    i += 3;
+                }
             }
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                if (this.x > canvas.width) this.x = 0;
-                if (this.x < 0) this.x = canvas.width;
-                if (this.y > canvas.height) this.y = 0;
-                if (this.y < 0) this.y = canvas.height;
-            }
-            draw() {
-                ctx.fillStyle = '#D4AF37';
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
+            geometry.attributes.position.needsUpdate = true;
+            points.rotation.y += (mouseX * 0.1 - points.rotation.y) * 0.05;
 
-        for (let i = 0; i < 50; i++) particles.push(new Particle());
+            renderer.render(scene, camera);
+            requestAnimationFrame(tick);
+        };
+        tick();
 
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => {
-                p.update();
-                p.draw();
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // GSAP
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.utils.toArray('.reveal-up').forEach(elem => {
+            gsap.from(elem, {
+                scrollTrigger: { trigger: elem, start: "top 90%" },
+                y: 100,
+                opacity: 0,
+                duration: 1.5,
+                ease: "power4.out"
             });
-            requestAnimationFrame(animate);
-        }
-        animate();
+        });
+
+        ScrollTrigger.create({
+            start: "top -50",
+            onUpdate: self => {
+                if (self.direction === 1) {
+                    gsap.to("#navbar", { backgroundColor: "rgba(10, 17, 40, 0.9)", backdropFilter: "blur(10px)", py: "1.5rem" });
+                } else {
+                    gsap.to("#navbar", { backgroundColor: "transparent", backdropFilter: "blur(0px)", py: "2rem" });
+                }
+            }
+        });
     </script>
 </body>
 </html>
