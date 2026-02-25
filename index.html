@@ -1,200 +1,133 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Homely Health Care | Premium Luxury Assisted Living</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"><script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script><style>:root { --primary: #2C3E50; --gold: #C5A059; --bg-light: #F9F7F2; --text-dark: #1A1A1A; --text-muted: #555555; --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); } * { margin: 0; padding: 0; box-sizing: border-box; } body { font-family: 'Inter', sans-serif; background: var(--bg-light); color: var(--text-dark); line-height: 1.6; overflow-x: hidden; } h1, h2, h3, .nav-logo { font-family: 'Cormorant Garamond', serif; font-weight: 600; } section { padding: 100px 5%; position: relative; } .btn-luxury { display: inline-block; padding: 18px 40px; background: var(--primary); color: white; text-decoration: none; font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; transition: var(--transition); border: 1px solid var(--primary); cursor: pointer; } .btn-luxury:hover { background: transparent; color: var(--primary); } nav { position: fixed; top: 0; width: 100%; padding: 25px 5%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; transition: var(--transition); } nav.scrolled { background: rgba(255, 255, 255, 0.98); padding: 15px 5%; box-shadow: 0 10px 30px rgba(0,0,0,0.05); } .nav-logo { font-size: 1.8rem; color: var(--primary); letter-spacing: 1px; } .nav-links a { margin-left: 40px; text-decoration: none; color: var(--text-dark); font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; transition: var(--transition); } .nav-links a:hover { color: var(--gold); } .hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&q=80&w=2000') no-repeat center center/cover; color: white; } .hero-content h1 { font-size: clamp(3rem, 8vw, 5rem); margin-bottom: 20px; opacity: 0; transform: translateY(30px); } .hero-content p { font-size: 1.2rem; max-width: 600px; margin: 0 auto 40px; opacity: 0; transform: translateY(30px); } .stats-bar { display: flex; justify-content: space-around; background: white; padding: 60px 5%; margin-top: -80px; position: relative; z-index: 10; box-shadow: 0 20px 40px rgba(0,0,0,0.05); } .stat-item h3 { font-size: 2.5rem; color: var(--gold); } .stat-item p { font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; } .about { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; } .about-image { height: 600px; background: url('https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=1000') no-repeat center center/cover; position: relative; } .about-image::after { content: ''; position: absolute; top: 30px; left: 30px; width: 100%; height: 100%; border: 1px solid var(--gold); z-index: -1; } .services { background: #fff; } .section-header { text-align: center; margin-bottom: 80px; } .section-header h2 { font-size: 3rem; margin-bottom: 20px; } .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; } .service-card { padding: 50px; border: 1px solid #eee; transition: var(--transition); } .service-card:hover { border-color: var(--gold); transform: translateY(-10px); } .service-card i { font-size: 2.5rem; color: var(--gold); margin-bottom: 25px; } .service-card h3 { font-size: 1.5rem; margin-bottom: 15px; } .lifestyle-gallery { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 300px; gap: 20px; padding: 20px; } .gallery-item { position: relative; overflow: hidden; } .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); } .gallery-item:hover img { transform: scale(1.1); } .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; } .virtual-tour { background: var(--primary); color: white; text-align: center; } .tour-container { height: 500px; background: url('https://images.unsplash.com/photo-1600566753190-17f0bb2a6c3e?auto=format&fit=crop&q=80&w=2000') center/cover; margin-top: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; } .play-btn { width: 100px; height: 100px; border-radius: 50%; background: rgba(255,255,255,0.2); border: 1px solid white; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; transition: var(--transition); } .play-btn:hover { background: var(--gold); border-color: var(--gold); transform: scale(1.1); } .contact { background: white; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; } .contact-form input, .contact-form textarea { width: 100%; padding: 15px 0; border: none; border-bottom: 1px solid #ddd; margin-bottom: 30px; font-family: inherit; font-size: 1rem; outline: none; transition: var(--transition); } .contact-form input:focus { border-color: var(--gold); } footer { background: #111; color: white; padding: 80px 5% 40px; } .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 60px; } .footer-logo { font-size: 2rem; color: var(--gold); margin-bottom: 20px; font-family: 'Cormorant Garamond', serif; } .footer-links a { display: block; color: #888; text-decoration: none; margin-bottom: 15px; transition: var(--transition); } .footer-links a:hover { color: white; } @media (max-width: 992px) { .about, .contact, .service-grid, .footer-grid { grid-template-columns: 1fr; } .hero-content h1 { font-size: 3rem; } }</style></head><body><nav id="navbar"><div class="nav-logo">HOMELY HEALTH CARE</div><div class="nav-links"><a href="#home">Home</a><a href="#about">About</a><a href="#services">Services</a><a href="#lifestyle">Lifestyle</a><a href="#contact">Contact</a></div></nav><section id="home" class="hero"><div class="hero-content"><h1>The Art of Gracious Living</h1><p>A premier luxury residence dedicated to personalized care, dignity, and a world-class lifestyle.</p><a href="#contact" class="btn-luxury">Inquire Now</a></div></section><div class="stats-bar"><div class="stat-item"><h3>24/7</h3><p>Elite Medical Support</p></div><div class="stat-item"><h3>5-Star</h3><p>Hospitality Service</p></div><div class="stat-item"><h3>100%</h3><p>Personalized Care</p></div></div><section id="about" class="about"><div class="about-image"></div><div class="about-content"><h2 style="font-size: 3rem; margin-bottom: 30px;">Redefining the Standard of Care</h2><p style="color: var(--text-muted); margin-bottom: 30px; font-size: 1.1rem;">At Homely Health Care, we believe that senior living should be a celebration of life. Our residences are designed to offer the warmth of a home combined with the sophistication of a luxury hotel.</p><ul style="list-style: none; margin-bottom: 40px;"><li style="margin-bottom: 15px; display: flex; align-items: center;"><i class="fas fa-check" style="color: var(--gold); margin-right: 15px;"></i> Private Luxury Suites</li><li style="margin-bottom: 15px; display: flex; align-items: center;"><i class="fas fa-check" style="color: var(--gold); margin-right: 15px;"></i> Gourmet Chef-Prepared Dining</li><li style="margin-bottom: 15px; display: flex; align-items: center;"><i class="fas fa-check" style="color: var(--gold); margin-right: 15px;"></i> Curated Wellness Programs</li></ul><a href="#about" class="btn-luxury">Explore Our Story</a></div></section><section id="services" class="services"><div class="section-header"><h2>Exceptional Services</h2><p>Designed for comfort, security, and well-being.</p></div><div class="service-grid"><div class="service-card"><i class="fas fa-user-nurse"></i><h3>Skilled Nursing</h3><p>Round-the-clock professional medical supervision and compassionate care.</p></div><div class="service-card"><i class="fas fa-spa"></i><h3>Wellness & Spa</h3><p>Holistic health programs, physical therapy, and rejuvenating spa services.</p></div><div class="service-card"><i class="fas fa-utensils"></i><h3>Fine Dining</h3><p>Nutritious, chef-curated meals served in an elegant restaurant setting.</p></div></div></section><section id="lifestyle" class="lifestyle-gallery"><div class="gallery-item"><img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&q=80&w=1000" alt="Luxury Suite"></div><div class="gallery-item"><img src="https://images.unsplash.com/photo-1550966841-3ee02b488d83?auto=format&fit=crop&q=80&w=800" alt="Dining Room"></div><div class="gallery-item"><img src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&q=80&w=800" alt="Garden Area"></div><div class="gallery-item"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbece8?auto=format&fit=crop&q=80&w=800" alt="Wellness Center"></div></section><section class="virtual-tour"><h2>Experience the Elegance</h2><p>Take a virtual journey through our stunning Cambridge residence.</p><div class="tour-container"><div class="play-btn"><i class="fas fa-play"></i></div></div></section><section id="contact" class="contact"><div><h2 style="font-size: 3rem; margin-bottom: 30px;">Begin the Journey</h2><p style="color: var(--text-muted); margin-bottom: 40px;">Contact our concierge to schedule a private tour and experience the Homely Health Care difference.</p><div style="margin-bottom: 20px;"><i class="fas fa-phone" style="color: var(--gold); margin-right: 15px;"></i> +1 (555) 123-4567</div><div style="margin-bottom: 20px;"><i class="fas fa-envelope" style="color: var(--gold); margin-right: 15px;"></i> concierge@homelyhealthcare.com</div><div><i class="fas fa-location-dot" style="color: var(--gold); margin-right: 15px;"></i> Cambridge, Ontario, Canada</div></div><div class="contact-form"><form><input type="text" placeholder="Full Name"><input type="email" placeholder="Email Address"><input type="tel" placeholder="Phone Number"><textarea placeholder="Message" rows="4"></textarea><button type="submit" class="btn-luxury">Send Inquiry</button></form></div></section><footer><div class="footer-grid"><div><div class="footer-logo">HOMELY HEALTH CARE</div><p style="color: #888;">Dedicated to providing a world-class living experience for those you love most.</p></div><div class="footer-links"><h4>Quick Links</h4><a href="#home">Home</a><a href="#about">About</a><a href="#services">Services</a><a href="#lifestyle">Lifestyle</a></div><div class="footer-links"><h4>Care Services</h4><a href="#">Assisted Living</a><a href="#">Memory Care</a><a href="#">Respite Care</a><a href="#">Hospice</a></div><div class="footer-links"><h4>Connect</h4><a href="#"><i class="fab fa-facebook"></i> Facebook</a><a href="#"><i class="fab fa-instagram"></i> Instagram</a><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></div></div><div style="border-top: 1px solid #222; padding-top: 30px; text-align: center; color: #666; font-size: 0.85rem;">&copy; 2026 Homely Health Care. All rights reserved.</div></footer><script>gsap.registerPlugin(ScrollTrigger); gsap.to(".hero-content h1", { opacity: 1, y: 0, duration: 1.5, ease: "power4.out" }); gsap.to(".hero-content p", { opacity: 1, y: 0, duration: 1.5, delay: 0.3, ease: "power4.out" }); window.addEventListener("scroll", () => { const nav = document.getElementById("navbar"); if (window.scrollY > 50) nav.classList.add("scrolled"); else nav.classList.remove("scrolled"); }); document.querySelectorAll('a[href^="#"]').forEach(anchor => { anchor.addEventListener('click', function (e) { e.preventDefault(); document.querySelector(this.getAttribute('href')).<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homely Health Care | Premium Luxury Assisted Living</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <style>
-        :root {
-            --gold: #C5A059;
-            --navy: #0A1128;
-            --cream: #FDFBF7;
-        }
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--cream);
-            color: var(--navy);
-            overflow-x: hidden;
-        }
-        h1, h2, h3, .luxury-font {
-            font-family: 'Playfair Display', serif;
-        }
-        .nav-link {
-            position: relative;
-            transition: color 0.3s ease;
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background-color: var(--gold);
-            transition: width 0.3s ease;
-        }
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        .btn-luxury {
-            background-color: var(--navy);
-            color: white;
-            padding: 12px 32px;
-            border: 1px solid var(--navy);
-            transition: all 0.4s ease;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-        .btn-luxury:hover {
-            background-color: transparent;
-            color: var(--navy);
-        }
-        .hero-gradient {
-            background: linear-gradient(rgba(10, 17, 40, 0.4), rgba(10, 17, 40, 0.2));
-        }
-        .section-padding {
-            padding: 100px 0;
-        }
-        .service-card {
-            background: white;
-            border: 1px solid #eee;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .service-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--gold);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-        }
-        .scrolled-nav {
-            background-color: rgba(253, 251, 247, 0.98);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Homely Health Care | Premium Luxury Assisted Living</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<style>
+:root { --gold: #C5A059; --navy: #0A1128; --cream: #FDFBF7; }
+body { font-family: 'Montserrat', sans-serif; background: var(--cream); color: var(--navy); }
+h1, h2, h3 { font-family: 'Playfair Display', serif; }
+.hero-reveal { opacity: 0; transform: translateY(30px); }
+.scrolled { background: rgba(253, 251, 247, 0.98); box-shadow: 0 10px 30px rgba(0,0,0,0.05); padding: 1rem 0 !important; }
+.btn { background: var(--navy); color: white; padding: 1rem 2.5rem; border: 1px solid var(--navy); transition: 0.4s; letter-spacing: 2px; text-transform: uppercase; font-size: 0.75rem; font-weight: 600; }
+.btn:hover { background: transparent; color: var(--navy); }
+.card { transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid #eee; }
+.card:hover { transform: translateY(-10px); border-color: var(--gold); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+</style>
 </head>
 <body>
+<nav id="nav" class="fixed w-full z-50 transition-all duration-700 py-10">
+<div class="max-w-7xl mx-auto px-8 flex justify-between items-center">
+<div class="flex flex-col">
+<span class="text-3xl font-bold tracking-[0.2em]">HOMELY</span>
+<span class="text-[10px] tracking-[0.5em] text-[#C5A059] uppercase">Health Care</span>
+</div>
+<div class="hidden lg:flex space-x-16 text-[10px] uppercase tracking-[0.3em] font-bold">
+<a href="#home" class="hover:text-[#C5A059]">Home</a>
+<a href="#about" class="hover:text-[#C5A059]">Philosophy</a>
+<a href="#services" class="hover:text-[#C5A059]">Care</a>
+<a href="#contact" class="btn">Reserve Tour</a>
+</div>
+</div>
+</nav>
 
-    <!-- Navbar -->
-    <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-6">
-        <div class="container mx-auto px-8 flex justify-between items-center">
-            <div class="flex flex-col">
-                <span class="text-2xl font-bold tracking-widest luxury-font">HOMELY</span>
-                <span class="text-xs tracking-[0.3em] font-light -mt-1 text-[#C5A059]">HEALTH CARE</span>
-            </div>
-            <div class="hidden md:flex space-x-12 items-center uppercase text-xs tracking-widest font-semibold">
-                <a href="#home" class="nav-link">Home</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#services" class="nav-link">Services</a>
-                <a href="#lifestyle" class="nav-link">Lifestyle</a>
-                <a href="#contact" class="nav-link">Contact</a>
-                <a href="#contact" class="btn-luxury">Reserve Now</a>
-            </div>
-            <button class="md:hidden text-2xl"><i class="fas fa-bars text-white"></i></button>
-        </div>
-    </nav>
+<section id="home" class="relative h-screen flex items-center justify-center">
+<img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=2400&q=90&fit=crop" class="absolute inset-0 w-full h-full object-cover" alt="Luxury Lobby">
+<div class="absolute inset-0 bg-black/40"></div>
+<div class="relative z-10 text-center text-white px-4">
+<span class="uppercase tracking-[0.6em] text-[10px] mb-8 block hero-reveal">Excellence in Senior Living</span>
+<h1 class="text-7xl md:text-9xl font-bold mb-10 hero-reveal">Dignity in <br><span class="italic font-normal">Every Detail</span></h1>
+<a href="#about" class="btn bg-white !text-navy border-white hover:!bg-transparent hover:!text-white hero-reveal inline-block">Explore</a>
+</div>
+</section>
 
-    <!-- Hero Section -->
-    <section id="home" class="relative h-screen flex items-center overflow-hidden">
-        <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=2000" alt="Luxury Lobby" class="w-full h-full object-cover scale-110">
-            <div class="absolute inset-0 hero-gradient"></div>
-        </div>
-        <div class="container mx-auto px-8 relative z-10 text-white mt-20">
-            <p class="uppercase tracking-[0.4em] mb-4 opacity-0 hero-reveal">Experience Excellence</p>
-            <h1 class="text-6xl md:text-8xl font-bold leading-tight mb-8 opacity-0 hero-reveal">A Sanctuary of <br><span class="text-white italic">Elegant Care</span></h1>
-            <p class="text-lg font-light max-w-xl mb-10 opacity-0 hero-reveal leading-relaxed">
-                Homely Health Care redefines senior living, offering a sophisticated blend of world-class medical support and bespoke hospitality in an environment of unparalleled luxury.
-            </p>
-            <div class="flex space-x-6 opacity-0 hero-reveal">
-                <a href="#about" class="btn-luxury bg-white !text-navy border-white hover:!bg-transparent hover:!text-white">Explore Our World</a>
-                <a href="#services" class="flex items-center space-x-3 group">
-                    <span class="w-12 h-12 rounded-full border border-white flex items-center justify-center group-hover:bg-white group-hover:text-navy transition-all duration-300">
-                        <i class="fas fa-play text-xs"></i>
-                    </span>
-                    <span class="uppercase text-xs tracking-widest font-bold">Watch Video</span>
-                </a>
-            </div>
-        </div>
-    </section>
+<section id="about" class="py-32 bg-white">
+<div class="max-w-7xl mx-auto px-8 grid lg:grid-cols-2 gap-24 items-center">
+<div class="relative">
+<img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1200&q=80&fit=crop" class="w-full aspect-[3/4] object-cover" alt="Garden">
+<div class="absolute -bottom-12 -right-12 bg-[#FDFBF7] p-12 hidden lg:block border border-gray-100">
+<p class="text-2xl italic text-gray-400">"A legacy of compassion."</p>
+</div>
+</div>
+<div>
+<span class="text-xs uppercase tracking-[0.4em] font-bold text-[#C5A059] mb-8 block">Our Essence</span>
+<h2 class="text-6xl font-bold mb-10">Sophistication <br>Redefined</h2>
+<p class="text-lg font-light text-gray-500 mb-12">Homely Health Care merges elite medical expertise with five-star hospitality to create an environment where residents thrive.</p>
+<div class="grid grid-cols-2 gap-12 border-t border-gray-100 pt-12">
+<div>
+<span class="block text-3xl font-bold mb-2">24/7</span>
+<span class="text-[10px] uppercase tracking-widest text-gray-400">Elite Medical Staff</span>
+</div>
+<div>
+<span class="block text-3xl font-bold mb-2">Bespoke</span>
+<span class="text-[10px] uppercase tracking-widest text-gray-400">Care Plans</span>
+</div>
+</div>
+</div>
+</div>
+</section>
 
-    <!-- About Section -->
-    <section id="about" class="section-padding overflow-hidden">
-        <div class="container mx-auto px-8">
-            <div class="flex flex-col md:flex-row items-center gap-20">
-                <div class="md:w-1/2 relative">
-                    <div class="w-full aspect-[4/5] overflow-hidden reveal-img">
-                        <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=1200" alt="Serene Garden" class="w-full h-full object-cover">
-                    </div>
-                </div>
-                <div class="md:w-1/2">
-                    <span class="uppercase tracking-[0.3em] text-xs font-bold text-[#C5A059] mb-6 block fade-up">Our Legacy</span>
-                    <h2 class="text-5xl font-bold mb-8 leading-tight fade-up">Where Compassion <br>Meets Sophistication</h2>
-                    <p class="text-gray-600 mb-10 leading-relaxed fade-up">
-                        Homely Health Care provides more than just care; we provide a curated lifestyle that honors the individual.
-                    </p>
-                    <a href="#contact" class="btn-luxury fade-up">Discover Our History</a>
-                </div>
-            </div>
-        </div>
-    </section>
+<section id="services" class="py-32 px-8">
+<div class="max-w-7xl mx-auto text-center mb-24">
+<h2 class="text-5xl font-bold italic">Curated Care Packages</h2>
+</div>
+<div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-12">
+<div class="card p-16 text-center bg-white">
+<i class="fas fa-heart text-3xl mb-10 text-[#C5A059]"></i>
+<h3 class="text-2xl font-bold mb-6">Assisted Living</h3>
+<p class="text-sm font-light text-gray-500">Comprehensive support with the freedom of a private, high-end residence.</p>
+</div>
+<div class="card p-16 text-center bg-white">
+<i class="fas fa-brain text-3xl mb-10 text-[#C5A059]"></i>
+<h3 class="text-2xl font-bold mb-6">Memory Care</h3>
+<p class="text-sm font-light text-gray-500">Specialized clinical support in a serene, secure environment.</p>
+</div>
+<div class="card p-16 text-center bg-white">
+<i class="fas fa-spa text-3xl mb-10 text-[#C5A059]"></i>
+<h3 class="text-2xl font-bold mb-6">Medical Concierge</h3>
+<p class="text-sm font-light text-gray-500">Direct access to leading specialists and private nursing on-demand.</p>
+</div>
+</div>
+</section>
 
-    <!-- Services -->
-    <section id="services" class="section-padding bg-white">
-        <div class="container mx-auto px-8 text-center mb-20">
-            <h2 class="text-5xl font-bold luxury-font">Tailored Care Services</h2>
-        </div>
-        <div class="container mx-auto px-8 grid md:grid-cols-3 gap-8">
-            <div class="service-card p-10">
-                <i class="fas fa-hand-holding-heart text-3xl mb-8 text-[#C5A059]"></i>
-                <h3 class="text-xl font-bold mb-4">Assisted Living</h3>
-                <p class="text-sm font-light text-gray-500">Professional support with the independence of private living.</p>
-            </div>
-            <div class="service-card p-10">
-                <i class="fas fa-brain text-3xl mb-8 text-[#C5A059]"></i>
-                <h3 class="text-xl font-bold mb-4">Memory Care</h3>
-                <p class="text-sm font-light text-gray-500">Specialized dementia and Alzheimer's support.</p>
-            </div>
-            <div class="service-card p-10">
-                <i class="fas fa-spa text-3xl mb-8 text-[#C5A059]"></i>
-                <h3 class="text-xl font-bold mb-4">Wellness & Spa</h3>
-                <p class="text-sm font-light text-gray-500">Holistic therapies and personalized fitness.</p>
-            </div>
-        </div>
-    </section>
+<section id="contact" class="py-32 bg-navy text-white">
+<div class="max-w-7xl mx-auto px-8 text-center">
+<h2 class="text-5xl font-bold mb-8">Begin Your Journey</h2>
+<p class="text-gray-400 mb-12">Schedule a private consultation with our coordinators.</p>
+<a href="mailto:concierge@homelyhealthcare.com" class="btn bg-[#C5A059] border-[#C5A059]">Contact Concierge</a>
+<div class="mt-16 pt-16 border-t border-white/10">
+<p class="text-sm text-gray-500"><i class="fas fa-phone mr-4"></i>+1 (555) 012-3456</p>
+<p class="text-sm text-gray-500 mt-4"><i class="fas fa-location-dot mr-4"></i>Cambridge, Ontario, Canada</p>
+</div>
+</div>
+</section>
 
-    <!-- Contact -->
-    <section id="contact" class="section-padding">
-        <div class="container mx-auto px-8">
-            <div class="bg-navy text-white p-16 flex flex-col md:flex-row justify-between items-center">
-                <div class="md:w-1/2">
-                    <h2 class="text-4xl font-bold mb-4 luxury-font">Begin Your Journey</h2>
-                    <p class="text-gray-400 font-light">Schedule a private consultation with our coordinators.</p>
-                </div>
-                <a href="mailto:concierge@homelyhealthcare.com" class="btn-luxury bg-[#C5A059] border-[#C5A059] mt-8 md:mt-0">Contact Concierge</a>
-            </div>
-        </div>
-    </section>
+<footer class="bg-[#0A1128] text-white py-10 border-t border-white/10">
+<div class="max-w-7xl mx-auto px-8 text-center">
+<div class="flex flex-col mb-8">
+<span class="text-4xl font-bold tracking-[0.3em]">HOMELY</span>
+<span class="text-[10px] tracking-[0.6em] text-[#C5A059] uppercase">Health Care</span>
+</div>
+<span class="text-[9px] uppercase tracking-[0.4em] text-gray-600">&copy; 2026 Homely Health Care. All rights reserved.</span>
+</div>
+</footer>
 
-    <!-- Footer -->
-    <footer class="bg-[#0A1128] text-white py-10 border-t border-white/10">
-        <div class="container mx-auto px-8 text-center">
-            <p class="text-[10px] uppercase tracking-widest text-gray-500">&copy; 2026 Homely Health Care. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script>
-        gsap.to(".hero-reveal", { opacity: 1, y: 0, duration: 1.5, stagger: 0.2, ease: "power4.out" });
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 100) nav.classList.add('scrolled-nav');
-            else nav.classList.remove('scrolled-nav');
-        });
-    </script>
+<script>
+gsap.to(".hero-reveal", { opacity: 1, y: 0, duration: 1.8, stagger: 0.3, ease: "power4.out", delay: 0.5 });
+window.addEventListener('scroll', () => {
+const nav = document.getElementById('nav');
+if (window.scrollY > 50) nav.classList.add('scrolled');
+else nav.classList.remove('scrolled');
+});
+document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+e.preventDefault();
+document.querySelector(a.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+}));
+</script>
 </body>
-</html>ctrl+scrollIntoView({ behavior: 'smooth' }); }); });</script></body></html>
+</html>
