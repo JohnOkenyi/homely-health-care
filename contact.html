@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Homely Health Care | Bespoke Private Care</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --gold: #C5A059; --navy: #0A1128; }
+        body { font-family: 'Lato', sans-serif; }
+        h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
+        .bg-luxury-navy { background-color: var(--navy); }
+        .text-gold { color: var(--gold); }
+        .border-gold { border-color: var(--gold); }
+        .nav-link { position: relative; }
+        .nav-link::after { content: ''; position: absolute; width: 0; height: 1px; bottom: -2px; left: 0; background-color: var(--gold); transition: width 0.3s; }
+        .nav-link:hover::after { width: 100%; }
+        .form-input { border: none; border-bottom: 1px solid #ddd; background: transparent; padding: 1rem 0; width: 100%; transition: border-color 0.3s; outline: none; }
+        .form-input:focus { border-color: var(--gold); }
+        .gold-gradient { background: linear-gradient(135deg, #C5A059 0%, #E2C275 50%, #C5A059 100%); }
+    </style>
+</head>
+<body class="bg-white text-gray-900 antialiased overflow-x-hidden">
+
+    <!-- Header (Same as Home) -->
+    <header id="nav" class="fixed w-full z-50 transition-all duration-500 py-4 px-10 flex justify-between items-center bg-luxury-navy shadow-2xl">
+        <div class="flex items-center space-x-2">
+            <div class="text-2xl font-bold tracking-widest uppercase serif text-white">Homely</div>
+            <div class="h-8 w-[1px] bg-gold/50 mx-2"></div>
+            <div class="text-[10px] tracking-[0.3em] uppercase text-white font-light">Health Care</div>
+        </div>
+        
+        <nav class="hidden md:flex space-x-10 text-sm tracking-widest uppercase text-white">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="about.html" class="nav-link">About Us</a>
+            <a href="services.html" class="nav-link">Services</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </nav>
+
+        <div class="flex items-center space-x-6">
+            <button class="px-8 py-3 border border-gold text-gold hover:bg-gold hover:text-navy transition-all duration-300 text-xs tracking-[0.2em] uppercase">Inquiry</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="pt-48 pb-24 px-10 bg-navy text-white text-center">
+        <div class="max-w-4xl mx-auto">
+            <span class="text-gold tracking-[0.4em] uppercase text-xs mb-4 block reveal-up">Get in Touch</span>
+            <h1 class="text-5xl md:text-7xl serif reveal-up">We Are Here to Listen.</h1>
+        </div>
+    </section>
+
+    <!-- Contact Content -->
+    <section class="py-24 px-10 md:px-20 bg-[#F9F7F2]">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20">
+            <!-- Contact Form -->
+            <div class="bg-white p-12 shadow-2xl reveal-left">
+                <h2 class="text-3xl serif text-navy mb-10">Send an Inquiry</h2>
+                <form action="#" class="space-y-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <input type="text" placeholder="Full Name" class="form-input">
+                        <input type="email" placeholder="Email Address" class="form-input">
+                    </div>
+                    <input type="text" placeholder="Phone Number" class="form-input">
+                    <select class="form-input appearance-none">
+                        <option value="">Interested Service</option>
+                        <option value="home-care">Home Care</option>
+                        <option value="live-in-care">Live-in Care</option>
+                        <option value="supported-living">Supported Living</option>
+                    </select>
+                    <textarea placeholder="How can we help?" rows="4" class="form-input"></textarea>
+                    <button class="w-full py-5 gold-gradient text-navy font-bold uppercase text-xs tracking-[0.2em] hover:shadow-xl transition-all">Submit Inquiry</button>
+                </form>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="flex flex-col justify-center reveal-right">
+                <div class="space-y-12">
+                    <div>
+                        <h4 class="text-gold tracking-[0.3em] uppercase text-xs font-bold mb-4">Head Office</h4>
+                        <p class="text-2xl serif text-navy leading-relaxed">Suite 6a, Wessex House, St. Leonards Road, Charminster, Bournemouth, BH8 8QS</p>
+                    </div>
+                    <div>
+                        <h4 class="text-gold tracking-[0.3em] uppercase text-xs font-bold mb-4">Direct Lines</h4>
+                        <p class="text-2xl serif text-navy leading-relaxed">01202 948 898 <br> 07985 591 098</p>
+                    </div>
+                    <div>
+                        <h4 class="text-gold tracking-[0.3em] uppercase text-xs font-bold mb-4">Email Correspondence</h4>
+                        <p class="text-2xl serif text-navy leading-relaxed">info@homelyhealth.uk</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-navy pt-24 pb-10 px-10 border-t border-white/5">
+        <div class="max-w-7xl mx-auto text-center text-white/30 text-[10px] tracking-widest uppercase">
+            © Homely Health Care 2024. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Scroll Reveals
+        gsap.utils.toArray('.reveal-up').forEach(el => {
+            gsap.from(el, {
+                scrollTrigger: el,
+                opacity: 0,
+                y: 50,
+                duration: 1.2,
+                ease: 'power3.out'
+            });
+        });
+
+        gsap.from('.reveal-left', {
+            scrollTrigger: '.reveal-left',
+            opacity: 0,
+            x: -100,
+            duration: 1.5,
+            ease: 'power3.out'
+        });
+
+        gsap.from('.reveal-right', {
+            scrollTrigger: '.reveal-right',
+            opacity: 0,
+            x: 100,
+            duration: 1.5,
+            ease: 'power3.out'
+        });
+    </script>
+</body>
+</html>
