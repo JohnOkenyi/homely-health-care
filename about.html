@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homely Health Care | Redefining Luxury Assisted Living</title>
+    <!-- Modern Frameworks -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Premium Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@200;300;400;500;600&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: '#C5A059',
+                        navy: '#0A1128',
+                        cream: '#FDFBF7',
+                        pearl: '#F4F1EA',
+                    },
+                    fontFamily: {
+                        'serif': ['Playfair Display', 'serif'],
+                        'sans': ['Montserrat', 'sans-serif'],
+                        'cinzel': ['Cinzel', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        ::selection { background: #C5A059; color: #fff; }
+        body { background-color: #FDFBF7; color: #0A1128; overflow-x: hidden; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .text-gradient { background: linear-gradient(135deg, #0A1128 0%, #1c2a4d 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .gold-border { border-color: rgba(197, 160, 89, 0.2); }
+        .parallax { transform: translateZ(0); transition: 0.3s ease-out; }
+        .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: #C5A059; transition: 0.4s cubic-bezier(0.19, 1, 0.22, 1); }
+        .nav-link:hover::after { width: 100%; }
+        .reveal { opacity: 0; transform: translateY(40px); transition: 1s cubic-bezier(0.19, 1, 0.22, 1); }
+        .active-reveal { opacity: 1 !important; transform: translateY(0) !important; }
+        .team-card img { filter: grayscale(100%); transition: 0.8s cubic-bezier(0.19, 1, 0.22, 1); }
+        .team-card:hover img { filter: grayscale(0%); transform: scale(1.05); }
+        .gold-underline { position: relative; display: inline-block; }
+        .gold-underline::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: #C5A059; opacity: 0.3; }
+        .custom-cursor { width: 40px; height: 40px; border: 1px solid #C5A059; border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transition: 0.1s; display: none; }
+        @media (min-width: 1024px) { .custom-cursor { display: block; } }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="custom-cursor" id="cursor"></div>
+
+    <!-- Preloader -->
+    <div id="loader" class="fixed inset-0 z-[100] bg-navy flex items-center justify-center transition-opacity duration-1000">
+        <div class="text-center">
+            <h2 class="text-gold font-cinzel text-2xl tracking-[0.5em] mb-4">HOMELY</h2>
+            <div class="w-48 h-[1px] bg-white/10 relative overflow-hidden">
+                <div id="loader-progress" class="absolute top-0 left-0 h-full bg-gold w-0"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="nav" class="fixed w-full z-50 py-8 px-12 transition-all duration-700">
+        <div class="max-w-screen-2xl mx-auto flex justify-between items-center">
+            <a href="#" class="group">
+                <div class="flex flex-col">
+                    <span class="text-2xl font-cinzel tracking-[0.3em] font-bold">HOMELY</span>
+                    <span class="text-[9px] tracking-[0.6em] text-gold uppercase opacity-80">Health Care</span>
+                </div>
+            </a>
+            
+            <div class="hidden lg:flex items-center space-x-16 text-[11px] uppercase tracking-[0.3em] font-medium">
+                <a href="#servicesabout.html" class="nav-link relative">Philosophy</a>
+                <a href="#services" class="nav-link relative">Excellence</a>
+                <a href="#team" class="nav-link relative">Artisans</a>
+                <a href="#contact" class="nav-link relative">Concierge</a>
+            </div>
+
+            <div class="flex items-center space-x-8">
+                <a href="#contact" class="hidden md:block border-b border-gold/40 pb-1 text-[10px] uppercase tracking-[0.2em] hover:text-gold transition-colors">Start Your Journey</a>
+                <button class="text-xl lg:hidden"><i class="fa-solid fa-bars-staggered"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center overflow-hidden bg-navy">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=80&w=2000" class="w-full h-full object-cover opacity-40 scale-110 parallax-bg" alt="Luxury Spa">
+            <div class="absolute inset-0 bg-gradient-to-b from-navy/50 via-transparent to-navy/80"></div>
+        </div>
+        
+        <div class="container mx-auto px-12 relative z-10">
+            <div class="max-w-4xl">
+                <span class="block text-gold font-cinzel tracking-[0.5em] uppercase text-xs mb-8 reveal">A Legacy of Care</span>
+                <h1 class="text-white text-7xl md:text-9xl font-serif italic leading-tight mb-12 reveal" style="transition-delay: 0.2s">
+                    Elegance in <br> <span class="text-gold font-serif">Every Moment</span>
+                </h1>
+                <p class="text-white/60 text-lg md:text-xl font-light tracking-wide max-w-xl mb-12 leading-relaxed reveal" style="transition-delay: 0.4s">
+                    Transcending traditional care with a five-star approach to residential support, clinical excellence, and bespoke lifestyle management.
+                </p>
+                <div class="reveal" style="transition-delay: 0.6s">
+                    <a href="#servicesabout.html" class="inline-flex items-center space-x-4 bg-gold text-white px-10 py-5 rounded-sm hover:bg-white hover:text-navy transition-all duration-500 uppercase tracking-[0.2em] text-[10px] font-bold">
+                        <span>Discover Our Essence</span>
+                        <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-12 right-12 text-white/20 text-[9px] uppercase tracking-[0.8em] vertical-text hidden xl:block">
+            Scroll to Explore
+        </div>
+    </section>
+
+    <!-- Philosophy -->
+    <section id="about" class="py-40 px-12 bg-cream overflow-hidden">
+        <div class="max-w-screen-2xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-32 items-center">
+                <div class="relative">
+                    <div class="absolute -top-12 -left-12 w-64 h-64 bg-pearl -z-10"></div>
+                    <img src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&q=80&w=1200" class="w-full h-[700px] object-cover rounded-sm shadow-2xl reveal" alt="Clinical Professional">
+                    <div class="absolute -bottom-16 -right-16 bg-navy p-16 hidden xl:block reveal" style="transition-delay: 0.3s">
+                        <p class="text-white font-serif italic text-2xl leading-relaxed max-w-xs">
+                            "Dignity is not just a value; it's the very foundation of our existence."
+                        </p>
+                    </div>
+                </div>
+                
+                <div>
+                    <span class="text-gold font-cinzel tracking-[0.4em] uppercase text-xs mb-6 block reveal">The Homely Philosophy</span>
+                    <h2 class="text-5xl md:text-7xl font-serif mb-12 leading-tight reveal" style="transition-delay: 0.2s">Sophistication <br> Without Compromise</h2>
+                    <div class="space-y-8 text-gray-500 font-light leading-relaxed text-lg reveal" style="transition-delay: 0.4s">
+                        <p>
+                            Homely Health Care connects elite medical expertise with a person-centred approach. We understand that every life story is unique, and as such, your support must be a bespoke masterpiece.
+                        </p>
+                        <p>
+                            We donate a significant portion of our profits to <span class="text-gold italic">The Rahula Trust</span>, supporting children's education globally. Your care with us extends its reach to empower future generations.
+                        </p>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-12 mt-20 reveal" style="transition-delay: 0.6s">
+                        <div class="border-l gold-border pl-8 py-4">
+                            <span class="text-4xl font-serif block mb-2">100%</span>
+                            <span class="uppercase tracking-[0.2em] text-[9px] font-bold text-gray-400">DBS Verified Staff</span>
+                        </div>
+                        <div class="border-l gold-border pl-8 py-4">
+                            <span class="text-4xl font-serif block mb-2">24/7</span>
+                            <span class="uppercase tracking-[0.2em] text-[9px] font-bold text-gray-400">Clinical Concierge</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-40 px-12 bg-white relative">
+        <div class="absolute top-0 right-0 w-1/3 h-full bg-pearl/30 -z-0"></div>
+        <div class="max-w-screen-2xl mx-auto relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-32">
+                <div class="max-w-2xl">
+                    <span class="text-gold font-cinzel tracking-[0.4em] uppercase text-xs mb-6 block reveal">Our Curated Services</span>
+                    <h2 class="text-5xl md:text-7xl font-serif leading-tight reveal" style="transition-delay: 0.2s">A Spectrum of <br> Premium Care</h2>
+                </div>
+                <div class="mt-8 md:mt-0 reveal" style="transition-delay: 0.4s">
+                    <p class="text-gray-400 font-light tracking-widest uppercase text-[10px]">Exceptional Solutions for Exceptional People</p>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="group relative overflow-hidden bg-cream p-16 border border-pearl hover:border-gold/30 transition-all duration-700 reveal">
+                    <div class="mb-12"><i class="fa-solid fa-house-user text-3xl gold-text opacity-40 group-hover:opacity-100 transition-opacity"></i></div>
+                    <h3 class="text-3xl font-serif mb-6 group-hover:text-gold transition-colors">Domiciliary Care</h3>
+                    <p class="text-gray-500 font-light text-sm leading-relaxed mb-12">
+                        Receive world-class support in the sanctuary of your own residence, maintaining absolute independence with the security of expert care.
+                    </p>
+                    <a href="#" class="text-[10px] uppercase tracking-[0.3em] font-bold border-b border-navy/10 group-hover:border-gold pb-2 transition-all">Explore</a>
+                </div>
+                <!-- Card 2 -->
+                <div class="group relative overflow-hidden bg-navy p-16 transition-all duration-700 reveal" style="transition-delay: 0.2s">
+                    <div class="mb-12"><i class="fa-solid fa-user-doctor text-3xl text-gold"></i></div>
+                    <h3 class="text-3xl font-serif mb-6 text-white">Clinical Support</h3>
+                    <p class="text-white/40 font-light text-sm leading-relaxed mb-12">
+                        Specialized treatment of disease, disorder, or injury (TDDI) managed by our elite team of Registered Nurses.
+                    </p>
+                    <a href="#" class="text-[10px] uppercase tracking-[0.3em] font-bold border-b border-white/10 text-gold pb-2 transition-all">Explore</a>
+                </div>
+                <!-- Card 3 -->
+                <div class="group relative overflow-hidden bg-cream p-16 border border-pearl hover:border-gold/30 transition-all duration-700 reveal" style="transition-delay: 0.4s">
+                    <div class="mb-12"><i class="fa-solid fa-bed-pulse text-3xl gold-text opacity-40 group-hover:opacity-100 transition-opacity"></i></div>
+                    <h3 class="text-3xl font-serif mb-6 group-hover:text-gold transition-colors">Live-in Care</h3>
+                    <p class="text-gray-500 font-light text-sm leading-relaxed mb-12">
+                        Round-the-clock companionship and professional assistance, ensuring every need is met with elegance and continuity.
+                    </p>
+                    <a href="#" class="text-[10px] uppercase tracking-[0.3em] font-bold border-b border-navy/10 group-hover:border-gold pb-2 transition-all">Explore</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="py-40 px-12 bg-pearl">
+        <div class="max-w-screen-2xl mx-auto">
+            <div class="text-center mb-32">
+                <span class="text-gold font-cinzel tracking-[0.4em] uppercase text-xs mb-6 block reveal">The Artisans</span>
+                <h2 class="text-5xl md:text-7xl font-serif reveal" style="transition-delay: 0.2s">Masters of Care</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-16">
+                <!-- Member 1 -->
+                <div class="team-card group reveal">
+                    <div class="relative overflow-hidden mb-10">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=800" class="w-full h-[550px] object-cover" alt="Douglas Matungamire">
+                        <div class="absolute inset-0 bg-gold/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <span class="uppercase tracking-[0.4em] text-[9px] text-gold mb-3">Director</span>
+                        <h3 class="text-3xl font-serif mb-4">Douglas Matungamire</h3>
+                        <p class="text-center text-gray-400 font-light text-sm max-w-xs leading-relaxed">
+                            Pioneer in healthcare auditing with a legacy of building integrity-driven care models since 2016.
+                        </p>
+                    </div>
+                </div>
+                <!-- Member 2 -->
+                <div class="team-card group reveal" style="transition-delay: 0.2s">
+                    <div class="relative overflow-hidden mb-10">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800" class="w-full h-[550px] object-cover" alt="Pauline Makazhu">
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <span class="uppercase tracking-[0.4em] text-[9px] text-gold mb-3">Clinical Lead</span>
+                        <h3 class="text-3xl font-serif mb-4">Pauline Makazhu</h3>
+                        <p class="text-center text-gray-400 font-light text-sm max-w-xs leading-relaxed">
+                            Compassionate Registered Nurse leading our TDDI and Complex Care divisions with clinical brilliance.
+                        </p>
+                    </div>
+                </div>
+                <!-- Member 3 -->
+                <div class="team-card group reveal" style="transition-delay: 0.4s">
+                    <div class="relative overflow-hidden mb-10">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=800" class="w-full h-[550px] object-cover" alt="Sara Randall">
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <span class="uppercase tracking-[0.4em] text-[9px] text-gold mb-3">Operations Manager</span>
+                        <h3 class="text-3xl font-serif mb-4">Sara Randall</h3>
+                        <p class="text-center text-gray-400 font-light text-sm max-w-xs leading-relaxed">
+                            35+ years of social care expertise, ensuring our standards remain the gold benchmark of the industry.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-40 px-12 bg-navy relative overflow-hidden">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white/5 text-[20vw] font-serif italic whitespace-nowrap pointer-events-none">
+            Refined Living
+        </div>
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <i class="fa-solid fa-quote-left text-gold text-5xl mb-16 opacity-30"></i>
+            <div id="testimonial-slider" class="min-h-[300px] flex items-center justify-center">
+                <p class="text-white text-3xl md:text-5xl font-serif italic leading-relaxed reveal">
+                    "The level of professionalism, compassion and dedication has been remarkable. They have consistently gone above and beyond to ensure complex needs were met with the utmost attention."
+                </p>
+            </div>
+            <div class="mt-16 flex flex-col items-center reveal" style="transition-delay: 0.4s">
+                <span class="text-gold uppercase tracking-[0.5em] text-[10px] font-bold mb-2">Clinical Specialist</span>
+                <span class="text-white/40 text-[9px] uppercase tracking-[0.3em]">Occupational Therapist</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Contact -->
+    <footer id="contact" class="bg-white py-40 px-12 border-t gold-border">
+        <div class="max-w-screen-2xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-40">
+                <div>
+                    <span class="text-gold font-cinzel tracking-[0.4em] uppercase text-xs mb-8 block reveal">Concierge</span>
+                    <h2 class="text-6xl font-serif mb-12 reveal" style="transition-delay: 0.2s">The Beginning of <br> Your Story</h2>
+                    <p class="text-gray-400 font-light text-lg mb-16 leading-relaxed max-w-md reveal" style="transition-delay: 0.4s">
+                        Our care coordinators are ready to design a bespoke experience for you or your loved ones.
+                    </p>
+                    
+                    <div class="space-y-12 reveal" style="transition-delay: 0.6s">
+                        <div class="flex items-center space-x-8">
+                            <span class="w-12 h-12 flex items-center justify-center rounded-full bg-pearl text-gold"><i class="fa-solid fa-phone-volume"></i></span>
+                            <div class="flex flex-col">
+                                <span class="text-[9px] uppercase tracking-[0.4em] text-gray-400 mb-1">Telephone</span>
+                                <span class="text-xl tracking-widest font-medium">01202 948 898</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-8">
+                            <span class="w-12 h-12 flex items-center justify-center rounded-full bg-pearl text-gold"><i class="fa-solid fa-envelope-open"></i></span>
+                            <div class="flex flex-col">
+                                <span class="text-[9px] uppercase tracking-[0.4em] text-gray-400 mb-1">Electronic Mail</span>
+                                <span class="text-xl tracking-widest font-medium">info@homelyhealth.uk</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-pearl p-16 md:p-24 reveal" style="transition-delay: 0.4s">
+                    <form class="space-y-12">
+                        <div class="relative">
+                            <input type="text" id="name" class="w-full bg-transparent border-b gold-border py-4 focus:outline-none focus:border-gold transition-colors font-light text-lg placeholder:text-gray-300" placeholder="Full Name">
+                        </div>
+                        <div class="relative">
+                            <input type="email" id="email" class="w-full bg-transparent border-b gold-border py-4 focus:outline-none focus:border-gold transition-colors font-light text-lg placeholder:text-gray-300" placeholder="Contact Address">
+                        </div>
+                        <div class="relative">
+                            <textarea id="message" rows="4" class="w-full bg-transparent border-b gold-border py-4 focus:outline-none focus:border-gold transition-colors font-light text-lg placeholder:text-gray-300 resize-none" placeholder="Your Inquiries"></textarea>
+                        </div>
+                        <button class="w-full bg-navy text-white py-6 uppercase tracking-[0.5em] text-[10px] font-bold hover:bg-gold transition-all duration-700">
+                            Request Consultation
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="mt-40 pt-20 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center text-[9px] uppercase tracking-[0.5em] text-gray-400 opacity-60">
+                <span>&copy; 2024 Homely Health Care</span>
+                <span class="my-6 md:my-0">Bournemouth & Ontario</span>
+                <div class="flex space-x-12">
+                    <a href="#" class="hover:text-gold transition-colors">Privacy</a>
+                    <a href="#" class="hover:text-gold transition-colors">Terms</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Custom Cursor
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Loader
+        window.addEventListener('load', () => {
+            let progress = 0;
+            const progressInterval = setInterval(() => {
+                progress += 5;
+                document.getElementById('loader-progress').style.width = progress + '%';
+                if (progress >= 100) {
+                    clearInterval(progressInterval);
+                    document.getElementById('loader').style.opacity = '0';
+                    setTimeout(() => document.getElementById('loader').style.display = 'none', 1000);
+                }
+            }, 50);
+        });
+
+        // Navigation Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-white/90', 'backdrop-blur-md', 'py-4', 'shadow-sm');
+                nav.classList.remove('py-8');
+            } else {
+                nav.classList.remove('bg-white/90', 'backdrop-blur-md', 'py-4', 'shadow-sm');
+                nav.classList.add('py-8');
+            }
+        });
+
+        // Reveal Animations
+        const reveals = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active-reveal');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        reveals.forEach(reveal => revealObserver.observe(reveal));
+
+        // Parallax Effect
+        document.addEventListener('mousemove', (e) => {
+            const amount = 30;
+            const x = (e.clientX / window.innerWidth - 0.5) * amount;
+            const y = (e.clientY / window.innerHeight - 0.5) * amount;
+            document.querySelectorAll('.parallax-bg').forEach(bg => {
+                bg.style.transform = `scale(1.1) translate(${x}px, ${y}px)`;
+            });
+        });
+    </script>
+</body>
+</html><!DOCTYPE html> <html lang="en"> <head>     <meta charset="UTF-8">     <meta name="viewport" content="width=device-width, initial-scale=1.0">     <title>Homely Health Care | Redefining Luxury Assisted Living</title>     <!-- Modern Frameworks -->     <script src="https://cdn.tailwindcss.com"></script>     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>     <!-- Premium Fonts -->     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@200;300;400;500;600&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">          <script>         tailwind.config = {             theme: {                 extend: {                     colors: {                         gold: '#C5A059',                         navy: '#0A1128',                         cream: '#FDFBF7',                         pearl: '#F4F1EA',                     },                     fontFamily: {                         'serif': ['Playfair Display', 'serif'],                         'sans': ['Montserrat', 'sans-serif'],                         'cinzel': ['Cinzel', 'serif'],                     }                 }             }         }     </script>          <style>         ::selection { background: #C5A059; color: #fff; }         body { background-color: #FDFBF7; color: #0A1128; overflow-x: hidden; }         .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }         .text-gradient { background: linear-gradient(135deg, #0A1128 0%, #1c2a4d 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }         .gold-border { border-color: rgba(197, 160, 89, 0.2); }         .parallax { transform: translateZ(0); transition: 0.3s ease-out; }         .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: #C5A059; transition: 0.4s cubic-bezier(0.19, 1, 0.22, 1); }         .nav-link:hover::after { width: 100%; }         .reveal { opacity: 0; transform: translateY(40px); transition: 1s cubic-bezier(0.19, 1, 0.22, 1); }         .active-reveal { opacity: 1 !important; transform: translateY(0) !important; }         .team-card img { filter: grayscale(100%); transition: 0.8s cubic-bezier(0.19, 1, 0.22, 1); }         .team-card:hover img { filter: grayscale(0%); transform: scale(1.05); }         .gold-underline { position: relative; display: inline-block; }         .gold-underline::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: #C5A059; opacity: 0.3; }         .custom-cursor { width: 40px; height: 40px; border: 1px solid #C5A059; border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transition: 0.1s; display: none; }         @media (min-width: 1024px) { .custom-cursor { display: block; } }     </style> </head> <body class="antialiased">     <div class="custom-cursor" id="cursor"></div>      <!-- Preloader -->     <div id="loader" class="fixed inset-0 z-[100] bg-navy flex items-center justify-center transition-opacity duration-1000">         <div class="text-center">             <h2 class="text-gold font-cinzel text-2xl tracking-[0.5em] mb-4">HOMELY</h2>             <div class="w-48 h-[1px] bg-white/10 relative overflow-hidden">                 <div id="loader-progress" class="absolute top-0 left-0 h-full bg-gold w-0"></div>             </div>         </div>     </div>      <!-- Navigation -->     <nav id="nav" class="fixed w-full z-50 py-8 px-12 transition-all duration-700">         <div class="max-w-screen-2xl mx-auto flex justify-between items-center">             <a href="#" class="group">                 <div class="flex flex-col">                     <span class="text-2xl font-cinzel tracking-[0.3em] font-bold">HOMELY</span>                     <span class="text-[9px] tracking-[0.6em] text-gold uppercase opacity-80">Health Care</span>                 </div>             </a>                          <div class="hidden lg:flex items-center space-x-16 text-[11px] uppercase tracking-[0.3em] font-medium">                 <a href="#servicesabout.html" class="nav-link relative">Philosophy</a>                 <a href="#services" class="nav-link relative">Excellence</a>                 <a href="#team" class="nav-link relative">Artisans</a>                 <a href="#contact" class="nav-link relative">Concierge</a>             </div>              <div class="flex items-center space-x-8">                 <a href="#contact" class="hidden md:block border-b border-gold/40 pb-1 text-[10px] uppercase tracking-[0.2em] hover:text-gold transition-colors">Start Your Journey</a>                 <button class="text-xl lg:hidden"><i class="fa-solid fa-bars-staggered"></i></button>             </div>         </div>     </nav>      <!-- Hero Section -->     <section class="relative h-screen flex items-center overflow-hidden bg-navy">         <div class="absolute inset-0 z-0">             <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=80&w=2000" class="w-full h-full object-cover opacity-40 scale-110 parallax-bg" alt="Luxury Spa">             <div class="absolute inset-0 bg-gradient-to-b from-navy/50 via-transparent to-navy/80"></div>         </div>                  <div class="container mx-auto px-12 relative z-10">             <div class="max-w-4xl">                 <span class="block text-gold font-cinzel tracking-[0.5em] uppercase text-xs mb-8 reveal">A Legacy of Care</span>                 <h1 class="text-white text-7xl md:text-9xl font-serif italic leading-tight mb-12 reveal" style="transition-delay: 0.2s">                     Elegance in <br> <span class="text-gold font-serif">Every Moment</span>                 </h1>                 <p class="text-white/60 text-lg md:text-xl font-light tracking-wide max-w-xl mb-12 leading-relaxed reveal" style="transition-delay: 0.4s">                     Transcending traditional care with a five-star approach to residential support, clinical excellence, and bespoke lifestyle management.                 </p>                 <div class="reveal" style="transition-delay: 0.6s">                     <a href="#servicesabout.html" class="inline-flex items-center space-x-4 bg-gold text-white px-10 py-5 rounded-sm hover:bg-white hover:text-navy transition-all duration-500 uppercase tracking-[0.2em] text-[10px] font-bold">                         <span>Discover Our Essence</span>                         <i class="fa-solid fa-arrow-right text-[10px]"></i>                     </a>                 </div>             </div>         </div>                  <div class="absolute bottom-12 right-12 text-white/20 text-[9px] uppercase tracking-[0.8em] vertical-text hidden xl:block">             Scroll to Explore         </div>     </section>      <!-- Philosophy -->     <section id="about" class="py-40 px-12 bg-cream overflow-hidden">         <div class="max-w-screen-2xl mx-auto">             <div class="grid lg:grid-cols-2 gap-32 items-center">                 <div class="relative">                     <div class="absolute -top-12 -left-12 w-64 h-64 bg-pearl -z-10"></div>                     <img src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&q=80&w=1200" class="w-full h-[700px] object-cover rounded-sm shadow-2xl reveal" alt="Clinical Professional">                     <div class="absolute -bottom-16 -right-16 bg-navy p-16 hidden xl:block reveal" style="transition-delay: 0.3s">                         <p class="text-white font-serif italic text-2xl leading-relaxed max-w-xs">                             "Dignity is not just a value; it's the very foundation of our existence."                         </p>                     </div>                 </div>                                  <div>                     <span class="text-gold font-cinzel tracking-[0.4em] uppercase text-xs mb-6 block reveal">The Homely Philosophy</span>                     <h2 class="text-5xl md:text-7xl font-serif mb-12 leading-tight reveal" style="transition-delay: 0.2s">Sophistication <br> Without Compromise</h2>                     <div class="space-y-8 text-gray-500 font-light leading-relaxed text-lg reveal" style="transition-delay: 0.4s">                         <p>                             Homely Health Care connects elite medical expertise with a person-centred approach. We understand that every life story is unique, and as such, your support must be a bespoke masterpiece.                         </p>                         <p>                             We donate a significant portion of our profits to <span class="text-gold italic">The Rahula Trust</span>, supporting children's education globally. Your care with us extends its reach to empower future generations.                         </p>                     </div>                                          <div class="grid grid-cols-2 gap-12 mt-20 reveal" style="transition-delay: 0.6s">                         <div class="border-l gold-border pl-8 py-4">                             <span class="text-4xl font-serif block mb-2">100%</span>                             <span class="uppercase tracking-[0.2em] text-[9px] font-bold text-gray-400">DBS Verified Staff</span>                         </div>                         <div class="border-l gold-border pl-8 py-4">                             <span class="text-4xl font-serif block mb-2">24/7</span>                             <span class="uppercase tracking-[0.2em] text-[9px] font-bold text-gray-400">Clinical Concierge</span>                         </div>                     </div>                 </div>             </div>         </div>     </section>      <!-- Services Section -->     <section id="services" class="py-40 px-12 bg-white relative">         <div class="absolute top-0 right-0 w-1/3 h-full bg-pearl/30 -z-0"></div>         <div class="max-w-screen-2xl mx-auto relative z-10">             <div class="flex flex-col md:flex-row justify-between items-end mb-32">                 <div class="max-w-2xl">                     <span class="text-gold font-cinzel tracking-[0.4em] uppercase text-xs mb-6 block reveal">Our Curated Services</span>                     <h2 class="text-5xl md:text-7xl font-serif leading-tight reveal" style="transition-delay: 0.2s">A Spectrum of <br> Premium Care</h2>                 </div>                 <div class="mt-8 md:mt-0 reveal" style="transition-delay: 0.4s">                     <p class="text-gray-400 font-light tracking-widest uppercase text-[10px]">Exceptional Solutions for Exceptional People</p>                 </div>             </div>                          <div class="grid md:grid-cols-3 gap-8">                 <!-- Card 1 -->                 <div class="group relative overflow-hidden bg-cream p-16 border border-pearl hover:border-gold/30 transition-all duration-700 reveal">                     <div class="mb-12"><i class="fa-solid fa-house-user text-3xl gold-text opacity-40 group-hover:opacity-100 transition-opacity"></i></div>                     <h3 class="text-3xl font-serif mb-6 group-hover:text-gold transition-colors">Domiciliary Care</h3>                     <p class="text-gray-500 font-light text-sm leading-relaxed mb-12">                         Receive world-class support in the sanctuary of your own residence, maintaining absolute independence with the security of expert care.                     </p>                     <a href="#" class="text-[10px] uppercase tracking-[0.3em] font-bold border-b border-navy/10 group-hover:border-gold pb-2 transition-all">Explore</a>                 </div>                 <!-- Card 2 -->                 <div class="group relative overflow-hidden bg-navy p-16 transition-all duration-700 reveal" style="transition-delay: 0.2s">                     <div class="mb-12"><i class="fa-solid fa-user-doctor text-3xl text-gold"></i></div>                     <h3 class="text-3xl font-serif mb-6 text-white">Clinical Support</h3>                     <p class="text-white/40 font-light text-sm leading-relaxed mb-12">                         Specialized treatment of disease, disorder, or injury (TDDI) managed by our elite team of Registered Nurses.                     </p>                     <a href="#" class="text-[10px] uppercase tracking-[0.3em] font-bold border-b border-white/10 text-gold pb-2 transition-all">Explore</a>                 </div>                 <!-- Card 3 -->                 <div class="group relative overflow-hidden bg-cream p-16 border border-pearl hover:border-gold/30 transition-all duration-700 reveal" style="transition-delay: 0.4s">                     <div class="mb-12"><i class="fa-solid fa-bed-pulse text-3xl gold-text opacity-40 group-hover:opacity-100 transition-opacity"></i></div>                     <h3 class="text-3xl font-serif mb-6 group-hover:text-gold transition-colors">Live-in Care</h3>                     <p class="text-gray-500 font-light text-sm leading-relaxed mb-12">                         Round-the-clock companionship and professional assistance, ensuring every need is met with elegance and continuity.                     </p>                     <a href="#" class="text-[10px] uppercase tracking-[0.3em] font-bold border-b border-navy/10 group-hover:border-gold pb-2 transition-all">Explore</a>                 </div>             </div>         </div>     </section>      <!-- Team Section -->     <section id="team" class="py-40 px-12 bg-pearl">         <div class="max-w-screen-2xl mx-auto">             <div class="text-center mb-32">                 <span class="text-gold font-cinzel tracking-[0.4em] uppercase text-xs mb-6 block reveal">The Artisans</span>                 <h2 class="text-5xl md:text-7xl font-serif reveal" style="transition-delay: 0.2s">Masters of Care</h2>             </div>                          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-16">                 <!-- Member 1 -->                 <div class="team-card group reveal">                     <div class="relative overflow-hidden mb-10">                         <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=800" class="w-full h-[550px] object-cover" alt="Douglas Matungamire">                         <div class="absolute inset-0 bg-gold/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>                     </div>                     <div class="flex flex-col items-center">                         <span class="uppercase tracking-[0.4em] text-[9px] text-gold mb-3">Director</span>                         <h3 class="text-3xl font-serif mb-4">Douglas Matungamire</h3>                         <p class="text-center text-gray-400 font-light text-sm max-w-xs leading-relaxed">                             Pioneer in healthcare auditing with a legacy of building integrity-driven care models since 2016.                         </p>                     </div>                 </div>                 <!-- Member 2 -->                 <div class="team-card group reveal" style="transition-delay: 0.2s">                     <div class="relative overflow-hidden mb-10">                         <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800" class="w-full h-[550px] object-cover" alt="Pauline Makazhu">                     </div>                     <div class="flex flex-col items-center">                         <span class="uppercase tracking-[0.4em] text-[9px] text-gold mb-3">Clinical Lead</span>                         <h3 class="text-3xl font-serif mb-4">Pauline Makazhu</h3>                         <p class="text-center text-gray-400 font-light text-sm max-w-xs leading-relaxed">                             Compassionate Registered Nurse leading our TDDI and Complex Care divisions with clinical brilliance.                         </p>                     </div>                 </div>                 <!-- Member 3 -->                 <div class="team-card group reveal" style="transition-delay: 0.4s">                     <div class="relative overflow-hidden mb-10">                         <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=800" class="w-full h-[550px] object-cover" alt="Sara Randall">                     </div>                     <div class="flex flex-col items-center">                         <span class="uppercase tracking-[0.4em] text-[9px] text-gold mb-3">Operations Manager</span>                         <h3 class="text-3xl font-serif mb-4">Sara Randall</h3>                         <p class="text-center text-gray-400 font-light text-sm max-w-xs leading-relaxed">                             35+ years of social care expertise, ensuring our standards remain the gold benchmark of the industry.                         </p>                     </div>                 </div>             </div>         </div>     </section>      <!-- Testimonials -->     <section class="py-40 px-12 bg-navy relative overflow-hidden">         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white/5 text-[20vw] font-serif italic whitespace-nowrap pointer-events-none">             Refined Living         </div>         <div class="max-w-4xl mx-auto text-center relative z-10">             <i class="fa-solid fa-quote-left text-gold text-5xl mb-16 opacity-30"></i>             <div id="testimonial-slider" class="min-h-[300px] flex items-center justify-center">                 <p class="text-white text-3xl md:text-5xl font-serif italic leading-relaxed reveal">                     "The level of professionalism, compassion and dedication has been remarkable. They have consistently gone above and beyond to ensure complex needs were met with the utmost attention."                 </p>             </div>             <div class="mt-16 flex flex-col items-center reveal" style="transition-delay: 0.4s">                 <span class="text-gold uppercase tracking-[0.5em] text-[10px] font-bold mb-2">Clinical Specialist</span>                 <span class="text-white/40 text-[9px] uppercase tracking-[0.3em]">Occupational Therapist</span>             </div>         </div>     </section>      <!-- Footer / Contact -->     <footer id="contact" class="bg-white py-40 px-12 border-t gold-border">         <div class="max-w-screen-2xl mx-auto">             <div class="grid lg:grid-cols-2 gap-40">                 <div>                     <span class="text-gold font-cinzel tracking-[0.4em] uppercase text-xs mb-8 block reveal">Concierge</span>                     <h2 class="text-6xl font-serif mb-12 reveal" style="transition-delay: 0.2s">The Beginning of <br> Your Story</h2>                     <p class="text-gray-400 font-light text-lg mb-16 leading-relaxed max-w-md reveal" style="transition-delay: 0.4s">                         Our care coordinators are ready to design a bespoke experience for you or your loved ones.                     </p>                                          <div class="space-y-12 reveal" style="transition-delay: 0.6s">                         <div class="flex items-center space-x-8">                             <span class="w-12 h-12 flex items-center justify-center rounded-full bg-pearl text-gold"><i class="fa-solid fa-phone-volume"></i></span>                             <div class="flex flex-col">                                 <span class="text-[9px] uppercase tracking-[0.4em] text-gray-400 mb-1">Telephone</span>                                 <span class="text-xl tracking-widest font-medium">01202 948 898</span>                             </div>                         </div>                         <div class="flex items-center space-x-8">                             <span class="w-12 h-12 flex items-center justify-center rounded-full bg-pearl text-gold"><i class="fa-solid fa-envelope-open"></i></span>                             <div class="flex flex-col">                                 <span class="text-[9px] uppercase tracking-[0.4em] text-gray-400 mb-1">Electronic Mail</span>                                 <span class="text-xl tracking-widest font-medium">info@homelyhealth.uk</span>                             </div>                         </div>                     </div>                 </div>                                  <div class="bg-pearl p-16 md:p-24 reveal" style="transition-delay: 0.4s">                     <form class="space-y-12">                         <div class="relative">                             <input type="text" id="name" class="w-full bg-transparent border-b gold-border py-4 focus:outline-none focus:border-gold transition-colors font-light text-lg placeholder:text-gray-300" placeholder="Full Name">                         </div>                         <div class="relative">                             <input type="email" id="email" class="w-full bg-transparent border-b gold-border py-4 focus:outline-none focus:border-gold transition-colors font-light text-lg placeholder:text-gray-300" placeholder="Contact Address">                         </div>                         <div class="relative">                             <textarea id="message" rows="4" class="w-full bg-transparent border-b gold-border py-4 focus:outline-none focus:border-gold transition-colors font-light text-lg placeholder:text-gray-300 resize-none" placeholder="Your Inquiries"></textarea>                         </div>                         <button class="w-full bg-navy text-white py-6 uppercase tracking-[0.5em] text-[10px] font-bold hover:bg-gold transition-all duration-700">                             Request Consultation                         </button>                     </form>                 </div>             </div>                          <div class="mt-40 pt-20 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center text-[9px] uppercase tracking-[0.5em] text-gray-400 opacity-60">                 <span>&copy; 2024 Homely Health Care</span>                 <span class="my-6 md:my-0">Bournemouth & Ontario</span>                 <div class="flex space-x-12">                     <a href="#" class="hover:text-gold transition-colors">Privacy</a>                     <a href="#" class="hover:text-gold transition-colors">Terms</a>                 </div>             </div>         </div>     </footer>      <script>         // Custom Cursor         const cursor = document.getElementById('cursor');         document.addEventListener('mousemove', (e) => {             cursor.style.left = e.clientX + 'px';             cursor.style.top = e.clientY + 'px';         });          // Loader         window.addEventListener('load', () => {             let progress = 0;             const progressInterval = setInterval(() => {                 progress += 5;                 document.getElementById('loader-progress').style.width = progress + '%';                 if (progress >= 100) {                     clearInterval(progressInterval);                     document.getElementById('loader').style.opacity = '0';                     setTimeout(() => document.getElementById('loader').style.display = 'none', 1000);                 }             }, 50);         });          // Navigation Scroll Effect         window.addEventListener('scroll', () => {             const nav = document.getElementById('nav');             if (window.scrollY > 50) {                 nav.classList.add('bg-white/90', 'backdrop-blur-md', 'py-4', 'shadow-sm');                 nav.classList.remove('py-8');             } else {                 nav.classList.remove('bg-white/90', 'backdrop-blur-md', 'py-4', 'shadow-sm');                 nav.classList.add('py-8');             }         });          // Reveal Animations         const reveals = document.querySelectorAll('.reveal');         const revealObserver = new IntersectionObserver((entries) => {             entries.forEach(entry => {                 if (entry.isIntersecting) {                     entry.target.classList.add('active-reveal');                 }             });         }, { threshold: 0.1 });          reveals.forEach(reveal => revealObserver.observe(reveal));          // Parallax Effect         document.addEventListener('mousemove', (e) => {             const amount = 30;             const x = (e.clientX / window.innerWidth - 0.5) * amount;             const y = (e.clientY / window.innerHeight - 0.5) * amount;             document.querySelectorAll('.parallax-bg').forEach(bg => {                 bg.style.transform = `scale(1.1) translate(${x}px, ${y}px)`;             }<!DOCTYPE html> <html lang="en"> <head>     <meta charset="UTF-8">     <meta name="viewport" content="width=device-width, initial-scale=1.0">     <title>Homely Health Care | Redefining Luxury Assisted Living</title>     <!-- Modern Frameworks -->     <script src="https://cdn.tailwindcss.com"></script>     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>     <!-- Premium Fonts -->     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@200;300;400;500;600&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">          <script>         tailwind.config = {             theme: {                 extend: {                     colors: {                         gold: '#C5A059',                         navy: '#0A1128',                         cream: '#FDFBF7',                         pearl: '#F4F1EA',                     },                     fontFamily: {                         'serif': ['Playfair Display', 'serif'],                         'sans': ['Montserrat', 'sans-serif'],                         'cinzel': ['Cinzel', 'serif'],                     }                 }             }         }     </script>          <style>         ::selection { background: #C5A059; color: #fff; }         body { background-color: #FDFBF7; color: #0A1128; overflow-x: hidden; }         .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }         .text-gradient { background: linear-gradient(135deg, #0A1128 0%, #1c2a4d 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }         .gold-border { border-color: rgba(197, 160, 89, 0.2); }         .parallax { transform: translateZ(0); transition: 0.3s ease-out; }         .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: #C5A059; transition: 0.4s cubic-bezier(0.19, 1, 0.22, 1); }         .nav-link:hover::after { width: 100%; }         .reveal { opacity: 0; transform: translateY(40px); transition: 1s cubic-bezier(0.19, 1, 0.22, 1); }         .active-reveal { opacity: 1 !important; transform: translateY(0) !important; }         .team-card img { filter: grayscale(100%); transition: 0.8s cubic-bezier(0.19, 1, 0.22, 1); }         .team-card:hover img { filter: grayscale(0%); transform: scale(1.05); }         .gold-underline { position: relative; display: inline-block; }         .gold-underline::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: #C5A059; opacity: 0.3; }         .custom-cursor { width: 40px; height: 40px; border: 1px solid #C5A059; border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transition: 0.1s; display: none; }         @media (min-width: 1024px) { .custom-cursor { display: block; } }     </style> </head> <body class="antialiased">     <div class="custom-cursor" id="cursor"></div>      <!-- Preloader -->     <div id="loader" class="fixed inset-0 z-[100] bg-navy flex items-center justify-center transition-opacity duration-1000">         <div class="text-center">             <h2 class="text-gold font-cinzel text-2xl tracking-[0.5em] mb-4">HOMELY</h2>             <div class="w-48 h-[1px] bg-white/10 relative overflow-hidden">                 <div id="loader-progress" class="absolute top-0 left-0 h-full bg-gold w-0"></div>             </div>         </div>     </div>      <!-- Navigation -->     <nav id="nav" class="fixed w-full z-50 py-8 px-12 transition-all duration-700">         <div class="max-w-screen-2xl mx-auto flex justify-between items-center">             <a href="#" class="group">                 <div class="flex flex-col">                     <span class="text-2xl font-cinzel tracking-[0.3em] font-bold">HOMELY</span>                     <span class="text-[9px] tracking-[0.6em] text-gold uppercase opacity-80">Health Care</span>                 </div>             </a>                          <div class="hidden lg:flex items-center space-x-16 text-[11px] uppercase tracking-[0.3em] font-medium">                 <a href="#servicesabout.html" class="nav-link relative">Philosophy</a>                 <a href="#services" class="nav-link relative">Excellence</a>                 <a href="#team" class="nav-link relative">Artisans</a>                 <a href="#contact" class="nav-link relative">Concierge</a>             </div>              <div class="flex items-center space-x-8">                 <a href="#contact" class="hidden md:block border-b border-gold/40 pb-1 text-[10px] uppercase tracking-[0.2em] hover:text-gold transition-colors">Start Your Journey</a>                 <button class="text-xl lg:hidden"><i class="fa-solid fa-bars-staggered"></i></button>             </div>         </div>     </nav>      <!-- Hero Section -->     <section class="relative h-screen flex items-center overflow-hidden bg-navy">         <div class="absolute inset-0 z-0">             <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=80&w=2000" class="w-full h-full object-cover opacity-40 scale-110 parallax-bg" alt="Luxury Spa">             <div class="absolute inset-0 bg-gradient-to-b from-navy/50 via-transparent to-navy/80"></div>         </div>                  <div class="container mx-auto px-12 relative z-10">             <div class="max-w-4xl">                 <span class="block text-gold font-cinzel tracking-[0.5em] uppercase text-xs mb-8 reveal">A Legacy of Care</span>                 <h1 class="text-white text-7xl md:text-9xl font-serif italic leading-tight mb-12 reveal" style="transition-delay: 0.2s">                     Elegance in <br> <span class="text-gold font-serif">Every Moment</span>                 </h1>                 <p class="text-white/60 text-lg md:text-xl font-light tracking-wide max-w-xl mb-12 leading-relaxed reveal" style="transition-delay: 0.4s">                     Transcending traditional care with a five-star approach to residential support, clinical excellence, and bespoke lifestyle management.                 </p>                 <div class="reveal" style="transition-delay: 0.6s">                     <a href="#servicesabout.html" class="inline-flex items-center space-x-4 bg-gold text-white px-10 py-5 rounded-sm hover:bg-white hover:text-navy transition-all duration-500 uppercase tracking-[0.2em] text-[10px] font-bold">                         <span>Discover Our Essence</span>                         <i class="fa-solid fa-arrow-right text-[10px]"></i>                     </a>                 </div>             </div>         </div>                  <div class="absolute bottom-12 right-12 text-white/20 text-[9px] uppercase tracking-[0.8em] vertical-text hidden xl:block">             Scroll to Explore         </div>     </section>      <!-- Philosophy -->     <section id="about" class="py-40 px-12 bg-cream overflow-hidden">         <div class="max-w-screen-2xl mx-auto">             <div class="grid lg:grid-cols-2 gap-32 items-center">                 <div class="relative">                     <div class="absolute -top-12 -left-12 w-64 h-64 bg-pearl -z-10"></div>                     <img src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&q=80&w=1200" class="w-full h-[700px] object-cover rounded-sm shadow-2xl reveal" alt="Clinical Professional">                     <div class="absolute -bottom-16 -right-16 bg-navy p-16 hidden xl:block reveal" style="transition-delay: 0.3s">                         <p class="text-white font-serif italic text-2xl leading-relaxed max-w-xs">                             "Dignity is not just a value; it's the very foundation of our existence."                         </p>                     </div>                 </div>                                  <div>                     <span class="text-gold font-cinzel tracking-[0.4em] uppercase text-xs mb-6 block reveal">The Homely Philosophy</span>                     <h2 class="text-5xl md:text-7xl font-serif mb-12 leading-tight reveal" style="transition-delay: 0.2s">Sophistication <br> Without Compromise</h2>                     <div class="space-y-8 text-gray-500 font-light leading-relaxed text-lg reveal" style="transition-delay: 0.4s">                         <p>                             Homely Health Care connects elite medical expertise with a person-centred approach. We understand that every life story is unique, and as such, your support must be a bespoke masterpiece.                         </p>                         <p>                             We donate a significant portion of our profits to <span class="text-gold italic">The Rahula Trust</span>, supporting children's education globally. Your care with us extends its reach to empower future generations.                         </p>                     </div>                                          <div class="grid grid-cols-2 gap-12 mt-20 reveal" style="transition-delay: 0.6s">                         <div class="border-l gold-border pl-8 py-4">                             <span class="text-4xl font-serif block mb-2">100%</span>                             <span class="uppercase tracking-[0.2em] text-[9px] font-bold text-gray-400">DBS Verified Staff</span>                         </div>                         <div class="border-l gold-border pl-8 py-4">                             <span class="text-4xl font-serif block mb-2">24/7</span>                             <span class="uppercase tracking-[0.2em] text-[9px] font-bold text-gray-400">Clinical Concierge</span>                         </div>                     </div>                 </div>             </div>         </div>     </section>      <!-- Services Section -->     <section id="services" class="py-40 px-12 bg-white relative">         <div class="absolute top-0 right-0 w-1/3 h-full bg-pearl/30 -z-0"></div>         <div class="max-w-screen-2xl mx-auto relative z-10">             <div class="flex flex-col md:flex-row justify-between items-end mb-32">                 <div class="max-w-2xl">                     <span class="text-gold font-cinzel tracking-[0.4em] uppercase text-xs mb-6 block reveal">Our Curated Services</span>                     <h2 class="text-5xl md:text-7xl font-serif leading-tight reveal" style="transition-delay: 0.2s">A Spectrum of <br> Premium Care</h2>                 </div>                 <div class="mt-8 md:mt-0 reveal" style="transition-delay: 0.4s">                     <p class="text-gray-400 font-light tracking-widest uppercase text-[10px]">Exceptional Solutions for Exceptional People</p>                 </div>             </div>                          <div class="grid md:grid-cols-3 gap-8">                 <!-- Card 1 -->                 <div class="group relative overflow-hidden bg-cream p-16 border border-pearl hover:border-gold/30 transition-all duration-700 reveal">                     <div class="mb-12"><i class="fa-solid fa-house-user text-3xl gold-text opacity-40 group-hover:opacity-100 transition-opacity"></i></div>                     <h3 class="text-3xl font-serif mb-6 group-hover:text-gold transition-colors">Domiciliary Care</h3>                     <p class="text-gray-500 font-light text-sm leading-relaxed mb-12">                         Receive world-class support in the sanctuary of your own residence, maintaining absolute independence with the security of expert care.                     </p>                     <a href="#" class="text-[10px] uppercase tracking-[0.3em] font-bold border-b border-navy/10 group-hover:border-gold pb-2 transition-all">Explore</a>                 </div>                 <!-- Card 2 -->                 <div class="group relative overflow-hidden bg-navy p-16 transition-all duration-700 reveal" style="transition-delay: 0.2s">                     <div class="mb-12"><i class="fa-solid fa-user-doctor text-3xl text-gold"></i></div>                     <h3 class="text-3xl font-serif mb-6 text-white">Clinical Support</h3>                     <p class="text-white/40 font-light text-sm leading-relaxed mb-12">                         Specialized treatment of disease, disorder, or injury (TDDI) managed by our elite team of Registered Nurses.                     </p>                     <a href="#" class="text-[10px] uppercase tracking-[0.3em] font-bold border-b border-white/10 text-gold pb-2 transition-all">Explore</a>                 </div>                 <!-- Card 3 -->                 <div class="group relative overflow-hidden bg-cream p-16 border border-pearl hover:border-gold/30 transition-all duration-700 reveal" style="transition-delay: 0.4s">                     <div class="mb-12"><i class="fa-solid fa-bed-pulse text-3xl gold-text opacity-40 group-hover:opacity-100 transition-opacity"></i></div>                     <h3 class="text-3xl font-serif mb-6 group-hover:text-gold transition-colors">Live-in Care</h3>                     <p class="text-gray-500 font-light text-sm leading-relaxed mb-12">                         Round-the-clock companionship and professional assistance, ensuring every need is met with elegance and continuity.                     </p>                     <a href="#" class="text-[10px] uppercase tracking-[0.3em] font-bold border-b border-navy/10 group-hover:border-gold pb-2 transition-all">Explore</a>                 </div>             </div>         </div>     </section>      <!-- Team Section -->     <section id="team" class="py-40 px-12 bg-pearl">         <div class="max-w-screen-2xl mx-auto">             <div class="text-center mb-32">                 <span class="text-gold font-cinzel tracking-[0.4em] uppercase text-xs mb-6 block reveal">The Artisans</span>                 <h2 class="text-5xl md:text-7xl font-serif reveal" style="transition-delay: 0.2s">Masters of Care</h2>             </div>                          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-16">                 <!-- Member 1 -->                 <div class="team-card group reveal">                     <div class="relative overflow-hidden mb-10">                         <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=800" class="w-full h-[550px] object-cover" alt="Douglas Matungamire">                         <div class="absolute inset-0 bg-gold/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>                     </div>                     <div class="flex flex-col items-center">                         <span class="uppercase tracking-[0.4em] text-[9px] text-gold mb-3">Director</span>                         <h3 class="text-3xl font-serif mb-4">Douglas Matungamire</h3>                         <p class="text-center text-gray-400 font-light text-sm max-w-xs leading-relaxed">                             Pioneer in healthcare auditing with a legacy of building integrity-driven care models since 2016.                         </p>                     </div>                 </div>                 <!-- Member 2 -->                 <div class="team-card group reveal" style="transition-delay: 0.2s">                     <div class="relative overflow-hidden mb-10">                         <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800" class="w-full h-[550px] object-cover" alt="Pauline Makazhu">                     </div>                     <div class="flex flex-col items-center">                         <span class="uppercase tracking-[0.4em] text-[9px] text-gold mb-3">Clinical Lead</span>                         <h3 class="text-3xl font-serif mb-4">Pauline Makazhu</h3>                         <p class="text-center text-gray-400 font-light text-sm max-w-xs leading-relaxed">                             Compassionate Registered Nurse leading our TDDI and Complex Care divisions with clinical brilliance.                         </p>                     </div>                 </div>                 <!-- Member 3 -->                 <div class="team-card group reveal" style="transition-delay: 0.4s">                     <div class="relative overflow-hidden mb-10">                         <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=800" class="w-full h-[550px] object-cover" alt="Sara Randall">                     </div>                     <div class="flex flex-col items-center">                         <span class="uppercase tracking-[0.4em] text-[9px] text-gold mb-3">Operations Manager</span>                         <h3 class="text-3xl font-serif mb-4">Sara Randall</h3>                         <p class="text-center text-gray-400 font-light text-sm max-w-xs leading-relaxed">                             35+ years of social care expertise, ensuring our standards remain the gold benchmark of the industry.                         </p>                     </div>                 </div>             </div>         </div>     </section>      <!-- Testimonials -->     <section class="py-40 px-12 bg-navy relative overflow-hidden">         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white/5 text-[20vw] font-serif italic whitespace-nowrap pointer-events-none">             Refined Living         </div>         <div class="max-w-4xl mx-auto text-center relative z-10">             <i class="fa-solid fa-quote-left text-gold text-5xl mb-16 opacity-30"></i>             <div id="testimonial-slider" class="min-h-[300px] flex items-center justify-center">                 <p class="text-white text-3xl md:text-5xl font-serif italic leading-relaxed reveal">                     "The level of professionalism, compassion and dedication has been remarkable. They have consistently gone above and beyond to ensure complex needs were met with the utmost attention."                 </p>             </div>             <div class="mt-16 flex flex-col items-center reveal" style="transition-delay: 0.4s">                 <span class="text-gold uppercase tracking-[0.5em] text-[10px] font-bold mb-2">Clinical Specialist</span>                 <span class="text-white/40 text-[9px] uppercase tracking-[0.3em]">Occupational Therapist</span>             </div>         </div>     </section>      <!-- Footer / Contact -->     <footer id="contact" class="bg-white py-40 px-12 border-t gold-border">         <div class="max-w-screen-2xl mx-auto">             <div class="grid lg:grid-cols-2 gap-40">                 <div>                     <span class="text-gold font-cinzel tracking-[0.4em] uppercase text-xs mb-8 block reveal">Concierge</span>                     <h2 class="text-6xl font-serif mb-12 reveal" style="transition-delay: 0.2s">The Beginning of <br> Your Story</h2>                     <p class="text-gray-400 font-light text-lg mb-16 leading-relaxed max-w-md reveal" style="transition-delay: 0.4s">                         Our care coordinators are ready to design a bespoke experience for you or your loved ones.                     </p>                                          <div class="space-y-12 reveal" style="transition-delay: 0.6s">                         <div class="flex items-center space-x-8">                             <span class="w-12 h-12 flex items-center justify-center rounded-full bg-pearl text-gold"><i class="fa-solid fa-phone-volume"></i></span>                             <div class="flex flex-col">                                 <span class="text-[9px] uppercase tracking-[0.4em] text-gray-400 mb-1">Telephone</span>                                 <span class="text-xl tracking-widest font-medium">01202 948 898</span>                             </div>                         </div>                         <div class="flex items-center space-x-8">                             <span class="w-12 h-12 flex items-center justify-center rounded-full bg-pearl text-gold"><i class="fa-solid fa-envelope-open"></i></span>                             <div class="flex flex-col">                                 <span class="text-[9px] uppercase tracking-[0.4em] text-gray-400 mb-1">Electronic Mail</span>                                 <span class="text-xl tracking-widest font-medium">info@homelyhealth.uk</span>                             </div>                         </div>                     </div>                 </div>                                  <div class="bg-pearl p-16 md:p-24 reveal" style="transition-delay: 0.4s">                     <form class="space-y-12">                         <div class="relative">                             <input type="text" id="name" class="w-full bg-transparent border-b gold-border py-4 focus:outline-none focus:border-gold transition-colors font-light text-lg placeholder:text-gray-300" placeholder="Full Name">                         </div>                         <div class="relative">                             <input type="email" id="email" class="w-full bg-transparent border-b gold-border py-4 focus:outline-none focus:border-gold transition-colors font-light text-lg placeholder:text-gray-300" placeholder="Contact Address">                         </div>                         <div class="relative">                             <textarea id="message" rows="4" class="w-full bg-transparent border-b gold-border py-4 focus:outline-none focus:border-gold transition-colors font-light text-lg placeholder:text-gray-300 resize-none" placeholder="Your Inquiries"></textarea>                         </div>                         <button class="w-full bg-navy text-white py-6 uppercase tracking-[0.5em] text-[10px] font-bold hover:bg-gold transition-all duration-700">                             Request Consultation                         </button>                     </form>                 </div>             </div>                          <div class="mt-40 pt-20 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center text-[9px] uppercase tracking-[0.5em] text-gray-400 opacity-60">                 <span>&copy; 2024 Homely Health Care</span>                 <span class="my-6 md:my-0">Bournemouth & Ontario</span>                 <div class="flex space-x-12">                     <a href="#" class="hover:text-gold transition-colors">Privacy</a>                     <a href="#" class="hover:text-gold transition-colors">Terms</a>                 </div>             </div>         </div>     </footer>      <script>         // Custom Cursor         const cursor = document.getElementById('cursor');         document.addEventListener('mousemove', (e) => {             cursor.style.left = e.clientX + 'px';             cursor.style.top = e.clientY + 'px';         });          // Loader         window.addEventListener('load', () => {             let progress = 0;             const progressInterval = setInterval(() => {                 progress += 5;                 document.getElementById('loader-progress').style.width = progress + '%';                 if (progress >= 100) {                     clearInterval(progressInterval);                     document.getElementById('loader').style.opacity = '0';                     setTimeout(() => document.getElementById('loader').style.display = 'none', 1000);                 }             }, 50);         });          // Navigation Scroll Effect         window.addEventListener('scroll', () => {             const nav = document.getElementById('nav');             if (window.scrollY > 50) {                 nav.classList.add('bg-white/90', 'backdrop-blur-md', 'py-4', 'shadow-sm');                 nav.classList.remove('py-8');             } else {                 nav.classList.remove('bg-white/90', 'backdrop-blur-md', 'py-4', 'shadow-sm');                 nav.classList.add('py-8');             }         });          // Reveal Animations         const reveals = document.querySelectorAll('.reveal');         const revealObserver = new IntersectionObserver((entries) => {             entries.forEach(entry => {                 if (entry.isIntersecting) {                     entry.target.classList.add('active-reveal');                 }             });         }, { threshold: 0.1 });          reveals.forEach(reveal => revealObserver.observe(reveal));          // Parallax Effect         document.addEventListener('mousemove', (e) => {             const amount = 30;             const x = (e.clientX / window.innerWidth - 0.5) * amount;             const y = (e.clientY / window.innerHeight - 0.5) * amount;             document.querySelectorAll('.parallax-bg').forEach(bg => {                 bg.style.transform = `scale(1.1) translate(${x}px, ${y}px)`;             });         });     </script> </body> </html>);         });     </script> </body> </html>
