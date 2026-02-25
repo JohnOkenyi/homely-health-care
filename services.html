@@ -7,154 +7,224 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: '#C5A059',
+                        'navy-blue': '#0A1128',
+                        'soft-white': '#F8F9FA'
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Montserrat', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        :root { --gold: #C5A059; --navy: #0A1128; }
-        body { font-family: 'Lato', sans-serif; }
-        h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
-        .bg-luxury-navy { background-color: var(--navy); }
-        .text-gold { color: var(--gold); }
-        .border-gold { border-color: var(--gold); }
-        .nav-link { position: relative; }
-        .nav-link::after { content: ''; position: absolute; width: 0; height: 1px; bottom: -2px; left: 0; background-color: var(--gold); transition: width 0.3s; }
-        .nav-link:hover::after { width: 100%; }
-        .service-card:hover .service-image { transform: scale(1.1); }
+        .reveal-up { opacity: 0; transform: translateY(30px); }
+        .service-card { transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .service-card:hover { transform: scale(1.02); }
+        .service-img-wrap { overflow: hidden; }
+        .service-img { transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
+        .service-card:hover .service-img { transform: scale(1.1); }
+        .noise-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.03; z-index: 9999; background: url('https://grainy-gradients.vercel.app/noise.svg'); }
     </style>
 </head>
-<body class="bg-white text-gray-900 antialiased overflow-x-hidden">
+<body class="bg-soft-white font-sans text-navy-blue overflow-x-hidden">
+    <div class="noise-bg"></div>
 
-    <!-- Header (Same as Home) -->
-    <header id="nav" class="fixed w-full z-50 transition-all duration-500 py-4 px-10 flex justify-between items-center bg-luxury-navy shadow-2xl">
-        <div class="flex items-center space-x-2">
-            <div class="text-2xl font-bold tracking-widest uppercase serif text-white">Homely</div>
-            <div class="h-8 w-[1px] bg-gold/50 mx-2"></div>
-            <div class="text-[10px] tracking-[0.3em] uppercase text-white font-light">Health Care</div>
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 py-8 px-12 flex justify-between items-center bg-white/80 backdrop-blur-md shadow-sm transition-all duration-500" id="navbar">
+        <div class="flex items-center space-x-3 group cursor-pointer">
+            <div class="w-12 h-12 bg-navy-blue flex items-center justify-center rounded-sm transition-transform group-hover:rotate-45">
+                <span class="text-gold font-serif text-2xl">H</span>
+            </div>
+            <span class="text-xl font-serif tracking-widest uppercase">Homely</span>
         </div>
         
-        <nav class="hidden md:flex space-x-10 text-sm tracking-widest uppercase text-white">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="about.html" class="nav-link">About Us</a>
-            <a href="services.html" class="nav-link">Services</a>
-            <a href="#contact" class="nav-link">Contact</a>
-        </nav>
-
-        <div class="flex items-center space-x-6">
-            <button class="px-8 py-3 border border-gold text-gold hover:bg-gold hover:text-navy transition-all duration-300 text-xs tracking-[0.2em] uppercase">Inquiry</button>
+        <div class="hidden md:flex space-x-12 text-xs tracking-widest uppercase font-semibold">
+            <a href="index.html" class="hover:text-gold transition-colors">Home</a>
+            <a href="about.html" class="hover:text-gold transition-colors">About Us</a>
+            <a href="services.html" class="text-gold border-b border-gold pb-1">Services</a>
+            <a href="team.html" class="hover:text-gold transition-colors">Team</a>
+            <a href="careers.html" class="hover:text-gold transition-colors">Careers</a>
+            <a href="contact.html" class="hover:text-gold transition-colors">Contact</a>
         </div>
+
+        <button class="bg-navy-blue text-soft-white px-8 py-3 text-xs tracking-widest uppercase hover:bg-gold hover:text-navy-blue transition-all duration-300">
+            Book Now
+        </button>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="pt-56 pb-32 px-12 bg-navy-blue text-soft-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto relative z-10 text-center">
+            <span class="text-gold font-serif italic text-2xl mb-6 block reveal-up">Our Expertise</span>
+            <h1 class="text-6xl md:text-8xl font-serif mb-8 reveal-up leading-tight">Elite Care <br> Without Compromise</h1>
+            <p class="text-xl font-light tracking-wide max-w-2xl mx-auto opacity-70 reveal-up">
+                Discover a suite of personalized healthcare services designed for those who demand the highest standards of professionalism and discretion.
+            </p>
+        </div>
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-gold/5 -skew-x-12 translate-x-1/2"></div>
     </header>
 
-    <!-- Page Title Section -->
-    <section class="pt-40 pb-20 bg-navy text-white text-center">
-        <div class="max-w-4xl mx-auto px-4">
-            <span class="text-gold tracking-[0.4em] uppercase text-xs mb-4 block reveal-up">Bespoke Support</span>
-            <h1 class="text-5xl md:text-7xl serif reveal-up">Our Healthcare Services.</h1>
-            <p class="text-gray-400 mt-8 text-lg reveal-up">Personalized, high-quality care designed to promote independence and enhance your quality of life.</p>
-        </div>
-    </section>
-
-    <!-- Services Detailed List -->
-    <section class="py-24 px-10 md:px-20 bg-white">
-        <div class="max-w-7xl mx-auto space-y-32">
+    <!-- Services Detailed -->
+    <section class="py-32 px-12">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-24">
             
-            <!-- Service 01 -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center reveal-up">
-                <div class="overflow-hidden shadow-2xl service-card">
-                    <img src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?q=80&w=2070&auto=format&fit=crop" alt="Home Care" class="w-full transition-transform duration-700 service-image">
+            <!-- Service 1 -->
+            <div class="service-card group reveal-up">
+                <div class="service-img-wrap aspect-[16/9] mb-10 bg-gray-200">
+                    <img src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&q=80" alt="Residential Nursing" class="service-img w-full h-full object-cover">
                 </div>
-                <div>
-                    <span class="text-gold italic text-4xl serif mb-4 block">01.</span>
-                    <h2 class="text-4xl serif text-navy mb-6">Home Care</h2>
-                    <p class="text-gray-600 mb-8 leading-relaxed text-lg">Home care allows individuals to receive necessary support while maintaining their independence in the sanctuary of their own home. Our carers provide personalized assistance with daily tasks, medication management, and emotional support.</p>
-                    <ul class="space-y-4 text-gray-700 mb-10">
-                        <li class="flex items-center space-x-3 italic"><span class="w-4 h-[1px] bg-gold"></span> <span>Personalized Daily Support</span></li>
-                        <li class="flex items-center space-x-3 italic"><span class="w-4 h-[1px] bg-gold"></span> <span>Medication Management</span></li>
-                        <li class="flex items-center space-x-3 italic"><span class="w-4 h-[1px] bg-gold"></span> <span>Nutritional Oversight</span></li>
+                <div class="px-4">
+                    <span class="text-gold font-serif italic text-lg mb-4 block">01 / Clinical</span>
+                    <h2 class="text-4xl font-serif mb-6 group-hover:text-gold transition-colors">Residential Nursing</h2>
+                    <p class="text-gray-600 leading-relaxed mb-8 text-lg">
+                        Our residential nursing care brings hospital-grade clinical expertise directly to your home. We specialize in complex case management, post-operative recovery, and chronic condition support with 24/7 dedicated attention.
+                    </p>
+                    <ul class="space-y-4 mb-10 text-sm tracking-widest uppercase font-semibold text-gray-500">
+                        <li class="flex items-center space-x-3"><span class="w-2 h-2 bg-gold"></span><span>Post-Op Rehabilitation</span></li>
+                        <li class="flex items-center space-x-3"><span class="w-2 h-2 bg-gold"></span><span>Medication Management</span></li>
+                        <li class="flex items-center space-x-3"><span class="w-2 h-2 bg-gold"></span><span>Palliative Expertise</span></li>
                     </ul>
-                    <button class="px-10 py-4 border border-navy text-navy uppercase text-xs tracking-widest hover:bg-navy hover:text-white transition-all">Request Consultation</button>
+                    <a href="contact.html" class="inline-block px-10 py-4 border border-navy-blue text-xs tracking-[0.3em] uppercase font-bold hover:bg-navy-blue hover:text-soft-white transition-all">Request Consultation</a>
                 </div>
             </div>
 
-            <!-- Service 02 -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center reveal-up">
-                <div class="lg:order-2 overflow-hidden shadow-2xl service-card">
-                    <img src="https://images.unsplash.com/photo-1581056771107-24ca5f033842?q=80&w=2070&auto=format&fit=crop" alt="Live-in Care" class="w-full transition-transform duration-700 service-image">
+            <!-- Service 2 -->
+            <div class="service-card group reveal-up" style="transition-delay: 200ms;">
+                <div class="service-img-wrap aspect-[16/9] mb-10 bg-gray-200">
+                    <img src="https://images.unsplash.com/photo-1516733725897-1aa73b87c8e8?auto=format&fit=crop&q=80" alt="Companion Care" class="service-img w-full h-full object-cover">
                 </div>
-                <div class="lg:order-1">
-                    <span class="text-gold italic text-4xl serif mb-4 block">02.</span>
-                    <h2 class="text-4xl serif text-navy mb-6">Live-in Care</h2>
-                    <p class="text-gray-600 mb-8 leading-relaxed text-lg">Around-the-clock dedicated assistance, providing constant security and professional medical oversight. Live-in care ensures that a professional carer is always present to provide immediate support whenever it is needed.</p>
-                    <ul class="space-y-4 text-gray-700 mb-10">
-                        <li class="flex items-center space-x-3 italic"><span class="w-4 h-[1px] bg-gold"></span> <span>24/7 Professional Presence</span></li>
-                        <li class="flex items-center space-x-3 italic"><span class="w-4 h-[1px] bg-gold"></span> <span>Constant Security and Peace of Mind</span></li>
-                        <li class="flex items-center space-x-3 italic"><span class="w-4 h-[1px] bg-gold"></span> <span>Continuous Health Monitoring</span></li>
+                <div class="px-4">
+                    <span class="text-gold font-serif italic text-lg mb-4 block">02 / Lifestyle</span>
+                    <h2 class="text-4xl font-serif mb-6 group-hover:text-gold transition-colors">Elite Companion Care</h2>
+                    <p class="text-gray-600 leading-relaxed mb-8 text-lg">
+                        Designed for those who value meaningful connection and social engagement. Our companions are carefully selected to match your interests, providing support with travel, events, and daily enrichment.
+                    </p>
+                    <ul class="space-y-4 mb-10 text-sm tracking-widest uppercase font-semibold text-gray-500">
+                        <li class="flex items-center space-x-3"><span class="w-2 h-2 bg-gold"></span><span>Social Engagement</span></li>
+                        <li class="flex items-center space-x-3"><span class="w-2 h-2 bg-gold"></span><span>Travel Accompaniment</span></li>
+                        <li class="flex items-center space-x-3"><span class="w-2 h-2 bg-gold"></span><span>Hobby Support</span></li>
                     </ul>
-                    <button class="px-10 py-4 border border-navy text-navy uppercase text-xs tracking-widest hover:bg-navy hover:text-white transition-all">Learn More</button>
+                    <a href="contact.html" class="inline-block px-10 py-4 border border-navy-blue text-xs tracking-[0.3em] uppercase font-bold hover:bg-navy-blue hover:text-soft-white transition-all">Inquire Today</a>
                 </div>
             </div>
 
-            <!-- Service 03 -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center reveal-up">
-                <div class="overflow-hidden shadow-2xl service-card">
-                    <img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?q=80&w=2073&auto=format&fit=crop" alt="Supported Living" class="w-full transition-transform duration-700 service-image">
+            <!-- Service 3 -->
+            <div class="service-card group reveal-up">
+                <div class="service-img-wrap aspect-[16/9] mb-10 bg-gray-200">
+                    <img src="https://images.unsplash.com/photo-1559839734-2b71f1e3c770?auto=format&fit=crop&q=80" alt="Dementia Care" class="service-img w-full h-full object-cover">
                 </div>
-                <div>
-                    <span class="text-gold italic text-4xl serif mb-4 block">03.</span>
-                    <h2 class="text-4xl serif text-navy mb-6">Supported Living</h2>
-                    <p class="text-gray-600 mb-8 leading-relaxed text-lg">Empowering individuals with complex needs to lead fulfilling, independent lives in the community. We provide tailored housing and support solutions that allow for autonomy while ensuring safety and care.</p>
-                    <ul class="space-y-4 text-gray-700 mb-10">
-                        <li class="flex items-center space-x-3 italic"><span class="w-4 h-[1px] bg-gold"></span> <span>Tailored Housing Solutions</span></li>
-                        <li class="flex items-center space-x-3 italic"><span class="w-4 h-[1px] bg-gold"></span> <span>Community Integration Support</span></li>
-                        <li class="flex items-center space-x-3 italic"><span class="w-4 h-[1px] bg-gold"></span> <span>Skill Development for Independence</span></li>
+                <div class="px-4">
+                    <span class="text-gold font-serif italic text-lg mb-4 block">03 / Specialist</span>
+                    <h2 class="text-4xl font-serif mb-6 group-hover:text-gold transition-colors">Cognitive & Dementia Care</h2>
+                    <p class="text-gray-600 leading-relaxed mb-8 text-lg">
+                        Expertly delivered care for those living with Alzheimer's or other forms of dementia. Our team uses evidence-based approaches to maintain quality of life, focusing on familiarity, safety, and cognitive stimulation.
+                    </p>
+                    <ul class="space-y-4 mb-10 text-sm tracking-widest uppercase font-semibold text-gray-500">
+                        <li class="flex items-center space-x-3"><span class="w-2 h-2 bg-gold"></span><span>Memory Stimulation</span></li>
+                        <li class="flex items-center space-x-3"><span class="w-2 h-2 bg-gold"></span><span>Sensory Engagement</span></li>
+                        <li class="flex items-center space-x-3"><span class="w-2 h-2 bg-gold"></span><span>Safety Monitoring</span></li>
                     </ul>
-                    <button class="px-10 py-4 border border-navy text-navy uppercase text-xs tracking-widest hover:bg-navy hover:text-white transition-all">Request Details</button>
+                    <a href="contact.html" class="inline-block px-10 py-4 border border-navy-blue text-xs tracking-[0.3em] uppercase font-bold hover:bg-navy-blue hover:text-soft-white transition-all">Learn More</a>
+                </div>
+            </div>
+
+            <!-- Service 4 -->
+            <div class="service-card group reveal-up" style="transition-delay: 200ms;">
+                <div class="service-img-wrap aspect-[16/9] mb-10 bg-gray-200">
+                    <img src="https://images.unsplash.com/photo-1581578731522-aa029f61099f?auto=format&fit=crop&q=80" alt="Respite Care" class="service-img w-full h-full object-cover">
+                </div>
+                <div class="px-4">
+                    <span class="text-gold font-serif italic text-lg mb-4 block">04 / Relief</span>
+                    <h2 class="text-4xl font-serif mb-6 group-hover:text-gold transition-colors">Luxury Respite Services</h2>
+                    <p class="text-gray-600 leading-relaxed mb-8 text-lg">
+                        Providing primary caregivers with a well-deserved break, knowing their loved ones are in the hands of elite professionals. Available for short-term stays or scheduled relief periods.
+                    </p>
+                    <ul class="space-y-4 mb-10 text-sm tracking-widest uppercase font-semibold text-gray-500">
+                        <li class="flex items-center space-x-3"><span class="w-2 h-2 bg-gold"></span><span>Short-term Stays</span></li>
+                        <li class="flex items-center space-x-3"><span class="w-2 h-2 bg-gold"></span><span>Emergency Cover</span></li>
+                        <li class="flex items-center space-x-3"><span class="w-2 h-2 bg-gold"></span><span>Full Care Transition</span></li>
+                    </ul>
+                    <a href="contact.html" class="inline-block px-10 py-4 border border-navy-blue text-xs tracking-[0.3em] uppercase font-bold hover:bg-navy-blue hover:text-soft-white transition-all">Check Availability</a>
                 </div>
             </div>
 
         </div>
     </section>
 
-    <!-- Footer (Same as Home) -->
-    <footer id="contact" class="bg-navy pt-24 pb-10 px-10 border-t border-white/5">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-16 mb-20 text-white/70 text-sm">
-            <div class="col-span-1 md:col-span-1">
-                <div class="text-2xl font-bold tracking-widest uppercase serif text-white mb-6">Homely</div>
-                <p class="leading-relaxed">Dedicated to redefining the standard of home care through excellence, dignity, and personalized support.</p>
+    <!-- Call to Action -->
+    <section class="py-32 px-12 bg-gold text-navy-blue">
+        <div class="max-w-4xl mx-auto text-center">
+            <h3 class="text-5xl font-serif mb-12 reveal-up">Ready to Experience the Finest Home Care?</h3>
+            <p class="text-xl font-light mb-16 reveal-up">Our care managers are available for a private consultation to discuss your specific requirements in detail.</p>
+            <a href="contact.html" class="inline-block px-12 py-6 bg-navy-blue text-soft-white text-sm tracking-[0.3em] uppercase font-bold hover:bg-soft-white hover:text-navy-blue transition-all reveal-up">Book Your Private Consultation</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-soft-white py-24 px-12 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-16">
+            <div class="col-span-1 md:col-span-2">
+                <div class="flex items-center space-x-3 mb-8">
+                    <div class="w-10 h-10 bg-navy-blue flex items-center justify-center rounded-sm">
+                        <span class="text-gold font-serif text-xl">H</span>
+                    </div>
+                    <span class="text-xl font-serif tracking-widest uppercase">Homely</span>
+                </div>
+                <p class="text-gray-500 max-w-sm leading-relaxed mb-8">
+                    Defining the future of luxury home care. London's premier choice for private healthcare and companion services.
+                </p>
             </div>
             <div>
-                <h4 class="text-white uppercase tracking-[0.2em] text-xs font-bold mb-8 italic serif">Head Office</h4>
-                <p class="leading-loose">Suite 6a, Wessex House, Charminster, <br> Bournemouth, BH8 8QS</p>
-            </div>
-            <div>
-                <h4 class="text-white uppercase tracking-[0.2em] text-xs font-bold mb-8 italic serif">Contact</h4>
-                <p class="leading-loose">01202 948 898<br>info@homelyhealth.uk</p>
-            </div>
-            <div>
-                <h4 class="text-white uppercase tracking-[0.2em] text-xs font-bold mb-8 italic serif">Navigation</h4>
-                <ul class="space-y-4">
+                <h5 class="font-serif text-lg mb-8 uppercase tracking-widest">Links</h5>
+                <ul class="space-y-4 text-sm text-gray-500 uppercase tracking-widest">
                     <li><a href="index.html" class="hover:text-gold transition-colors">Home</a></li>
-                    <li><a href="about.html" class="hover:text-gold transition-colors">About Us</a></li>
+                    <li><a href="about.html" class="hover:text-gold transition-colors">About</a></li>
                     <li><a href="services.html" class="hover:text-gold transition-colors">Services</a></li>
-                    <li><a href="join-us.html" class="hover:text-gold transition-colors">Careers</a></li>
+                    <li><a href="contact.html" class="hover:text-gold transition-colors">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="font-serif text-lg mb-8 uppercase tracking-widest">Contact</h5>
+                <ul class="space-y-4 text-sm text-gray-500">
+                    <li>info@homelyhealth.uk</li>
+                    <li>+44 (0) 20 1234 5678</li>
+                    <li>London, United Kingdom</li>
                 </ul>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto pt-10 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-[10px] tracking-widest uppercase text-white/30">
-            <div>© Homely Health Care 2024. All Rights Reserved.</div>
+        <div class="max-w-7xl mx-auto mt-24 pt-8 border-t border-gray-200 text-center text-xs tracking-[0.3em] uppercase text-gray-400">
+            &copy; 2024 Homely Health Care. Defined by Excellence.
         </div>
     </footer>
 
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
-        // Scroll Reveals
-        gsap.utils.toArray('.reveal-up').forEach(el => {
-            gsap.from(el, {
-                scrollTrigger: el,
-                opacity: 0,
-                y: 50,
-                duration: 1.2,
-                ease: 'power3.out'
-            });
+        // Reveal Animations
+        gsap.utils.toArray('.reveal-up').forEach((elem) => {
+            gsap.fromTo(elem, 
+                { opacity: 0, y: 50 },
+                { 
+                    opacity: 1, 
+                    y: 0, 
+                    duration: 1.2, 
+                    ease: "power4.out",
+                    scrollTrigger: {
+                        trigger: elem,
+                        start: "top 85%",
+                        toggleActions: "play none none none"
+                    }
+                }
+            );
         });
     </script>
 </body>

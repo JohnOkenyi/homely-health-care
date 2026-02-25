@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers | Homely Health Care | Excellence in Private Care</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --gold: #D4AF37; --dark: #1A1A1A; }
+        body { font-family: 'Montserrat', sans-serif; background-color: #fcfcfc; color: var(--dark); overflow-x: hidden; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        .nav-link { position: relative; transition: color 0.3s; }
+        .nav-link::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -4px; left: 0; background-color: var(--gold); transition: width 0.3s; }
+        .nav-link:hover::after { width: 100%; }
+        .gold-text { color: var(--gold); }
+        .gold-bg { background-color: var(--gold); }
+        .hero-gradient { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80'); background-size: cover; background-position: center; }
+        .job-card { transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); border-left: 0px solid var(--gold); }
+        .job-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); border-left: 5px solid var(--gold); }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        canvas#webgl { position: fixed; top: 0; left: 0; pointer-events: none; z-index: -1; opacity: 0.1; }
+    </style>
+</head>
+<body>
+    <canvas id="webgl"></canvas>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 py-4">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold tracking-tighter gold-text">HOMELY HEALTH CARE</a>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="index.html" class="nav-link text-sm uppercase tracking-widest font-semibold">Home</a>
+                <a href="services.html" class="nav-link text-sm uppercase tracking-widest font-semibold">Services</a>
+                <a href="team.html" class="nav-link text-sm uppercase tracking-widest font-semibold">Our Team</a>
+                <a href="careers.html" class="nav-link text-sm uppercase tracking-widest font-semibold gold-text">Careers</a>
+                <a href="contact.html" class="px-6 py-2 gold-bg text-white text-sm uppercase tracking-widest font-semibold rounded-full hover:bg-black transition-colors">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="h-[70vh] hero-gradient flex items-center justify-center relative overflow-hidden">
+        <div class="container mx-auto px-6 text-center text-white z-10">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 reveal-up">Join the Elite</h1>
+            <p class="text-xl md:text-2xl max-w-2xl mx-auto font-light mb-8 reveal-up">Crafting extraordinary care experiences for distinguished individuals.</p>
+            <a href="#openings" class="inline-block px-10 py-4 border-2 border-white text-white uppercase tracking-widest hover:bg-white hover:text-black transition-all reveal-up">Explore Roles</a>
+        </div>
+    </header>
+
+    <!-- Philosophy -->
+    <section class="py-24 bg-white">
+        <div class="container mx-auto px-6 text-center">
+            <span class="gold-text uppercase tracking-[0.3em] text-sm mb-4 block reveal-up">The Standard of Excellence</span>
+            <h2 class="text-4xl md:text-5xl font-bold mb-12 reveal-up">Why Professionalism Matters</h2>
+            <div class="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto">
+                <div class="reveal-up">
+                    <h3 class="text-2xl font-bold mb-4">Integrity</h3>
+                    <p class="text-gray-600 leading-relaxed">We uphold the highest ethical standards in every interaction, ensuring absolute trust and discretion.</p>
+                </div>
+                <div class="reveal-up">
+                    <h3 class="text-2xl font-bold mb-4">Precision</h3>
+                    <p class="text-gray-600 leading-relaxed">Our care is meticulous, tailored to the unique rhythms and requirements of our clients' lives.</p>
+                </div>
+                <div class="reveal-up">
+                    <h3 class="text-2xl font-bold mb-4">Empathy</h3>
+                    <p class="text-gray-600 leading-relaxed">Beyond clinical skill, we seek individuals with the emotional intelligence to connect deeply.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Openings -->
+    <section id="openings" class="py-24 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16">
+                <div>
+                    <span class="gold-text uppercase tracking-[0.3em] text-sm mb-4 block reveal-up">Current Opportunities</span>
+                    <h2 class="text-4xl md:text-5xl font-bold reveal-up">Join Our Community</h2>
+                </div>
+                <p class="text-gray-500 max-w-md mt-4 md:mt-0 reveal-up">We are always looking for exceptional talent to redefine the landscape of private healthcare.</p>
+            </div>
+
+            <div class="grid gap-8">
+                <div class="job-card bg-white p-8 md:p-12 flex flex-col md:flex-row justify-between items-center rounded-lg reveal-up">
+                    <div>
+                        <span class="text-xs gold-text uppercase tracking-widest mb-2 block">Full-Time | London</span>
+                        <h3 class="text-3xl font-bold mb-2">Senior Private Registered Nurse</h3>
+                        <p class="text-gray-600">Leading clinical care for high-net-worth individuals in domestic settings.</p>
+                    </div>
+                    <a href="contact.html?role=nurse" class="mt-6 md:mt-0 px-8 py-3 bg-black text-white rounded-full hover:bg-gold transition-all">Apply Now</a>
+                </div>
+
+                <div class="job-card bg-white p-8 md:p-12 flex flex-col md:flex-row justify-between items-center rounded-lg reveal-up">
+                    <div>
+                        <span class="text-xs gold-text uppercase tracking-widest mb-2 block">Part-Time | Oxfordshire</span>
+                        <h3 class="text-3xl font-bold mb-2">Luxury Care Companion</h3>
+                        <p class="text-gray-600">Providing sophisticated support and lifestyle management for seniors.</p>
+                    </div>
+                    <a href="contact.html?role=companion" class="mt-6 md:mt-0 px-8 py-3 bg-black text-white rounded-full hover:bg-gold transition-all">Apply Now</a>
+                </div>
+
+                <div class="job-card bg-white p-8 md:p-12 flex flex-col md:flex-row justify-between items-center rounded-lg reveal-up">
+                    <div>
+                        <span class="text-xs gold-text uppercase tracking-widest mb-2 block">Full-Time | Nationwide</span>
+                        <h3 class="text-3xl font-bold mb-2">Live-in Care Specialist</h3>
+                        <p class="text-gray-600">Round-the-clock bespoke care with a focus on holistic wellbeing.</p>
+                    </div>
+                    <a href="contact.html?role=livein" class="mt-6 md:mt-0 px-8 py-3 bg-black text-white rounded-full hover:bg-gold transition-all">Apply Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-20">
+        <div class="container mx-auto px-6 grid md:grid-cols-4 gap-12">
+            <div class="col-span-2">
+                <h3 class="text-3xl font-bold gold-text mb-6 tracking-tighter">HOMELY HEALTH CARE</h3>
+                <p class="text-gray-400 max-w-sm leading-relaxed mb-8">Pioneering the future of private health care through unwavering commitment to excellence and personalized service.</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Instagram</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">LinkedIn</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Twitter</a>
+                </div>
+            </div>
+            <div>
+                <h4 class="text-lg font-bold mb-6">Quick Links</h4>
+                <ul class="space-y-4 text-gray-400">
+                    <li><a href="index.html" class="hover:text-gold transition-colors">Home</a></li>
+                    <li><a href="services.html" class="hover:text-gold transition-colors">Services</a></li>
+                    <li><a href="team.html" class="hover:text-gold transition-colors">Our Team</a></li>
+                    <li><a href="careers.html" class="hover:text-gold transition-colors">Careers</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-lg font-bold mb-6">Contact Us</h4>
+                <p class="text-gray-400 mb-4">Mayfair, London<br>United Kingdom</p>
+                <p class="text-gray-400">enquiries@homelyhealthcare.uk<br>+44 20 7946 0000</p>
+            </div>
+        </div>
+        <div class="container mx-auto px-6 mt-20 pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
+            <p>&copy; 2024 Homely Health Care. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Entrance animations
+        gsap.utils.toArray('.reveal-up').forEach((elem) => {
+            gsap.fromTo(elem, 
+                { opacity: 0, y: 50 },
+                {
+                    opacity: 1, 
+                    y: 0, 
+                    duration: 1.2, 
+                    ease: "power4.out",
+                    scrollTrigger: {
+                        trigger: elem,
+                        start: "top 85%",
+                        toggleActions: "play none none none"
+                    }
+                }
+            );
+        });
+
+        // Simple Canvas Particle Background for digital effect
+        const canvas = document.getElementById('webgl');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+            draw() {
+                ctx.fillStyle = '#D4AF37';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < 50; i++) particles.push(new Particle());
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
+</body>
+</html>
