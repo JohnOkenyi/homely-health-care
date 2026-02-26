@@ -1,494 +1,334 @@
-grep -nC 50 "<body" index.html
-
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homely Health Care | Excellence in Private Care</title>
+    <title>Homely Health Care | Elite Private Excellence</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@200;300;400;600&display=swap" rel="stylesheet">
     <style>
-        :root { --gold: #D4AF37; --dark-blue: #0A1128; --soft-white: #F8F9FA; }
-        body { font-family: 'Montserrat', sans-serif; background-color: var(--dark-blue); color: white; overflow-x: hidden; }
-        h1, h2, h3, .luxury-font { font-family: 'Playfair Display', serif; }
-        .gold-text { color: var(--gold); }
-        .nav-link { position: relative; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-        .nav-link::after { content: ''; position: absolute; width: 0; height: 1px; bottom: -5px; left: 0; background-color: var(--gold); transition: width 0.4s; }
-        .nav-link:hover::after { width: 100%; }
-        .nav-link:hover { color: var(--gold); letter-spacing: 0.05em; }
-        .hero-title { line-height: 1.1; letter-spacing: -0.02em; }
-        canvas#webgl { position: fixed; top: 0; left: 0; z-index: 0; pointer-events: none; }
-        .glass-panel { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .luxury-button { border: 1px solid var(--gold); transition: all 0.5s; position: relative; overflow: hidden; }
-        .luxury-button::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: var(--gold); transition: all 0.5s; z-index: -1; }
-        .luxury-button:hover::before { left: 0; }
-        .luxury-button:hover { color: var(--dark-blue); }
-        .scroll-indicator { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); }
+        :root { --gold: #C9A84C; --deep: #050A18; }
+        * { margin:0; padding:0; box-sizing:border-box; cursor:none !important; }
+        html { scroll-behavior: smooth; }
+        body { background: var(--deep); color:#fff; font-family:'Montserrat',sans-serif; overflow-x:hidden; }
+        .serif { font-family:'Playfair Display',serif; }
+        .gold { color: var(--gold); }
+        .gold-bg { background: var(--gold); }
+        .glass { background:rgba(255,255,255,0.04); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.08); border-radius:16px; }
+        .glass-gold { background:rgba(255,255,255,0.04); backdrop-filter:blur(20px); border:1px solid rgba(201,168,76,0.3); border-radius:16px; }
+        #webgl-canvas { position:fixed; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none; }
+        .cursor { position:fixed; width:8px; height:8px; background:var(--gold); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); transition:transform 0.1s; }
+        .cursor-ring { position:fixed; width:36px; height:36px; border:1px solid var(--gold); border-radius:50%; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition:all 0.2s ease; }
+        .nav-link { font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.6); transition:color 0.3s; }
+        .nav-link:hover { color:var(--gold); }
+        .section-label { font-size:10px; letter-spacing:0.5em; text-transform:uppercase; color:var(--gold); opacity:0.8; }
+        .luxury-card { transition: transform 0.4s ease, border-color 0.4s ease; }
+        .luxury-card:hover { transform: translateY(-8px); }
+        .hero-title { font-size: clamp(4rem, 10vw, 9rem); line-height:0.9; letter-spacing:-0.02em; }
+        .divider { width:40px; height:1px; background:var(--gold); display:inline-block; }
+        .btn-luxury { display:inline-block; padding:14px 40px; border:1px solid var(--gold); color:var(--gold); font-size:10px; letter-spacing:0.3em; text-transform:uppercase; transition:all 0.5s; background:transparent; }
+        .btn-luxury:hover { background:var(--gold); color:#050A18; }
+        .btn-fill { display:inline-block; padding:14px 40px; background:var(--gold); color:#050A18; font-size:10px; letter-spacing:0.3em; text-transform:uppercase; font-weight:700; transition:all 0.5s; }
+        .btn-fill:hover { background:#fff; }
+        .animated-line { transform: scaleX(0); transform-origin: left; transition: transform 1s ease; }
+        .in-view .animated-line { transform: scaleX(1); }
+        @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+        @keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+        .fade-up { animation: fadeUp 1s ease both; }
+        .fade-up-delay-1 { animation-delay: 0.2s; }
+        .fade-up-delay-2 { animation-delay: 0.4s; }
+        .fade-up-delay-3 { animation-delay: 0.6s; }
+        ::-webkit-scrollbar { width:3px; } ::-webkit-scrollbar-thumb { background:var(--gold); }
     </style>
 </head>
-<body class="selection:bg-gold/30">
-    <canvas id="webgl"></canvas>
-
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-ring" id="cursor-ring"></div>
+    
+    <!-- WebGL Canvas -->
+    <canvas id="webgl-canvas"></canvas>
+    
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 py-8 px-12 flex justify-between items-center transition-all duration-500" id="navbar">
-        <div class="flex items-center space-x-4">
-            <div class="w-12 h-12 border border-gold flex items-center justify-center text-gold text-2xl font-bold">H</div>
-            <span class="text-xl font-light tracking-[0.3em] hidden md:block">HOMELY HEALTH CARE</span>
-        </div>
-        <div class="hidden lg:flex items-center space-x-12">
-            <a href="index.html" class="nav-link text-xs uppercase tracking-widest gold-text">Home</a>
-            <a href="services.html" class="nav-link text-xs uppercase tracking-widest">Services</a>
-            <a href="team.html" class="nav-link text-xs uppercase tracking-widest">Team</a>
-            <a href="careers.html" class="nav-link text-xs uppercase tracking-widest">Careers</a>
-            <a href="contact.html" class="luxury-button px-8 py-3 text-xs uppercase tracking-widest">Contact Us</a>
-        </div>
-    ls -R</nav>
-
-    <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center pt-20 overflow-hidden">
-        <div class="container mx-auto px-12 grid lg:grid-cols-2 gap-20 items-center z-10">
-            <div class="reveal-content">
-                <span class="gold-text uppercase tracking-[0.5em] text-xs mb-6 block font-medium italic">The Art of Care</span>
-                <h1 class="text-7xl md:text-9xl hero-title font-bold mb-8">Bespoke <br> Excellence</h1>
-                <p class="text-lg md:text-xl text-white/60 font-light max-w-lg leading-relaxed mb-12">
-                    Redefining luxury private nursing and home care with absolute discretion and clinical precision in the heart of London.
-                </p>
-                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
-                    <a href="services.html" class="luxury-button px-12 py-5 text-sm uppercase tracking-widest bg-gold text-dark-blue font-bold">Discover Services</a>
-                    <a href="contact.html" class="px-12 py-5 text-sm uppercase tracking-widest border border-white/20 hover:border-gold transition-colors">Our Standard</a>
-                </div>
-            </div>
-            <div class="relative hidden lg:block">
-                <div class="w-full aspect-[4/5] overflow-hidden rounded-sm glass-panel p-4">
-     touch assets/js/webgl-heart.js assets/js/animations.js assets/css/main.css
-
-     <img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80" alt="Luxury Care" class="w-full h-full object-cover opacity-80" id="hero-img">
-                </div>
-                <div class="absolute -bottom-10 -left-10 glass-panel p-8 max-w-xs animate-float">
-                    <p class="text-gold text-4xl font-serif italic mb-2">5-Star</p>
-                    <p class="text-xs uppercase tracking-widest text-white/50">CQC Accredited Excellence</p>
-                </div>
-            </div>
-        </div>
-        <div class="scroll-indicator animate-bounce">
-     printf '<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enquire | Homely Health Care</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body class="selection:bg-gold/30">
-    <nav id="navbar" class="fixed w-full z-50 py-8 px-12 flex justify-between items-center transition-all duration-500 glass">
-        <div class="flex items-center space-x-4">
-            <a href="index.html" class="w-12 h-12 border border-gold flex items-center justify-center font-serif text-2xl text-gold">H</a>
-            <span class="text-white tracking-[0.3em] font-light uppercase text-sm">Homely Health Care</span>
-        </div>
-        <div class="hidden md:flex space-x-12">
-            <a href="about.html" class="text-white/70 hover:text-gold uppercase text-[10px] tracking-widest transition-colors">The Ethos</a>
-            <a href="services.html" class="text-white/70 hover:text-gold uppercase text-[10px] tracking-widest transition-colors">Services</a>
-     printf '<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Team | Homely Health Care</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body class="selection:bg-gold/30">
-    <nav id="navbar" class="fixed w-full z-50 py-8 px-12 flex justify-between items-center transition-all duration-500 glass">
-        <div class="flex items-center space-x-4">
-            <a href="index.html" class="w-12 h-12 border border-gold flex items-center justify-center font-serif text-2xl text-gold">H</a>
-            <span class="text-white tracking-[0.3em] font-light uppercase text-sm">Homely Health Care</span>
-        </div>
-        <div class="hidden md:flex space-x-12">
-            <a href="about.html" class="text-white/70 hover:text-gold uppercase text-[10px] tracking-widest transition-colors">The Ethos</a>
-            <a href="services.html" class="text-white/70 hover:text-gold uppercase text-[10px] tracking-widest transition-colors">Services</a>
-            <a href="team.html" class="text-gold uppercase text-[10px] tracking-widest transition-colors">The Team</a>
-            <a href="careers.html" class="text-white/70 hover:text-gold uppercase text-[10px] tracking-widest transition-colors">Careers</a>
-            <a href="contact.html" class="text-white/70 hover:text-gold uppercase text-[10px] tracking-widest transition-colors border-b border-gold/50 pb-1">Enquire</a>
+    <nav id="navbar" style="position:fixed;top:0;left:0;right:0;z-index:100;padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center;transition:all 0.5s;">
+        <a href="index.html" style="display:flex;align-items:center;gap:1rem;text-decoration:none;">
+            <div style="width:44px;height:44px;border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--gold);">H</div>
+            <span style="color:#fff;letter-spacing:0.3em;font-size:11px;font-weight:300;text-transform:uppercase;">Homely Health Care</span>
+        </a>
+        <div style="display:flex;gap:3rem;">
+            <a href="about.html" class="nav-link">The Ethos</a>
+            <a href="services.html" class="nav-link">Services</a>
+            <a href="team.html" class="nav-link">The Team</a>
+            <a href="careers.html" class="nav-link">Careers</a>
+            <a href="contact.html" style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--gold);padding-bottom:2px;">Enquire</a>
         </div>
     </nav>
-
-    <main class="pt-40 px-12">
-        <section class="container mx-auto mb-32">
-            <span class="gold-gradient uppercase tracking-[0.5em] text-[10px] mb-8 block">Clinical Leadership</span>
-            <h1 class="serif text-6xl md:text-8xl text-white mb-20 reveal-text">Excellence in Every Detail.</h1>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-16">
-                <!-- Team Member 1 -->
-                <div class="luxury-card glass overflow-hidden group">
-                    <div class="aspect-[3/4] bg-white/5 relative">
-                        <div class="absolute inset-0 flex items-center justify-center text-gold/20 serif text-xl italic p-8 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-700">"Pioneering the future of home-based clinical care."</div>
-                    </div>
-                    <div class="p-10">
-                        <h3 class="serif text-2xl text-white mb-2">Dr. Helena Vance</h3>
-                        <p class="text-gold uppercase text-[10px] tracking-widest mb-6">Medical Director</p>
-                        <p class="text-white/40 text-sm leading-relaxed">Specializing in geriatric excellence and integrated health systems.</p>
-                    </div>
-                </div>
-
-                <!-- Team Member 2 -->
-                <div class="luxury-card glass overflow-hidden group border-gold/30">
-                    <div class="aspect-[3/4] bg-white/5 relative">
-                        <div class="absolute inset-0 flex items-center justify-center text-gold/20 serif text-xl italic p-8 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-700">"Compassion is the highest form of clinical skill."</div>
-                    </div>
-                    <div class="p-10">
-                        <h3 class="serif text-2xl text-white mb-2">Sarah Montgomery</h3>
-                        <p class="text-gold uppercase text-[10px] tracking-widest mb-6">Head of Nursing</p>
-                        <p class="text-white/40 text-sm leading-relaxed">20 years of excellence in private surgical recovery and palliative care.</p>
-                    </div>
-                </div>
-
-                <!-- Team Member 3 -->
-                <div class="luxury-card glass overflow-hidden group">
-                    <div class="aspect-[3/4] bg-white/5 relative">
-                        <div class="absolute inset-0 flex items-center justify-center text-gold/20 serif text-xl italic p-8 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-700">"Redefining the boundaries of personalized support."</div>
-                    </div>
-                    <div class="p-10">
-                        <h3 class="serif text-2xl text-white mb-2">Julian Thorne</h3>
-                        <p class="text-gold uppercase text-[10px] tracking-widest mb-6">Lifestyle Concierge</p>
-                        <p class="text-white/40 text-sm leading-relaxed">Facilitating seamless daily life for our global private clients.</p>
-                    </div>
-                </div>
+    
+    <!-- HERO -->
+    <section style="position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:0 3rem;z-index:10;">
+        <div style="text-align:center;max-width:1100px;">
+            <p class="section-label fade-up" style="margin-bottom:2rem;">Pioneering Private Healthcare</p>
+            <h1 class="serif hero-title fade-up fade-up-delay-1" style="color:#fff;margin-bottom:2rem;">
+                Elite Care<br/><em style="color:var(--gold);">Without</em> Compromise
+            </h1>
+            <p class="fade-up fade-up-delay-2" style="color:rgba(255,255,255,0.45);font-size:1.1rem;font-weight:300;max-width:600px;margin:0 auto 3rem;line-height:1.8;">A new dimension of private healthcare where clinical brilliance meets the pinnacle of personal service.</p>
+            <div class="fade-up fade-up-delay-3" style="display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;">
+                <a href="services.html" class="btn-luxury">Discover Excellence</a>
+                <a href="contact.html" class="btn-fill">Private Consultation</a>
             </div>
-        </section>
-    </main>
-
-    <footer class="py-12 px-12 border-t border-white/5">
-        <div class="container mx-auto text-center">
-            <p class="text-white/20 text-[8px] tracking-[0.5em] uppercase">&copy; 2026 HOMELY HEALTH CARE. ELITE CARE TEAMS.</p>
         </div>
-    </footer>
-
-    <script src="assets/js/webgl-heart.js"></script>
-    <script src="assets/js/main.js"></script>
-</body>
-</html>' > team.html
-       <a href="team.html" class="text-white/70 hover:text-gold uppercase text-[10px] tracking-widest transition-colors">The Team</a>
-            <a href="careers.html" class="text-white/70 hover:text-gold uppercase text-[10px] tracking-widest transition-colors">Careers</a>
-            <a href="contact.html" class="text-gold uppercase text-[10px] tracking-widest transition-colors border-b border-gold/50 pb-1">Enquire</a>
+        <!-- Scroll indicator -->
+        <div style="position:absolute;bottom:3rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
+            <span style="font-size:8px;letter-spacing:0.4em;color:rgba(255,255,255,0.3);text-transform:uppercase;">Scroll</span>
+            <div style="width:1px;height:40px;background:linear-gradient(to bottom,var(--gold),transparent);"></div>
         </div>
-    </nav>
-
-    <main class="pt-40 min-h-screen flex items-center justify-center px-12">
-        <div class="container mx-auto max-w-4xl">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-20">
+    </section>
+    
+    <!-- Services Preview Section -->
+    <section style="padding:8rem 3rem;position:relative;z-index:10;">
+        <div style="max-width:1400px;margin:0 auto;">
+            <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:5rem;">
                 <div>
-                    <span class="gold-gradient uppercase tracking-[0.5em] text-[10px] mb-8 block">Connect With Us</span>
-                    <h1 class="serif text-5xl md:text-6xl text-white mb-12 reveal-text">Begin Your Journey to Excellence</h1>
-                    <p class="text-white/50 font-light leading-relaxed mb-12">Discretion and personalized attention are the cornerstones of our service. Please provide your details, and a member of our private client team will contact you with absolute confidentiality.</p>
-                    
-                    <div class="space-y-8">
-                        <div>
-                            <p class="text-gold uppercase text-[10px] tracking-widest mb-2">Central London Office</p>
-                            <p class="text-white/70 text-sm">Mayfair, London W1</p>
+                    <p class="section-label" style="margin-bottom:1rem;">Our Portfolio of Care</p>
+                    <h2 class="serif" style="font-size:clamp(2.5rem,5vw,4rem);color:#fff;line-height:1.1;">Bespoke Clinical<br/>Excellence</h2>
+                </div>
+                <a href="services.html" class="nav-link" style="white-space:nowrap;padding-bottom:4px;border-bottom:1px solid rgba(201,168,76,0.4);">View All Services</a>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;">
+                <div class="glass-gold luxury-card" style="padding:2.5rem;">
+                    <span class="serif" style="font-size:2.5rem;color:rgba(201,168,76,0.2);display:block;margin-bottom:1.5rem;">01</span>
+                    <h3 class="serif" style="font-size:1.5rem;color:#fff;margin-bottom:1rem;">Private Nursing</h3>
+                    <p style="color:rgba(255,255,255,0.4);font-size:0.875rem;line-height:1.8;margin-bottom:2rem;">Expert clinical care by registered nurses specializing in post-operative recovery and chronic conditions.</p>
+                    <div style="display:flex;flex-direction:column;gap:0.6rem;">
+                        <span style="font-size:9px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;">24/7 Monitoring</span>
+                        <span style="font-size:9px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;">Medication Management</span>
+                        <span style="font-size:9px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;">Wound Care</span>
+                    </div>
+                </div>
+                <div class="glass luxury-card" style="padding:2.5rem;">
+                    <span class="serif" style="font-size:2.5rem;color:rgba(201,168,76,0.2);display:block;margin-bottom:1.5rem;">02</span>
+                    <h3 class="serif" style="font-size:1.5rem;color:#fff;margin-bottom:1rem;">Luxury Companionship</h3>
+                    <p style="color:rgba(255,255,255,0.4);font-size:0.875rem;line-height:1.8;margin-bottom:2rem;">Sophisticated lifestyle support for individuals who value intellectual engagement and seamless daily management.</p>
+                    <div style="display:flex;flex-direction:column;gap:0.6rem;">
+                        <span style="font-size:9px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;">Cultural Accompaniment</span>
+                        <span style="font-size:9px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;">Lifestyle Concierge</span>
+                        <span style="font-size:9px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;">Travel Support</span>
+                    </div>
+                </div>
+                <div class="glass-gold luxury-card" style="padding:2.5rem;">
+                    <span class="serif" style="font-size:2.5rem;color:rgba(201,168,76,0.2);display:block;margin-bottom:1.5rem;">03</span>
+                    <h3 class="serif" style="font-size:1.5rem;color:#fff;margin-bottom:1rem;">Palliative Excellence</h3>
+                    <p style="color:rgba(255,255,255,0.4);font-size:0.875rem;line-height:1.8;margin-bottom:2rem;">Compassionate, dignifying end-of-life care focused on absolute comfort and peace.</p>
+                    <div style="display:flex;flex-direction:column;gap:0.6rem;">
+                        <span style="font-size:9px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;">Holistic Pain Relief</span>
+                        <span style="font-size:9px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;">Family Support</span>
+                        <span style="font-size:9px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;">Dignified Care</span>
+                    </div>
+                </div>
+                <div class="glass luxury-card" style="padding:2.5rem;">
+                    <span class="serif" style="font-size:2.5rem;color:rgba(201,168,76,0.2);display:block;margin-bottom:1.5rem;">04</span>
+                    <h3 class="serif" style="font-size:1.5rem;color:#fff;margin-bottom:1rem;">Elite Therapies</h3>
+                    <p style="color:rgba(255,255,255,0.4);font-size:0.875rem;line-height:1.8;margin-bottom:2rem;">Premier physiotherapy, occupational therapy, and nutritional masterplans delivered at home.</p>
+                    <div style="display:flex;flex-direction:column;gap:0.6rem;">
+                        <span style="font-size:9px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;">Rehabilitation</span>
+                        <span style="font-size:9px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;">Cognitive Support</span>
+                        <span style="font-size:9px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;">Nutrition Plans</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Philosophy Quote -->
+    <section style="padding:8rem 3rem;background:rgba(201,168,76,0.04);position:relative;z-index:10;overflow:hidden;">
+        <div style="max-width:900px;margin:0 auto;text-align:center;">
+            <p class="section-label" style="margin-bottom:2rem;">Our Philosophy</p>
+            <h2 class="serif" style="font-size:clamp(2rem,4vw,3.5rem);color:#fff;font-style:italic;line-height:1.4;margin-bottom:2rem;">&ldquo;True luxury is not in possessions, but in the peace of mind that comes from knowing your health is in the finest hands.&rdquo;</h2>
+            <div class="divider" style="margin:0 auto;"></div>
+        </div>
+    </section>
+    
+    <!-- Stats Section -->
+    <section style="padding:6rem 3rem;position:relative;z-index:10;">
+        <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:3rem;">
+            <div style="text-align:center;">
+                <p class="serif" style="font-size:4rem;color:var(--gold);line-height:1;">15+</p>
+                <p style="font-size:9px;letter-spacing:0.3em;color:rgba(255,255,255,0.4);text-transform:uppercase;margin-top:0.5rem;">Years of Excellence</p>
+            </div>
+            <div style="text-align:center;">
+                <p class="serif" style="font-size:4rem;color:var(--gold);line-height:1;">500+</p>
+                <p style="font-size:9px;letter-spacing:0.3em;color:rgba(255,255,255,0.4);text-transform:uppercase;margin-top:0.5rem;">Distinguished Clients</p>
+            </div>
+            <div style="text-align:center;">
+                <p class="serif" style="font-size:4rem;color:var(--gold);line-height:1;">98%</p>
+                <p style="font-size:9px;letter-spacing:0.3em;color:rgba(255,255,255,0.4);text-transform:uppercase;margin-top:0.5rem;">Client Satisfaction</p>
+            </div>
+            <div style="text-align:center;">
+                <p class="serif" style="font-size:4rem;color:var(--gold);line-height:1;">24/7</p>
+                <p style="font-size:9px;letter-spacing:0.3em;color:rgba(255,255,255,0.4);text-transform:uppercase;margin-top:0.5rem;">Clinical Support</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section style="padding:8rem 3rem;position:relative;z-index:10;text-align:center;">
+        <div style="max-width:700px;margin:0 auto;">
+            <p class="section-label" style="margin-bottom:1.5rem;">Begin Your Journey</p>
+            <h2 class="serif" style="font-size:clamp(2.5rem,5vw,4rem);color:#fff;margin-bottom:2rem;">Experience Care Redefined</h2>
+            <p style="color:rgba(255,255,255,0.4);font-weight:300;margin-bottom:3rem;line-height:1.8;">Our private client team is available to discuss your requirements with complete confidentiality.</p>
+            <a href="contact.html" class="btn-fill">Request a Private Consultation</a>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer style="padding:4rem 3rem;border-top:1px solid rgba(255,255,255,0.06);position:relative;z-index:10;">
+        <div style="max-width:1400px;margin:0 auto;">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:3rem;margin-bottom:4rem;">
+                <div>
+                    <p class="serif gold" style="font-size:1.25rem;margin-bottom:0.5rem;">HOMELY HEALTH CARE</p>
+                    <p style="font-size:9px;letter-spacing:0.3em;color:rgba(255,255,255,0.2);text-transform:uppercase;">The Pinnacle of Private Excellence</p>
+                </div>
+                <div style="display:flex;gap:4rem;flex-wrap:wrap;">
+                    <div>
+                        <p style="font-size:9px;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-bottom:1rem;">Navigation</p>
+                        <div style="display:flex;flex-direction:column;gap:0.75rem;">
+                            <a href="about.html" class="nav-link">The Ethos</a>
+                            <a href="services.html" class="nav-link">Services</a>
+                            <a href="team.html" class="nav-link">The Team</a>
+                            <a href="careers.html" class="nav-link">Careers</a>
                         </div>
-                        <div>
-                            <p class="text-gold uppercase text-[10px] tracking-widest mb-2">Private Line</p>
-                            <p class="text-white/70 text-sm">+44 (0) 20 7946 0123</p>
-printf '<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Ethos | Homely Health Care</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body class="selection:bg-gold/30">
-    <nav id="navbar" class="fixed w-full z-50 py-8 px-12 flex justify-between items-center transition-all duration-500 glass">
-        <div class="flex items-center space-x-4">
-            <a href="index.html" class="w-12 h-12 border border-gold flex items-center justify-center font-serif text-2xl text-gold">H</a>
-            <span class="text-white tracking-[0.3em] font-light uppercase text-sm">Homely Health Care</span>
-        </div>
-        <div class="hidden md:flex space-x-12">
-            <a href="about.html" class="text-gold uppercase text-[10px] tracking-widest transition-colors">The Ethos</a>
-            <a href="services.html" class="text-white/70 hover:text-gold uppercase text-[10px] tracking-widest transition-colors">Services</a>
-            <a href="team.html" class="text-white/70 hover:text-gold uppercase text-[10px] tracking-widest transition-colors">The Team</a>
-            <a href="careers.html" class="text-white/70 hover:text-gold uppercase text-[10px] tracking-widest transition-colors">Careers</a>
-            <a href="contact.html" class="text-white/70 hover:text-gold uppercase text-[10px] tracking-widest transition-colors border-b border-gold/50 pb-1">Enquire</a>
-        </div>
-    </nav>
-
-    <main class="pt-40 px-12">
-        <section class="container mx-auto mb-40">
-            <div class="max-w-4xl">
-                <span class="gold-gradient uppercase tracking-[0.5em] text-[10px] mb-8 block">Our Heritage</span>
-                <h1 class="serif text-6xl md:text-8xl text-white mb-12 reveal-text">Defined by Discretion. Driven by Care.</h1>
-                <p class="text-white/60 text-xl font-light leading-relaxed mb-12">Homely Health Care was founded on a singular principle: that the most sophisticated clinical care should be delivered with the warmth and comfort of a private residence.</p>
-            </div>
-        </section>
-
-        <section class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-40">
-            <div class="luxury-card glass p-12">
-                <h3 class="serif text-gold text-2xl mb-6">Our Vision</h3>
-                <p class="text-white/40 text-sm leading-relaxed">To be the global benchmark for private clinical excellence, where every patient is treated with the dignity of a guest and the expertise of an elite medical facility.</p>
-            </div>
-            <div class="luxury-card glass p-12 border-gold/30">
-                <h3 class="serif text-gold text-2xl mb-6">Our Mission</h3>
-                <p class="text-white/40 text-sm leading-relaxed">To provide seamless, integrated healthcare solutions that adapt to the lifestyles of our discerning clients, ensuring absolute peace of mind.</p>
-            </div>
-            <div class="luxury-card glass p-12">
-                <h3 class="serif text-gold text-2xl mb-6">Our Values</h3>
-                <p class="text-white/40 text-sm leading-relaxed">Clinical brilliance, absolute discretion, and compassionate partnership. We don\'t just provide care; we provide a legacy of health.</p>
-            </div>
-        </section>
-
-        <section class="py-40 border-t border-white/5">
-            <div class="container mx-auto text-center">
-                <h2 class="serif text-4xl text-white mb-12 italic">"A commitment to excellence that knows no bounds."</h2>
-                <div class="w-20 h-px bg-gold mx-auto mb-12"></div>
-                <p class="text-white/30 text-xs tracking-widest uppercase">The Homely Health Care Promise</p>
-            </div>
-        </section>
-    </main>
-
-    <footer class="py-12 px-12 border-t border-white/5">
-        <div class="container mx-auto text-center">
-            <p class="text-white/20 text-[8px] tracking-[0.5em] uppercase">&copy; 2026 HOMELY HEALTH CARE. PRIVACY IS PARAMOUNT.</p>
-        </div>
-    </footer>
-
-    <script src="assets/js/webgl-heart.js"></script>
-    <script src="assets/js/main.js"></script>
-</body>
-</html>' > about.html
+                    </div>
+                    <div>
+                        <p style="font-size:9px;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-bottom:1rem;">Locations</p>
+                        <div style="display:flex;flex-direction:column;gap:0.75rem;">
+                            <span class="nav-link">London</span>
+                            <span class="nav-link">Oxford</span>
+                            <span class="nav-link">Cambridge</span>
                         </div>
                     </div>
                 </div>
-
-                <div class="luxury-card glass p-10 border-gold/30">
-                    <form class="space-y-8">
-                        <div class="relative">
-                            <input type="text" placeholder="Full Name" class="w-full bg-transparent border-b border-white/20 py-4 text-white focus:border-gold outline-none transition-colors placeholder:text-white/20 font-light">
-                        </div>
-                        <div class="relative">
-                            <input type="email" placeholder="Private Email" class="w-full bg-transparent border-b border-white/20 py-4 text-white focus:border-gold outline-none transition-colors placeholder:text-white/20 font-light">
-                        </div>
-                        <div class="relative">
-                            <select class="w-full bg-transparent border-b border-white/20 py-4 text-white focus:border-gold outline-none transition-colors font-light appearance-none">
-                                <option class="bg-navy">Select Service of Interest</option>
-                                <option class="bg-navy">Private Nursing</option>
-                                <option class="bg-navy">Lifestyle Companionship</option>
-                                <option class="bg-navy">Palliative Support</option>
-                                <option class="bg-navy">Other Elite Service</option>
-                            </select>
-                        </div>
-                        <div class="relative">
-                            <textarea placeholder="Your Message (Optional)" rows="4" class="w-full bg-transparent border-b border-white/20 py-4 text-white focus:border-gold outline-none transition-colors placeholder:text-white/20 font-light resize-none"></textarea>
-                        </div>
-                        <button type="submit" class="w-full py-5 bg-gold text-navy uppercase text-[10px] tracking-[0.3em] hover:bg-white transition-all duration-500 font-bold">Request Private Consultation</button>
-                    </form>
-                </div>
             </div>
-        </div>
-    </main>
-
-    <footer class="py-12 px-12 border-t border-white/5 mt-20">
-        <div class="container mx-auto text-center">
-            <p class="text-white/20 text-[8px] tracking-[0.5em] uppercase">&copy; 2026 HOMELY HEALTH CARE. DISCRETION GUARANTEED.</p>
+            <div style="border-top:1px solid rgba(255,255,255,0.04);padding-top:2rem;text-align:center;">
+                <p style="font-size:8px;letter-spacing:0.5em;color:rgba(255,255,255,0.15);text-transform:uppercase;">&copy; 2026 HOMELY HEALTH CARE. ALL RIGHTS RESERVED. DISCRETION GUARANTEED.</p>
+            </div>
         </div>
     </footer>
-
-    <script src="assets/js/webgl-heart.js"></script>
-    <script src="assets/js/main.js"></script>
-</body>
-</html>' > contact.html
-       <div class="w-[1px] h-20 bg-gradient-to-b from-transparent to-gold mx-auto"></div>
-        </div>
-    </section>
-
-    <!-- Interactive Care Section -->
-    <section class="py-32 relative overflow-hidden bg-white/5">
-        <div class="container mx-auto px-12 text-center relative z-10">
-            <h2 class="text-5xl md:text-7xl mb-20 font-bold">Caring is <br><span class="gold-text italic">Interactive</span></h2>
-            <div class="grid md:grid-cols-3 gap-16">
-                <div class="glass-panel p-12 hover:translate-y-[-10px] transition-all duration-500 reveal-up">
-                    <div class="text-gold text-5xl mb-8 font-serif">01</div>
-                    <h3 class="text-2xl mb-6">Discretion</h3>
-                    <p class="text-white/50 leading-relaxed font-light">Absolute privacy is the cornerstone of our service for every distinguished client.</p>
-                </div>
-                <div class="glass-panel p-12 hover:translate-y-[-10px] transition-all duration-500 reveal-up">
-                    <div class="text-gold text-5xl mb-8 font-serif">02</div>
-                    <h3 class="text-2xl mb-6">Expertise</h3>
-                    <p class="text-white/50 leading-relaxed font-light">Only the most elite medical professionals are chosen to join our distinguished care team.</p>
-                </div>
-                <div class="glass-panel p-12 hover:translate-y-[-10px] transition-all duration-500 reveal-up">
-                    <div class="text-gold text-5xl mb-8 font-serif">03</div>
-                    <h3 class="text-2xl mb-6">Tailored</h3>
-                    <p class="text-white/50 leading-relaxed font-light">Every care plan is a unique masterpiece, designed around your lifestyle and health requirements.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Call to Action -->
-    <section class="py-40 relative">
-        <div class="container mx-auto px-12 text-center">
-            <h2 class="text-6xl md:text-8xl mb-12 font-bold tracking-tighter">Experience <br> The Standard</h2>
-            <a href="contact.html" class="inline-block luxury-button px-20 py-6 text-sm uppercase tracking-[0.3em] font-bold">Contact Our Concierge</a>
-        </div>
-    </section>
-
-    <footer class="py-20 border-t border-white/10 text-white/40">
-        <div class="container mx-auto px-12 flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0 text-xs tracking-widest uppercase">
-            <p>&copy; 2026 Homely Health Care. All Rights Reserved.</p>
-            <div class="flex space-x-12">
-                <a href="#" class="hover:text-gold transition-colors">Privacy Policy</a>
-                <a href="#" class="hover:text-gold transition-colors">Terms of Service</a>
-            </div>
-            <p class="gold-text italic font-serif normal-case text-lg">Excellence in every heartbeat.</p>
-        </div>
-    </footer>
-
+    
     <script>
-        // WebGL - Interactive 3D Particle Heart
-        const canvas = document.querySelector('#webgl');
-        const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
-        camera.position.z = 15;
-
-        // Particle Heart Geometry
-        const particlesCount = 5000;
-        const positions = new Float32Array(particlesCount * 3);
-        const colors = new Float32Array(particlesCount * 3);
-
-        const colorGold = new THREE.Color(0xD4AF37);
-
-        for(let i = 0; i < particlesCount; i++) {
-            const t = Math.random() * Math.PI * 2;
-            
-            // Heart shape formula
-            const x = 16 * Math.pow(Math.sin(t), 3);
-            const y = 13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t);
-            
-            const r = Math.random();
-            positions[i * 3 + 0] = x * r * 0.4;
-            positions[i * 3 + 1] = y * r * 0.4;
-            positions[i * 3 + 2] = (Math.random() - 0.5) * 5;
-
-            colors[i * 3 + 0] = colorGold.r;
-            colors[i * 3 + 1] = colorGold.g;
-            colors[i * 3 + 2] = colorGold.b;
+    // Register GSAP ScrollTrigger
+    gsap.registerPlugin(ScrollTrigger);
+    
+    // ===== CUSTOM CURSOR =====
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursor-ring');
+    let mouseX = 0, mouseY = 0;
+    
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0 });
+        gsap.to(ring, { x: e.clientX, y: e.clientY, duration: 0.15 });
+    });
+    
+    document.querySelectorAll('a, button').forEach(el => {
+        el.addEventListener('mouseenter', () => gsap.to(ring, { scale: 2, opacity: 0.5, duration: 0.3 }));
+        el.addEventListener('mouseleave', () => gsap.to(ring, { scale: 1, opacity: 1, duration: 0.3 }));
+    });
+    
+    // ===== NAVBAR SCROLL =====
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 80) {
+            navbar.style.background = 'rgba(5,10,24,0.95)';
+            navbar.style.backdropFilter = 'blur(20px)';
+            navbar.style.borderBottom = '1px solid rgba(201,168,76,0.1)';
+            navbar.style.padding = '1rem 3rem';
+        } else {
+            navbar.style.background = 'transparent';
+            navbar.style.backdropFilter = 'none';
+            navbar.style.borderBottom = 'none';
+            navbar.style.padding = '2rem 3rem';
         }
-
+    });
+    
+    // ===== GSAP SCROLL ANIMATIONS =====
+    gsap.utils.toArray('.luxury-card').forEach((card, i) => {
+        gsap.fromTo(card,
+            { opacity: 0, y: 60 },
+            { opacity: 1, y: 0, duration: 0.8, delay: i * 0.1,
+              scrollTrigger: { trigger: card, start: 'top 85%' }
+            }
+        );
+    });
+    
+    gsap.utils.toArray('section').forEach(section => {
+        gsap.fromTo(section.querySelector('h2'),
+            { opacity: 0, y: 40 },
+            { opacity: 1, y: 0, duration: 1, ease: 'power3.out',
+              scrollTrigger: { trigger: section, start: 'top 80%' }
+            }
+        );
+    });
+    
+    // ===== WEBGL THREE.JS PARTICLE FIELD =====
+    (function() {
+        const canvas = document.getElementById('webgl-canvas');
+        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.z = 6;
+        
+        // Particle geometry
+        const count = 6000;
+        const positions = new Float32Array(count * 3);
+        for (let i = 0; i < count * 3; i++) {
+            positions[i] = (Math.random() - 0.5) * 20;
+        }
         const geometry = new THREE.BufferGeometry();
         geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-        geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-
+        
         const material = new THREE.PointsMaterial({
+            color: 0xC9A84C,
             size: 0.04,
-            vertexColors: true,
             transparent: true,
-            opacity: 0.5,
-            blending: THREE.AdditiveBlending
+            opacity: 0.6,
+            blending: THREE.AdditiveBlending,
+            depthWrite: false
         });
-
-        const points = new THREE.Points(geometry, material);
-        scene.add(points);
-
-        // Interaction
-        let mouseX = 0;
-        let mouseY = 0;
-
-        window.addEventListener('mousemove', (event) => {
-            mouseX = (event.clientX / window.innerWidth - 0.5) * 2;
-            mouseY = -(event.clientY / window.innerHeight - 0.5) * 2;
+        
+        const particles = new THREE.Points(geometry, material);
+        scene.add(particles);
+        
+        // Mouse interaction
+        let targetX = 0, targetY = 0;
+        document.addEventListener('mousemove', (e) => {
+            targetX = (e.clientX / window.innerWidth - 0.5) * 0.5;
+            targetY = -(e.clientY / window.innerHeight - 0.5) * 0.5;
         });
-
-        // Animation Loop
-        const clock = new THREE.Clock();
-
-        const tick = () => {
-            const elapsedTime = clock.getElapsedTime();
-
-            points.rotation.y = elapsedTime * 0.1;
-            
-            // Smoothly follow mouse
-            points.rotation.x += (mouseY * 0.2 - points.rotation.x) * 0.05;
-            points.rotation.y += (mouseX * 0.2 - points.rotation.y) * 0.05;
-
-            renderer.render(scene, camera);
-            window.requestAnimationFrame(tick);
-        };
-
-        tick();
-
+        
         window.addEventListener('resize', () => {
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
         });
-
-        // GSAP Animations
-        gsap.registerPlugin(ScrollTrigger);
-
-        gsap.from(".reveal-content > *", {
-            y: 100,
-            opacity: 0,
-            duration: 1.5,
-            stagger: 0.2,
-            ease: "power4.out"
-        });
-
-        gsap.utils.toArray('.reveal-up').forEach(elem => {
-            gsap.from(elem, {
-                scrollTrigger: {
-                    trigger: elem,
-                    start: "top 85%",
-                    toggleActions: "play none none reverse"
-                },
-                y: 50,
-                opacity: 0,
-                duration: 1.2,
-                ease: "power3.out"
-            });
-        });
-
-        // Navbar effect
-        ScrollTrigger.create({
-            start: "top -50",
-            onUpdate: self => {
-                if (self.direction === 1) {
-                    gsap.to("#navbar", { backgroundColor: "rgba(10, 17, 40, 0.95)", backdropFilter: "blur(10px)", py: "1.5rem", duration: 0.4 });
-                } else {
-                    gsap.to("#navbar", { backgroundColor: "transparent", backdropFilter: "blur(0px)", py: "2rem", duration: 0.4 });
-                }
-            }
-        });
-
-        // Floating animation for image
-        gsap.to("#hero-img", {
-            y: -20,
-            duration: 4,
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut"
-        });
+        
+        const clock = new THREE.Clock();
+        function animate() {
+            requestAnimationFrame(animate);
+            const t = clock.getElapsedTime();
+            particles.rotation.y = t * 0.05;
+            particles.rotation.x += (targetY * 0.3 - particles.rotation.x) * 0.05;
+            particles.rotation.z += (targetX * 0.2 - particles.rotation.z) * 0.05;
+            renderer.render(scene, camera);
+        }
+        animate();
+    })();
     </script>
 </body>
 </html>
