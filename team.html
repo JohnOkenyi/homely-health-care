@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meet the Team | Homely Health Care | Bespoke Private Care</title>
+    <title>Meet the Team | Homely Health Care</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -20,10 +20,8 @@
         .nav-link:hover { color: var(--gold); }
         canvas#webgl { position: fixed; top: 0; left: 0; z-index: 0; pointer-events: none; }
         .glass-panel { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .member-card { transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1); overflow: hidden; }
-        .member-card:hover { transform: translateY(-20px); border-color: var(--gold); }
-        .member-card:hover img { transform: scale(1.1); }
-        img { transition: transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        .service-card { transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
+        .service-card:hover { background: rgba(212, 175, 55, 0.05); border-color: var(--gold); transform: translateY(-15px); }
     </style>
 </head>
 <body class="selection:bg-gold/30">
@@ -37,68 +35,82 @@
         </div>
         <div class="hidden lg:flex items-center space-x-12">
             <a href="index.html" class="nav-link text-xs uppercase tracking-widest">Home</a>
-            <a href="services.html" class="nav-link text-xs uppercase tracking-widest">Services</a>
-            <a href="team.html" class="nav-link text-xs uppercase tracking-widest gold-text">Team</a>
+            <a href="services.html" class="nav-link text-xs uppercase tracking-widest gold-text">Services</a>
+            <a href="team.html" class="nav-link text-xs uppercase tracking-widest">Team</a>
             <a href="careers.html" class="nav-link text-xs uppercase tracking-widest">Careers</a>
             <a href="contact.html" class="border border-gold px-8 py-3 text-xs uppercase tracking-widest hover:bg-gold hover:text-dark-blue transition-all">Contact</a>
         </div>
     </nav>
 
-    <!-- Header -->
+    <!-- Header Section -->
     <header class="pt-60 pb-32 relative">
         <div class="container mx-auto px-12 text-center relative z-10">
-            <span class="gold-text uppercase tracking-[0.5em] text-xs mb-6 block font-medium italic reveal-up">The Faces of Excellence</span>
-            <h1 class="text-7xl md:text-9xl font-bold mb-12 reveal-up leading-none">Our <br>Distinguished <br>Team</h1>
+            <span class="gold-text uppercase tracking-[0.5em] text-xs mb-6 block font-medium italic reveal-up">Our Expertise</span>
+            <h1 class="text-7xl md:text-9xl font-bold mb-12 reveal-up leading-none">Excellence Through<br>Exceptional People</h1>
             <p class="text-xl text-white/50 max-w-2xl mx-auto font-light leading-relaxed reveal-up">
-                A symphony of clinical brilliance and empathetic service, dedicated to your holistic wellbeing.
+                Meet the highly qualified professionals who deliver world-class private healthcare with compassion, discretion, and clinical excellence.
             </p>
         </div>
     </header>
 
-    <!-- Team Grid -->
+    <!-- Services Grid -->
     <section class="py-32 relative">
         <div class="container mx-auto px-12">
-            <div class="grid lg:grid-cols-3 gap-12">
-                <!-- Member 1 -->
-                <div class="member-card glass-panel rounded-sm reveal-up">
-                    <div class="h-[400px] overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1559839734-2b71f1536783?auto=format&fit=crop&q=80" alt="Clinical Director" class="w-full h-full object-cover grayscale hover:grayscale-0">
-                    </div>
-                    <div class="p-10">
-                        <h3 class="text-3xl font-bold mb-2">Dr. Elena Thorne</h3>
-                        <p class="gold-text uppercase tracking-widest text-xs mb-6 italic">Clinical Director</p>
-                        <p class="text-white/40 font-light leading-relaxed">
-                            Over 20 years of experience in specialized private medicine, ensuring the highest clinical standards across our service.
-                        </p>
-                    </div>
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Service 1 -->
+                <div class="service-card glass-panel p-16 rounded-sm reveal-up">
+                    <span class="gold-text text-5xl font-serif italic mb-10 block">01</span>
+                    <h3 class="text-4xl font-bold mb-8">Private Nursing</h3>
+                    <p class="text-lg text-white/60 mb-10 leading-relaxed font-light">
+                        Expert clinical care provided by highly qualified registered nurses, specializing in post-operative recovery, chronic condition management, and specialized medical support within the comfort of your residence.
+                    </p>
+                    <ul class="space-y-4 text-sm tracking-widest uppercase text-white/40">
+                        <li>• 24/7 Clinical Monitoring</li>
+                        <li>• Medication Management</li>
+                        <li>• Wound Care & Rehabilitation</li>
+                    </ul>
                 </div>
 
-                <!-- Member 2 -->
-                <div class="member-card glass-panel rounded-sm reveal-up">
-                    <div class="h-[400px] overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80" alt="Head of Nursing" class="w-full h-full object-cover grayscale hover:grayscale-0">
-                    </div>
-                    <div class="p-10">
-                        <h3 class="text-3xl font-bold mb-2">Marcus Vane</h3>
-                        <p class="gold-text uppercase tracking-widest text-xs mb-6 italic">Head of Private Nursing</p>
-                        <p class="text-white/40 font-light leading-relaxed">
-                            Dedicated to providing bespoke nursing solutions for complex medical needs with absolute discretion.
-                        </p>
-                    </div>
+                <!-- Service 2 -->
+                <div class="service-card glass-panel p-16 rounded-sm reveal-up">
+                    <span class="gold-text text-5xl font-serif italic mb-10 block">02</span>
+                    <h3 class="text-4xl font-bold mb-8">Luxury Companionship</h3>
+                    <p class="text-lg text-white/60 mb-10 leading-relaxed font-light">
+                        Sophisticated lifestyle support and companionship for discerning individuals who value intellectual engagement, social interaction, and seamless daily management.
+                    </p>
+                    <ul class="space-y-4 text-sm tracking-widest uppercase text-white/40">
+                        <li>• Cultural & Social Accompaniment</li>
+                        <li>• Lifestyle Concierge</li>
+                        <li>• Travel Support & Logistics</li>
+                    </ul>
                 </div>
 
-                <!-- Member 3 -->
-                <div class="member-card glass-panel rounded-sm reveal-up">
-                    <div class="h-[400px] overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&q=80" alt="Lifestyle Manager" class="w-full h-full object-cover grayscale hover:grayscale-0">
-                    </div>
-                    <div class="p-10">
-                        <h3 class="text-3xl font-bold mb-2">Sophia Aris</h3>
-                        <p class="gold-text uppercase tracking-widest text-xs mb-6 italic">Bespoke Lifestyle Manager</p>
-                        <p class="text-white/40 font-light leading-relaxed">
-                            Crafting seamless lifestyle and care integrations for our distinguished international clientele.
-                        </p>
-                    </div>
+                <!-- Service 3 -->
+                <div class="service-card glass-panel p-16 rounded-sm reveal-up">
+                    <span class="gold-text text-5xl font-serif italic mb-10 block">03</span>
+                    <h3 class="text-4xl font-bold mb-8">Palliative Excellence</h3>
+                    <p class="text-lg text-white/60 mb-10 leading-relaxed font-light">
+                        Compassionate, dignifying end-of-life care focused on pain management, emotional support, and maintaining the highest quality of life with absolute discretion.
+                    </p>
+                    <ul class="space-y-4 text-sm tracking-widest uppercase text-white/40">
+                        <li>• Holistic Pain Relief</li>
+                        <li>• Emotional & Family Support</li>
+                        <li>• Continuous Dignified Care</li>
+                    </ul>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="service-card glass-panel p-16 rounded-sm reveal-up">
+                    <span class="gold-text text-5xl font-serif italic mb-10 block">04</span>
+                    <h3 class="text-4xl font-bold mb-8">Specialized Therapies</h3>
+                    <p class="text-lg text-white/60 mb-10 leading-relaxed font-light">
+                        Access to elite physiotherapy, occupational therapy, and nutritional consultation, all delivered at home to support your holistic wellbeing and peak performance.
+                    </p>
+                    <ul class="space-y-4 text-sm tracking-widest uppercase text-white/40">
+                        <li>• Physical Rehabilitation</li>
+                        <li>• Cognitive Support</li>
+                        <li>• Nutritional Masterplans</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -106,14 +118,14 @@
 
     <!-- Footer -->
     <footer class="py-20 border-t border-white/10 text-white/40">
-        <div class="container mx-auto px-12 flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0 text-xs tracking-widest uppercase text-center">
+        <div class="container mx-auto px-12 flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0 text-xs tracking-widest uppercase">
             <p>&copy; 2026 Homely Health Care. All Rights Reserved.</p>
-            <p class="gold-text italic font-serif normal-case text-lg">Curating care, elevating lives.</p>
+            <p class="gold-text italic font-serif normal-case text-lg">Pioneering Private Excellence.</p>
         </div>
     </footer>
 
     <script>
-        // WebGL - Interactive Stars Background
+        // WebGL - Interactive Particle Aura
         const canvas = document.querySelector('#webgl');
         const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
@@ -121,37 +133,47 @@
 
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
-        camera.position.z = 10;
+        camera.position.z = 20;
 
-        const count = 2000;
-        const positions = new Float32Array(count * 3);
-        for(let i = 0; i < count * 3; i++) {
-            positions[i] = (Math.random() - 0.5) * 30;
+        const particlesCount = 3000;
+        const positions = new Float32Array(particlesCount * 3);
+
+        for(let i = 0; i < particlesCount; i++) {
+            const distance = 10 + Math.random() * 5;
+            const theta = THREE.MathUtils.randFloatSpread(360); 
+            const phi = THREE.MathUtils.randFloatSpread(360); 
+
+            positions[i * 3] = distance * Math.sin(theta) * Math.cos(phi);
+            positions[i * 3 + 1] = distance * Math.sin(theta) * Math.sin(phi);
+            positions[i * 3 + 2] = distance * Math.cos(theta);
         }
 
         const geometry = new THREE.BufferGeometry();
         geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 
         const material = new THREE.PointsMaterial({
-            size: 0.02,
+            size: 0.05,
             color: 0xD4AF37,
             transparent: true,
-            opacity: 0.5
+            opacity: 0.3,
+            blending: THREE.AdditiveBlending
         });
 
         const points = new THREE.Points(geometry, material);
         scene.add(points);
 
+        // Interaction
         let mouseX = 0, mouseY = 0;
         window.addEventListener('mousemove', (e) => {
             mouseX = (e.clientX / window.innerWidth - 0.5);
-            mouseY = -(e.clientY / window.innerHeight - 0.5);
+            mouseY = (e.clientY / window.innerHeight - 0.5);
         });
 
         const tick = () => {
-            points.rotation.y += 0.001;
-            points.position.x += (mouseX * 2 - points.position.x) * 0.05;
-            points.position.y += (mouseY * 2 - points.position.y) * 0.05;
+            points.rotation.y += 0.002;
+            points.rotation.x += (mouseY * 0.1 - points.rotation.x) * 0.05;
+            points.rotation.y += (mouseX * 0.1 - points.rotation.y) * 0.05;
+
             renderer.render(scene, camera);
             requestAnimationFrame(tick);
         };

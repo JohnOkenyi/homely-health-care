@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Careers | Homely Health Care | Bespoke Private Care</title>
+    <title>Careers | Homely Health Care | Excellence in Private Care</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -20,8 +20,8 @@
         .nav-link:hover { color: var(--gold); }
         canvas#webgl { position: fixed; top: 0; left: 0; z-index: 0; pointer-events: none; }
         .glass-panel { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .job-card { transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); }
-        .job-card:hover { transform: scale(1.02); border-color: var(--gold); background: rgba(212, 175, 55, 0.03); }
+        .service-card { transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
+        .service-card:hover { background: rgba(212, 175, 55, 0.05); border-color: var(--gold); transform: translateY(-15px); }
     </style>
 </head>
 <body class="selection:bg-gold/30">
@@ -35,62 +35,82 @@
         </div>
         <div class="hidden lg:flex items-center space-x-12">
             <a href="index.html" class="nav-link text-xs uppercase tracking-widest">Home</a>
-            <a href="services.html" class="nav-link text-xs uppercase tracking-widest">Services</a>
+            <a href="services.html" class="nav-link text-xs uppercase tracking-widest gold-text">Services</a>
             <a href="team.html" class="nav-link text-xs uppercase tracking-widest">Team</a>
-            <a href="careers.html" class="nav-link text-xs uppercase tracking-widest gold-text">Careers</a>
+            <a href="careers.html" class="nav-link text-xs uppercase tracking-widest">Careers</a>
             <a href="contact.html" class="border border-gold px-8 py-3 text-xs uppercase tracking-widest hover:bg-gold hover:text-dark-blue transition-all">Contact</a>
         </div>
     </nav>
 
-    <!-- Header -->
+    <!-- Header Section -->
     <header class="pt-60 pb-32 relative">
         <div class="container mx-auto px-12 text-center relative z-10">
-            <span class="gold-text uppercase tracking-[0.5em] text-xs mb-6 block font-medium italic reveal-up">Join Our Elite Team</span>
-            <h1 class="text-7xl md:text-9xl font-bold mb-12 reveal-up leading-none">The <br>Standard of <br>Nursing</h1>
+            <span class="gold-text uppercase tracking-[0.5em] text-xs mb-6 block font-medium italic reveal-up">Our Expertise</span>
+            <h1 class="text-7xl md:text-9xl font-bold mb-12 reveal-up leading-none">Join Our Team Of<br>Healthcare Excellence</h1>
             <p class="text-xl text-white/50 max-w-2xl mx-auto font-light leading-relaxed reveal-up">
-                We seek exceptional clinical professionals who embody the art of discretion and the pursuit of medical perfection.
+                We are seeking exceptional healthcare professionals who share our commitment to delivering five-star private care.
             </p>
         </div>
     </header>
 
-    <!-- Job Grid -->
+    <!-- Services Grid -->
     <section class="py-32 relative">
         <div class="container mx-auto px-12">
-            <div class="space-y-8">
-                <!-- Job 1 -->
-                <div class="job-card glass-panel p-12 flex flex-col md:flex-row justify-between items-center rounded-sm reveal-up">
-                    <div>
-                        <span class="gold-text uppercase tracking-widest text-xs mb-4 block italic">London | Full-time</span>
-                        <h3 class="text-4xl font-bold mb-4">Senior Private Registered Nurse</h3>
-                        <p class="text-white/40 font-light max-w-xl">
-                            Leading elite clinical care for distinguished individuals, focusing on post-operative recovery and long-term wellness management.
-                        </p>
-                    </div>
-                    <a href="contact.html?role=nurse" class="mt-8 md:mt-0 border border-white/20 px-12 py-4 text-xs uppercase tracking-widest hover:bg-gold hover:text-dark-blue hover:border-gold transition-all font-bold">Inquire</a>
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Service 1 -->
+                <div class="service-card glass-panel p-16 rounded-sm reveal-up">
+                    <span class="gold-text text-5xl font-serif italic mb-10 block">01</span>
+                    <h3 class="text-4xl font-bold mb-8">Private Nursing</h3>
+                    <p class="text-lg text-white/60 mb-10 leading-relaxed font-light">
+                        Expert clinical care provided by highly qualified registered nurses, specializing in post-operative recovery, chronic condition management, and specialized medical support within the comfort of your residence.
+                    </p>
+                    <ul class="space-y-4 text-sm tracking-widest uppercase text-white/40">
+                        <li>• 24/7 Clinical Monitoring</li>
+                        <li>• Medication Management</li>
+                        <li>• Wound Care & Rehabilitation</li>
+                    </ul>
                 </div>
 
-                <!-- Job 2 -->
-                <div class="job-card glass-panel p-12 flex flex-col md:flex-row justify-between items-center rounded-sm reveal-up">
-                    <div>
-                        <span class="gold-text uppercase tracking-widest text-xs mb-4 block italic">Oxfordshire | Bespoke</span>
-                        <h3 class="text-4xl font-bold mb-4">Elite Companion Specialist</h3>
-                        <p class="text-white/40 font-light max-w-xl">
-                            Providing sophisticated lifestyle support and specialized companionship with a focus on intellectual engagement and social management.
-                        </p>
-                    </div>
-                    <a href="contact.html?role=companion" class="mt-8 md:mt-0 border border-white/20 px-12 py-4 text-xs uppercase tracking-widest hover:bg-gold hover:text-dark-blue hover:border-gold transition-all font-bold">Inquire</a>
+                <!-- Service 2 -->
+                <div class="service-card glass-panel p-16 rounded-sm reveal-up">
+                    <span class="gold-text text-5xl font-serif italic mb-10 block">02</span>
+                    <h3 class="text-4xl font-bold mb-8">Luxury Companionship</h3>
+                    <p class="text-lg text-white/60 mb-10 leading-relaxed font-light">
+                        Sophisticated lifestyle support and companionship for discerning individuals who value intellectual engagement, social interaction, and seamless daily management.
+                    </p>
+                    <ul class="space-y-4 text-sm tracking-widest uppercase text-white/40">
+                        <li>• Cultural & Social Accompaniment</li>
+                        <li>• Lifestyle Concierge</li>
+                        <li>• Travel Support & Logistics</li>
+                    </ul>
                 </div>
 
-                <!-- Job 3 -->
-                <div class="job-card glass-panel p-12 flex flex-col md:flex-row justify-between items-center rounded-sm reveal-up">
-                    <div>
-                        <span class="gold-text uppercase tracking-widest text-xs mb-4 block italic">UK Wide | Live-in</span>
-                        <h3 class="text-4xl font-bold mb-4">Palliative Care Specialist</h3>
-                        <p class="text-white/40 font-light max-w-xl">
-                            Delivering compassionate and expert end-of-life care with the highest standards of dignity, pain management, and absolute discretion.
-                        </p>
-                    </div>
-                    <a href="contact.html?role=palliative" class="mt-8 md:mt-0 border border-white/20 px-12 py-4 text-xs uppercase tracking-widest hover:bg-gold hover:text-dark-blue hover:border-gold transition-all font-bold">Inquire</a>
+                <!-- Service 3 -->
+                <div class="service-card glass-panel p-16 rounded-sm reveal-up">
+                    <span class="gold-text text-5xl font-serif italic mb-10 block">03</span>
+                    <h3 class="text-4xl font-bold mb-8">Palliative Excellence</h3>
+                    <p class="text-lg text-white/60 mb-10 leading-relaxed font-light">
+                        Compassionate, dignifying end-of-life care focused on pain management, emotional support, and maintaining the highest quality of life with absolute discretion.
+                    </p>
+                    <ul class="space-y-4 text-sm tracking-widest uppercase text-white/40">
+                        <li>• Holistic Pain Relief</li>
+                        <li>• Emotional & Family Support</li>
+                        <li>• Continuous Dignified Care</li>
+                    </ul>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="service-card glass-panel p-16 rounded-sm reveal-up">
+                    <span class="gold-text text-5xl font-serif italic mb-10 block">04</span>
+                    <h3 class="text-4xl font-bold mb-8">Specialized Therapies</h3>
+                    <p class="text-lg text-white/60 mb-10 leading-relaxed font-light">
+                        Access to elite physiotherapy, occupational therapy, and nutritional consultation, all delivered at home to support your holistic wellbeing and peak performance.
+                    </p>
+                    <ul class="space-y-4 text-sm tracking-widest uppercase text-white/40">
+                        <li>• Physical Rehabilitation</li>
+                        <li>• Cognitive Support</li>
+                        <li>• Nutritional Masterplans</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -98,14 +118,14 @@
 
     <!-- Footer -->
     <footer class="py-20 border-t border-white/10 text-white/40">
-        <div class="container mx-auto px-12 flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0 text-xs tracking-widest uppercase text-center">
+        <div class="container mx-auto px-12 flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0 text-xs tracking-widest uppercase">
             <p>&copy; 2026 Homely Health Care. All Rights Reserved.</p>
-            <p class="gold-text italic font-serif normal-case text-lg">Defined by excellence, driven by care.</p>
+            <p class="gold-text italic font-serif normal-case text-lg">Pioneering Private Excellence.</p>
         </div>
     </footer>
 
     <script>
-        // WebGL - Interactive Wave Particles
+        // WebGL - Interactive Particle Aura
         const canvas = document.querySelector('#webgl');
         const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
@@ -115,45 +135,43 @@
         const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
         camera.position.z = 20;
 
-        const amountX = 50;
-        const amountY = 50;
-        const count = amountX * amountY;
-        const positions = new Float32Array(count * 3);
-        const geometry = new THREE.BufferGeometry();
+        const particlesCount = 3000;
+        const positions = new Float32Array(particlesCount * 3);
 
-        let i = 0;
-        for (let ix = 0; ix < amountX; ix++) {
-            for (let iy = 0; iy < amountY; iy++) {
-                positions[i] = ix * 2 - (amountX * 1); // x
-                positions[i + 1] = 0; // y
-                positions[i + 2] = iy * 2 - (amountY * 1); // z
-                i += 3;
-            }
+        for(let i = 0; i < particlesCount; i++) {
+            const distance = 10 + Math.random() * 5;
+            const theta = THREE.MathUtils.randFloatSpread(360); 
+            const phi = THREE.MathUtils.randFloatSpread(360); 
+
+            positions[i * 3] = distance * Math.sin(theta) * Math.cos(phi);
+            positions[i * 3 + 1] = distance * Math.sin(theta) * Math.sin(phi);
+            positions[i * 3 + 2] = distance * Math.cos(theta);
         }
 
+        const geometry = new THREE.BufferGeometry();
         geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-        const material = new THREE.PointsMaterial({ size: 0.05, color: 0xD4AF37, transparent: true, opacity: 0.3 });
+
+        const material = new THREE.PointsMaterial({
+            size: 0.05,
+            color: 0xD4AF37,
+            transparent: true,
+            opacity: 0.3,
+            blending: THREE.AdditiveBlending
+        });
+
         const points = new THREE.Points(geometry, material);
         scene.add(points);
 
-        let mouseX = 0;
+        // Interaction
+        let mouseX = 0, mouseY = 0;
         window.addEventListener('mousemove', (e) => {
             mouseX = (e.clientX / window.innerWidth - 0.5);
+            mouseY = (e.clientY / window.innerHeight - 0.5);
         });
 
-        const clock = new THREE.Clock();
         const tick = () => {
-            const elapsedTime = clock.getElapsedTime();
-            const pos = geometry.attributes.position.array;
-
-            let i = 0;
-            for (let ix = 0; ix < amountX; ix++) {
-                for (let iy = 0; iy < amountY; iy++) {
-                    pos[i + 1] = (Math.sin((ix + elapsedTime) * 0.3) * 2) + (Math.sin((iy + elapsedTime) * 0.5) * 2);
-                    i += 3;
-                }
-            }
-            geometry.attributes.position.needsUpdate = true;
+            points.rotation.y += 0.002;
+            points.rotation.x += (mouseY * 0.1 - points.rotation.x) * 0.05;
             points.rotation.y += (mouseX * 0.1 - points.rotation.y) * 0.05;
 
             renderer.render(scene, camera);

@@ -3,332 +3,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homely Health Care | Elite Private Excellence</title>
+    <title>Homely Health Care | Excellence in Private Care</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@200;300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        :root { --gold: #C9A84C; --deep: #050A18; }
-        * { margin:0; padding:0; box-sizing:border-box; cursor:none !important; }
-        html { scroll-behavior: smooth; }
-        body { background: var(--deep); color:#fff; font-family:'Montserrat',sans-serif; overflow-x:hidden; }
-        .serif { font-family:'Playfair Display',serif; }
-        .gold { color: var(--gold); }
-        .gold-bg { background: var(--gold); }
-        .glass { background:rgba(255,255,255,0.04); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.08); border-radius:16px; }
-        .glass-gold { background:rgba(255,255,255,0.04); backdrop-filter:blur(20px); border:1px solid rgba(201,168,76,0.3); border-radius:16px; }
-        #webgl-canvas { position:fixed; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none; }
-        .cursor { position:fixed; width:8px; height:8px; background:var(--gold); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); transition:transform 0.1s; }
-        .cursor-ring { position:fixed; width:36px; height:36px; border:1px solid var(--gold); border-radius:50%; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition:all 0.2s ease; }
-        .nav-link { font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.6); transition:color 0.3s; }
-        .nav-link:hover { color:var(--gold); }
-        .section-label { font-size:10px; letter-spacing:0.5em; text-transform:uppercase; color:var(--gold); opacity:0.8; }
-        .luxury-card { transition: transform 0.4s ease, border-color 0.4s ease; }
-        .luxury-card:hover { transform: translateY(-8px); }
-        .hero-title { font-size: clamp(4rem, 10vw, 9rem); line-height:0.9; letter-spacing:-0.02em; }
-        .divider { width:40px; height:1px; background:var(--gold); display:inline-block; }
-        .btn-luxury { display:inline-block; padding:14px 40px; border:1px solid var(--gold); color:var(--gold); font-size:10px; letter-spacing:0.3em; text-transform:uppercase; transition:all 0.5s; background:transparent; }
-        .btn-luxury:hover { background:var(--gold); color:#050A18; }
-        .btn-fill { display:inline-block; padding:14px 40px; background:var(--gold); color:#050A18; font-size:10px; letter-spacing:0.3em; text-transform:uppercase; font-weight:700; transition:all 0.5s; }
-        .btn-fill:hover { background:#fff; }
-        .animated-line { transform: scaleX(0); transform-origin: left; transition: transform 1s ease; }
-        .in-view .animated-line { transform: scaleX(1); }
-        @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
-        @keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
-        .fade-up { animation: fadeUp 1s ease both; }
-        .fade-up-delay-1 { animation-delay: 0.2s; }
-        .fade-up-delay-2 { animation-delay: 0.4s; }
-        .fade-up-delay-3 { animation-delay: 0.6s; }
-        ::-webkit-scrollbar { width:3px; } ::-webkit-scrollbar-thumb { background:var(--gold); }
+        :root { --gold: #D4AF37; --dark-blue: #0A1128; --soft-white: #F8F9FA; }
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--dark-blue); color: white; overflow-x: hidden; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        .gold-text { color: var(--gold); }
+        .nav-link { position: relative; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .nav-link::after { content: ''; position: absolute; width: 0; height: 1px; bottom: -5px; left: 0; background-color: var(--gold); transition: width 0.4s; }
+        .nav-link:hover::after { width: 100%; }
+        .nav-link:hover { color: var(--gold); }
+        canvas#webgl { position: fixed; top: 0; left: 0; z-index: 0; pointer-events: none; }
+        .glass-panel { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .service-card { transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
+        .service-card:hover { background: rgba(212, 175, 55, 0.05); border-color: var(--gold); transform: translateY(-15px); }
     </style>
 </head>
-<body>
-    <!-- Custom Cursor -->
-    <div class="cursor" id="cursor"></div>
-    <div class="cursor-ring" id="cursor-ring"></div>
-    
-    <!-- WebGL Canvas -->
-    <canvas id="webgl-canvas"></canvas>
-    
+<body class="selection:bg-gold/30">
+    <canvas id="webgl"></canvas>
+
     <!-- Navigation -->
-    <nav id="navbar" style="position:fixed;top:0;left:0;right:0;z-index:100;padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center;transition:all 0.5s;">
-        <a href="index.html" style="display:flex;align-items:center;gap:1rem;text-decoration:none;">
-            <div style="width:44px;height:44px;border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--gold);">H</div>
-            <span style="color:#fff;letter-spacing:0.3em;font-size:11px;font-weight:300;text-transform:uppercase;">Homely Health Care</span>
-        </a>
-        <div style="display:flex;gap:3rem;">
-            <a href="about.html" class="nav-link">The Ethos</a>
-            <a href="services.html" class="nav-link">Services</a>
-            <a href="team.html" class="nav-link">The Team</a>
-            <a href="careers.html" class="nav-link">Careers</a>
-            <a href="contact.html" style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--gold);padding-bottom:2px;">Enquire</a>
+    <nav class="fixed w-full z-50 py-8 px-12 flex justify-between items-center transition-all duration-500" id="navbar">
+        <div class="flex items-center space-x-4">
+            <div class="w-12 h-12 border border-gold flex items-center justify-center text-gold text-2xl font-bold">H</div>
+            <span class="text-xl font-light tracking-[0.3em] hidden md:block uppercase">Homely Health Care</span>
+        </div>
+        <div class="hidden lg:flex items-center space-x-12">
+            <a href="index.html" class="nav-link text-xs uppercase tracking-widest">Home</a>
+            <a href="services.html" class="nav-link text-xs uppercase tracking-widest gold-text">Services</a>
+            <a href="team.html" class="nav-link text-xs uppercase tracking-widest">Team</a>
+            <a href="careers.html" class="nav-link text-xs uppercase tracking-widest">Careers</a>
+            <a href="contact.html" class="border border-gold px-8 py-3 text-xs uppercase tracking-widest hover:bg-gold hover:text-dark-blue transition-all">Contact</a>
         </div>
     </nav>
-    
-    <!-- HERO -->
-    <section style="position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:0 3rem;z-index:10;">
-        <div style="text-align:center;max-width:1100px;">
-            <p class="section-label fade-up" style="margin-bottom:2rem;">Pioneering Private Healthcare</p>
-            <h1 class="serif hero-title fade-up fade-up-delay-1" style="color:#fff;margin-bottom:2rem;">
-                Elite Care<br/><em style="color:var(--gold);">Without</em> Compromise
-            </h1>
-            <p class="fade-up fade-up-delay-2" style="color:rgba(255,255,255,0.45);font-size:1.1rem;font-weight:300;max-width:600px;margin:0 auto 3rem;line-height:1.8;">A new dimension of private healthcare where clinical brilliance meets the pinnacle of personal service.</p>
-            <div class="fade-up fade-up-delay-3" style="display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;">
-                <a href="services.html" class="btn-luxury">Discover Excellence</a>
-                <a href="contact.html" class="btn-fill">Private Consultation</a>
-            </div>
+
+    <!-- Header Section -->
+    <header class="pt-60 pb-32 relative">
+        <div class="container mx-auto px-12 text-center relative z-10">
+            <span class="gold-text uppercase tracking-[0.5em] text-xs mb-6 block font-medium italic reveal-up">Our Expertise</span>
+            <h1 class="text-7xl md:text-9xl font-bold mb-12 reveal-up leading-none">Exceptional Private Healthcare<br>In The Comfort Of Your Home</h1>
+            <p class="text-xl text-white/50 max-w-2xl mx-auto font-light leading-relaxed reveal-up">
+                Where clinical excellence meets five-star hospitality, delivering bespoke healthcare solutions tailored exclusively to your needs.
+            </p>
         </div>
-        <!-- Scroll indicator -->
-        <div style="position:absolute;bottom:3rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
-            <span style="font-size:8px;letter-spacing:0.4em;color:rgba(255,255,255,0.3);text-transform:uppercase;">Scroll</span>
-            <div style="width:1px;height:40px;background:linear-gradient(to bottom,var(--gold),transparent);"></div>
-        </div>
-    </section>
-    
-    <!-- Services Preview Section -->
-    <section style="padding:8rem 3rem;position:relative;z-index:10;">
-        <div style="max-width:1400px;margin:0 auto;">
-            <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:5rem;">
-                <div>
-                    <p class="section-label" style="margin-bottom:1rem;">Our Portfolio of Care</p>
-                    <h2 class="serif" style="font-size:clamp(2.5rem,5vw,4rem);color:#fff;line-height:1.1;">Bespoke Clinical<br/>Excellence</h2>
+    </header>
+
+    <!-- Services Grid -->
+    <section class="py-32 relative">
+        <div class="container mx-auto px-12">
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Service 1 -->
+                <div class="service-card glass-panel p-16 rounded-sm reveal-up">
+                    <span class="gold-text text-5xl font-serif italic mb-10 block">01</span>
+                    <h3 class="text-4xl font-bold mb-8">Private Nursing</h3>
+                    <p class="text-lg text-white/60 mb-10 leading-relaxed font-light">
+                        Expert clinical care provided by highly qualified registered nurses, specializing in post-operative recovery, chronic condition management, and specialized medical support within the comfort of your residence.
+                    </p>
+                    <ul class="space-y-4 text-sm tracking-widest uppercase text-white/40">
+                        <li>• 24/7 Clinical Monitoring</li>
+                        <li>• Medication Management</li>
+                        <li>• Wound Care & Rehabilitation</li>
+                    </ul>
                 </div>
-                <a href="services.html" class="nav-link" style="white-space:nowrap;padding-bottom:4px;border-bottom:1px solid rgba(201,168,76,0.4);">View All Services</a>
-            </div>
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;">
-                <div class="glass-gold luxury-card" style="padding:2.5rem;">
-                    <span class="serif" style="font-size:2.5rem;color:rgba(201,168,76,0.2);display:block;margin-bottom:1.5rem;">01</span>
-                    <h3 class="serif" style="font-size:1.5rem;color:#fff;margin-bottom:1rem;">Private Nursing</h3>
-                    <p style="color:rgba(255,255,255,0.4);font-size:0.875rem;line-height:1.8;margin-bottom:2rem;">Expert clinical care by registered nurses specializing in post-operative recovery and chronic conditions.</p>
-                    <div style="display:flex;flex-direction:column;gap:0.6rem;">
-                        <span style="font-size:9px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;">24/7 Monitoring</span>
-                        <span style="font-size:9px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;">Medication Management</span>
-                        <span style="font-size:9px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;">Wound Care</span>
-                    </div>
+
+                <!-- Service 2 -->
+                <div class="service-card glass-panel p-16 rounded-sm reveal-up">
+                    <span class="gold-text text-5xl font-serif italic mb-10 block">02</span>
+                    <h3 class="text-4xl font-bold mb-8">Luxury Companionship</h3>
+                    <p class="text-lg text-white/60 mb-10 leading-relaxed font-light">
+                        Sophisticated lifestyle support and companionship for discerning individuals who value intellectual engagement, social interaction, and seamless daily management.
+                    </p>
+                    <ul class="space-y-4 text-sm tracking-widest uppercase text-white/40">
+                        <li>• Cultural & Social Accompaniment</li>
+                        <li>• Lifestyle Concierge</li>
+                        <li>• Travel Support & Logistics</li>
+                    </ul>
                 </div>
-                <div class="glass luxury-card" style="padding:2.5rem;">
-                    <span class="serif" style="font-size:2.5rem;color:rgba(201,168,76,0.2);display:block;margin-bottom:1.5rem;">02</span>
-                    <h3 class="serif" style="font-size:1.5rem;color:#fff;margin-bottom:1rem;">Luxury Companionship</h3>
-                    <p style="color:rgba(255,255,255,0.4);font-size:0.875rem;line-height:1.8;margin-bottom:2rem;">Sophisticated lifestyle support for individuals who value intellectual engagement and seamless daily management.</p>
-                    <div style="display:flex;flex-direction:column;gap:0.6rem;">
-                        <span style="font-size:9px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;">Cultural Accompaniment</span>
-                        <span style="font-size:9px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;">Lifestyle Concierge</span>
-                        <span style="font-size:9px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;">Travel Support</span>
-                    </div>
+
+                <!-- Service 3 -->
+                <div class="service-card glass-panel p-16 rounded-sm reveal-up">
+                    <span class="gold-text text-5xl font-serif italic mb-10 block">03</span>
+                    <h3 class="text-4xl font-bold mb-8">Palliative Excellence</h3>
+                    <p class="text-lg text-white/60 mb-10 leading-relaxed font-light">
+                        Compassionate, dignifying end-of-life care focused on pain management, emotional support, and maintaining the highest quality of life with absolute discretion.
+                    </p>
+                    <ul class="space-y-4 text-sm tracking-widest uppercase text-white/40">
+                        <li>• Holistic Pain Relief</li>
+                        <li>• Emotional & Family Support</li>
+                        <li>• Continuous Dignified Care</li>
+                    </ul>
                 </div>
-                <div class="glass-gold luxury-card" style="padding:2.5rem;">
-                    <span class="serif" style="font-size:2.5rem;color:rgba(201,168,76,0.2);display:block;margin-bottom:1.5rem;">03</span>
-                    <h3 class="serif" style="font-size:1.5rem;color:#fff;margin-bottom:1rem;">Palliative Excellence</h3>
-                    <p style="color:rgba(255,255,255,0.4);font-size:0.875rem;line-height:1.8;margin-bottom:2rem;">Compassionate, dignifying end-of-life care focused on absolute comfort and peace.</p>
-                    <div style="display:flex;flex-direction:column;gap:0.6rem;">
-                        <span style="font-size:9px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;">Holistic Pain Relief</span>
-                        <span style="font-size:9px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;">Family Support</span>
-                        <span style="font-size:9px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;">Dignified Care</span>
-                    </div>
+
+                <!-- Service 4 -->
+                <div class="service-card glass-panel p-16 rounded-sm reveal-up">
+                    <span class="gold-text text-5xl font-serif italic mb-10 block">04</span>
+                    <h3 class="text-4xl font-bold mb-8">Specialized Therapies</h3>
+                    <p class="text-lg text-white/60 mb-10 leading-relaxed font-light">
+                        Access to elite physiotherapy, occupational therapy, and nutritional consultation, all delivered at home to support your holistic wellbeing and peak performance.
+                    </p>
+                    <ul class="space-y-4 text-sm tracking-widest uppercase text-white/40">
+                        <li>• Physical Rehabilitation</li>
+                        <li>• Cognitive Support</li>
+                        <li>• Nutritional Masterplans</li>
+                    </ul>
                 </div>
-                <div class="glass luxury-card" style="padding:2.5rem;">
-                    <span class="serif" style="font-size:2.5rem;color:rgba(201,168,76,0.2);display:block;margin-bottom:1.5rem;">04</span>
-                    <h3 class="serif" style="font-size:1.5rem;color:#fff;margin-bottom:1rem;">Elite Therapies</h3>
-                    <p style="color:rgba(255,255,255,0.4);font-size:0.875rem;line-height:1.8;margin-bottom:2rem;">Premier physiotherapy, occupational therapy, and nutritional masterplans delivered at home.</p>
-                    <div style="display:flex;flex-direction:column;gap:0.6rem;">
-                        <span style="font-size:9px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;">Rehabilitation</span>
-                        <span style="font-size:9px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;">Cognitive Support</span>
-                        <span style="font-size:9px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;">Nutrition Plans</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Philosophy Quote -->
-    <section style="padding:8rem 3rem;background:rgba(201,168,76,0.04);position:relative;z-index:10;overflow:hidden;">
-        <div style="max-width:900px;margin:0 auto;text-align:center;">
-            <p class="section-label" style="margin-bottom:2rem;">Our Philosophy</p>
-            <h2 class="serif" style="font-size:clamp(2rem,4vw,3.5rem);color:#fff;font-style:italic;line-height:1.4;margin-bottom:2rem;">&ldquo;True luxury is not in possessions, but in the peace of mind that comes from knowing your health is in the finest hands.&rdquo;</h2>
-            <div class="divider" style="margin:0 auto;"></div>
-        </div>
-    </section>
-    
-    <!-- Stats Section -->
-    <section style="padding:6rem 3rem;position:relative;z-index:10;">
-        <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:3rem;">
-            <div style="text-align:center;">
-                <p class="serif" style="font-size:4rem;color:var(--gold);line-height:1;">15+</p>
-                <p style="font-size:9px;letter-spacing:0.3em;color:rgba(255,255,255,0.4);text-transform:uppercase;margin-top:0.5rem;">Years of Excellence</p>
-            </div>
-            <div style="text-align:center;">
-                <p class="serif" style="font-size:4rem;color:var(--gold);line-height:1;">500+</p>
-                <p style="font-size:9px;letter-spacing:0.3em;color:rgba(255,255,255,0.4);text-transform:uppercase;margin-top:0.5rem;">Distinguished Clients</p>
-            </div>
-            <div style="text-align:center;">
-                <p class="serif" style="font-size:4rem;color:var(--gold);line-height:1;">98%</p>
-                <p style="font-size:9px;letter-spacing:0.3em;color:rgba(255,255,255,0.4);text-transform:uppercase;margin-top:0.5rem;">Client Satisfaction</p>
-            </div>
-            <div style="text-align:center;">
-                <p class="serif" style="font-size:4rem;color:var(--gold);line-height:1;">24/7</p>
-                <p style="font-size:9px;letter-spacing:0.3em;color:rgba(255,255,255,0.4);text-transform:uppercase;margin-top:0.5rem;">Clinical Support</p>
             </div>
         </div>
     </section>
-    
-    <!-- CTA Section -->
-    <section style="padding:8rem 3rem;position:relative;z-index:10;text-align:center;">
-        <div style="max-width:700px;margin:0 auto;">
-            <p class="section-label" style="margin-bottom:1.5rem;">Begin Your Journey</p>
-            <h2 class="serif" style="font-size:clamp(2.5rem,5vw,4rem);color:#fff;margin-bottom:2rem;">Experience Care Redefined</h2>
-            <p style="color:rgba(255,255,255,0.4);font-weight:300;margin-bottom:3rem;line-height:1.8;">Our private client team is available to discuss your requirements with complete confidentiality.</p>
-            <a href="contact.html" class="btn-fill">Request a Private Consultation</a>
-        </div>
-    </section>
-    
+
     <!-- Footer -->
-    <footer style="padding:4rem 3rem;border-top:1px solid rgba(255,255,255,0.06);position:relative;z-index:10;">
-        <div style="max-width:1400px;margin:0 auto;">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:3rem;margin-bottom:4rem;">
-                <div>
-                    <p class="serif gold" style="font-size:1.25rem;margin-bottom:0.5rem;">HOMELY HEALTH CARE</p>
-                    <p style="font-size:9px;letter-spacing:0.3em;color:rgba(255,255,255,0.2);text-transform:uppercase;">The Pinnacle of Private Excellence</p>
-                </div>
-                <div style="display:flex;gap:4rem;flex-wrap:wrap;">
-                    <div>
-                        <p style="font-size:9px;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-bottom:1rem;">Navigation</p>
-                        <div style="display:flex;flex-direction:column;gap:0.75rem;">
-                            <a href="about.html" class="nav-link">The Ethos</a>
-                            <a href="services.html" class="nav-link">Services</a>
-                            <a href="team.html" class="nav-link">The Team</a>
-                            <a href="careers.html" class="nav-link">Careers</a>
-                        </div>
-                    </div>
-                    <div>
-                        <p style="font-size:9px;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-bottom:1rem;">Locations</p>
-                        <div style="display:flex;flex-direction:column;gap:0.75rem;">
-                            <span class="nav-link">London</span>
-                            <span class="nav-link">Oxford</span>
-                            <span class="nav-link">Cambridge</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div style="border-top:1px solid rgba(255,255,255,0.04);padding-top:2rem;text-align:center;">
-                <p style="font-size:8px;letter-spacing:0.5em;color:rgba(255,255,255,0.15);text-transform:uppercase;">&copy; 2026 HOMELY HEALTH CARE. ALL RIGHTS RESERVED. DISCRETION GUARANTEED.</p>
-            </div>
+    <footer class="py-20 border-t border-white/10 text-white/40">
+        <div class="container mx-auto px-12 flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0 text-xs tracking-widest uppercase">
+            <p>&copy; 2026 Homely Health Care. All Rights Reserved.</p>
+            <p class="gold-text italic font-serif normal-case text-lg">Pioneering Private Excellence.</p>
         </div>
     </footer>
-    
+
     <script>
-    // Register GSAP ScrollTrigger
-    gsap.registerPlugin(ScrollTrigger);
-    
-    // ===== CUSTOM CURSOR =====
-    const cursor = document.getElementById('cursor');
-    const ring = document.getElementById('cursor-ring');
-    let mouseX = 0, mouseY = 0;
-    
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0 });
-        gsap.to(ring, { x: e.clientX, y: e.clientY, duration: 0.15 });
-    });
-    
-    document.querySelectorAll('a, button').forEach(el => {
-        el.addEventListener('mouseenter', () => gsap.to(ring, { scale: 2, opacity: 0.5, duration: 0.3 }));
-        el.addEventListener('mouseleave', () => gsap.to(ring, { scale: 1, opacity: 1, duration: 0.3 }));
-    });
-    
-    // ===== NAVBAR SCROLL =====
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 80) {
-            navbar.style.background = 'rgba(5,10,24,0.95)';
-            navbar.style.backdropFilter = 'blur(20px)';
-            navbar.style.borderBottom = '1px solid rgba(201,168,76,0.1)';
-            navbar.style.padding = '1rem 3rem';
-        } else {
-            navbar.style.background = 'transparent';
-            navbar.style.backdropFilter = 'none';
-            navbar.style.borderBottom = 'none';
-            navbar.style.padding = '2rem 3rem';
-        }
-    });
-    
-    // ===== GSAP SCROLL ANIMATIONS =====
-    gsap.utils.toArray('.luxury-card').forEach((card, i) => {
-        gsap.fromTo(card,
-            { opacity: 0, y: 60 },
-            { opacity: 1, y: 0, duration: 0.8, delay: i * 0.1,
-              scrollTrigger: { trigger: card, start: 'top 85%' }
-            }
-        );
-    });
-    
-    gsap.utils.toArray('section').forEach(section => {
-        gsap.fromTo(section.querySelector('h2'),
-            { opacity: 0, y: 40 },
-            { opacity: 1, y: 0, duration: 1, ease: 'power3.out',
-              scrollTrigger: { trigger: section, start: 'top 80%' }
-            }
-        );
-    });
-    
-    // ===== WEBGL THREE.JS PARTICLE FIELD =====
-    (function() {
-        const canvas = document.getElementById('webgl-canvas');
-        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        // WebGL - Interactive Particle Aura
+        const canvas = document.querySelector('#webgl');
+        const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
-        
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
         const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.z = 6;
-        
-        // Particle geometry
-        const count = 6000;
-        const positions = new Float32Array(count * 3);
-        for (let i = 0; i < count * 3; i++) {
-            positions[i] = (Math.random() - 0.5) * 20;
+        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+        camera.position.z = 20;
+
+        const particlesCount = 3000;
+        const positions = new Float32Array(particlesCount * 3);
+
+        for(let i = 0; i < particlesCount; i++) {
+            const distance = 10 + Math.random() * 5;
+            const theta = THREE.MathUtils.randFloatSpread(360); 
+            const phi = THREE.MathUtils.randFloatSpread(360); 
+
+            positions[i * 3] = distance * Math.sin(theta) * Math.cos(phi);
+            positions[i * 3 + 1] = distance * Math.sin(theta) * Math.sin(phi);
+            positions[i * 3 + 2] = distance * Math.cos(theta);
         }
+
         const geometry = new THREE.BufferGeometry();
         geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-        
+
         const material = new THREE.PointsMaterial({
-            color: 0xC9A84C,
-            size: 0.04,
+            size: 0.05,
+            color: 0xD4AF37,
             transparent: true,
-            opacity: 0.6,
-            blending: THREE.AdditiveBlending,
-            depthWrite: false
+            opacity: 0.3,
+            blending: THREE.AdditiveBlending
         });
-        
-        const particles = new THREE.Points(geometry, material);
-        scene.add(particles);
-        
-        // Mouse interaction
-        let targetX = 0, targetY = 0;
-        document.addEventListener('mousemove', (e) => {
-            targetX = (e.clientX / window.innerWidth - 0.5) * 0.5;
-            targetY = -(e.clientY / window.innerHeight - 0.5) * 0.5;
+
+        const points = new THREE.Points(geometry, material);
+        scene.add(points);
+
+        // Interaction
+        let mouseX = 0, mouseY = 0;
+        window.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth - 0.5);
+            mouseY = (e.clientY / window.innerHeight - 0.5);
         });
-        
+
+        const tick = () => {
+            points.rotation.y += 0.002;
+            points.rotation.x += (mouseY * 0.1 - points.rotation.x) * 0.05;
+            points.rotation.y += (mouseX * 0.1 - points.rotation.y) * 0.05;
+
+            renderer.render(scene, camera);
+            requestAnimationFrame(tick);
+        };
+        tick();
+
         window.addEventListener('resize', () => {
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
         });
-        
-        const clock = new THREE.Clock();
-        function animate() {
-            requestAnimationFrame(animate);
-            const t = clock.getElapsedTime();
-            particles.rotation.y = t * 0.05;
-            particles.rotation.x += (targetY * 0.3 - particles.rotation.x) * 0.05;
-            particles.rotation.z += (targetX * 0.2 - particles.rotation.z) * 0.05;
-            renderer.render(scene, camera);
-        }
-        animate();
-    })();
+
+        // GSAP
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.utils.toArray('.reveal-up').forEach(elem => {
+            gsap.from(elem, {
+                scrollTrigger: { trigger: elem, start: "top 90%" },
+                y: 100,
+                opacity: 0,
+                duration: 1.5,
+                ease: "power4.out"
+            });
+        });
+
+        ScrollTrigger.create({
+            start: "top -50",
+            onUpdate: self => {
+                if (self.direction === 1) {
+                    gsap.to("#navbar", { backgroundColor: "rgba(10, 17, 40, 0.9)", backdropFilter: "blur(10px)", py: "1.5rem" });
+                } else {
+                    gsap.to("#navbar", { backgroundColor: "transparent", backdropFilter: "blur(0px)", py: "2rem" });
+                }
+            }
+        });
     </script>
 </body>
 </html>

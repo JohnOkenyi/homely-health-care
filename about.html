@@ -1,149 +1,211 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | Homely Health Care | A Philosophy of Excellence</title>
+    <title>About Us | Homely Health Care | Excellence in Private Care</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        :root { --gold: #C5A059; --navy: #0A1128; }
-        body { font-family: 'Lato', sans-serif; }
-        h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
-        .bg-luxury-navy { background-color: var(--navy); }
-        .text-gold { color: var(--gold); }
-        .border-gold { border-color: var(--gold); }
-        .nav-link { position: relative; }
-        .nav-link::after { content: ''; position: absolute; width: 0; height: 1px; bottom: -2px; left: 0; background-color: var(--gold); transition: width 0.3s; }
+        :root { --gold: #D4AF37; --dark-blue: #0A1128; --soft-white: #F8F9FA; }
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--dark-blue); color: white; overflow-x: hidden; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        .gold-text { color: var(--gold); }
+        .nav-link { position: relative; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .nav-link::after { content: ''; position: absolute; width: 0; height: 1px; bottom: -5px; left: 0; background-color: var(--gold); transition: width 0.4s; }
         .nav-link:hover::after { width: 100%; }
+        .nav-link:hover { color: var(--gold); }
+        canvas#webgl { position: fixed; top: 0; left: 0; z-index: 0; pointer-events: none; }
+        .glass-panel { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .service-card { transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
+        .service-card:hover { background: rgba(212, 175, 55, 0.05); border-color: var(--gold); transform: translateY(-15px); }
     </style>
 </head>
-<body class="bg-[#F9F7F2] text-gray-900 antialiased overflow-x-hidden">
+<body class="selection:bg-gold/30">
+    <canvas id="webgl"></canvas>
 
-    <!-- Header (Same as Home) -->
-    <header id="nav" class="fixed w-full z-50 transition-all duration-500 py-4 px-10 flex justify-between items-center bg-luxury-navy shadow-2xl">
-        <div class="flex items-center space-x-2">
-            <div class="text-2xl font-bold tracking-widest uppercase serif text-white">Homely</div>
-            <div class="h-8 w-[1px] bg-gold/50 mx-2"></div>
-            <div class="text-[10px] tracking-[0.3em] uppercase text-white font-light">Health Care</div>
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 py-8 px-12 flex justify-between items-center transition-all duration-500" id="navbar">
+        <div class="flex items-center space-x-4">
+            <div class="w-12 h-12 border border-gold flex items-center justify-center text-gold text-2xl font-bold">H</div>
+            <span class="text-xl font-light tracking-[0.3em] hidden md:block uppercase">Homely Health Care</span>
         </div>
-        
-        <nav class="hidden md:flex space-x-10 text-sm tracking-widest uppercase text-white">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="about.html" class="nav-link">About Us</a>
-            <a href="services.html" class="nav-link">Services</a>
-            <a href="#contact" class="nav-link">Contact</a>
-        </nav>
+        <div class="hidden lg:flex items-center space-x-12">
+            <a href="index.html" class="nav-link text-xs uppercase tracking-widest">Home</a>
+            <a href="services.html" class="nav-link text-xs uppercase tracking-widest gold-text">Services</a>
+            <a href="team.html" class="nav-link text-xs uppercase tracking-widest">Team</a>
+            <a href="careers.html" class="nav-link text-xs uppercase tracking-widest">Careers</a>
+            <a href="contact.html" class="border border-gold px-8 py-3 text-xs uppercase tracking-widest hover:bg-gold hover:text-dark-blue transition-all">Contact</a>
+        </div>
+    </nav>
 
-        <div class="flex items-center space-x-6">
-            <button class="px-8 py-3 border border-gold text-gold hover:bg-gold hover:text-navy transition-all duration-300 text-xs tracking-[0.2em] uppercase">Inquiry</button>
+    <!-- Header Section -->
+    <header class="pt-60 pb-32 relative">
+        <div class="container mx-auto px-12 text-center relative z-10">
+            <span class="gold-text uppercase tracking-[0.5em] text-xs mb-6 block font-medium italic reveal-up">Our Expertise</span>
+            <h1 class="text-7xl md:text-9xl font-bold mb-12 reveal-up leading-none">Pioneering Excellence<br>In Private Healthcare</h1>
+            <p class="text-xl text-white/50 max-w-2xl mx-auto font-light leading-relaxed reveal-up">
+                Founded on the principle that exceptional healthcare should be accessible in the comfort of your own home. We combine medical expertise with luxury service.
+            </p>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="pt-48 pb-24 px-10 bg-navy text-white text-center">
-        <div class="max-w-4xl mx-auto">
-            <span class="text-gold tracking-[0.4em] uppercase text-xs mb-4 block reveal-up">Our Legacy</span>
-            <h1 class="text-5xl md:text-7xl serif reveal-up">Defining the Art of <br>Compassionate Care.</h1>
-        </div>
-    </section>
+    <!-- Services Grid -->
+    <section class="py-32 relative">
+        <div class="container mx-auto px-12">
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Service 1 -->
+                <div class="service-card glass-panel p-16 rounded-sm reveal-up">
+                    <span class="gold-text text-5xl font-serif italic mb-10 block">01</span>
+                    <h3 class="text-4xl font-bold mb-8">Private Nursing</h3>
+                    <p class="text-lg text-white/60 mb-10 leading-relaxed font-light">
+                        Expert clinical care provided by highly qualified registered nurses, specializing in post-operative recovery, chronic condition management, and specialized medical support within the comfort of your residence.
+                    </p>
+                    <ul class="space-y-4 text-sm tracking-widest uppercase text-white/40">
+                        <li>• 24/7 Clinical Monitoring</li>
+                        <li>• Medication Management</li>
+                        <li>• Wound Care & Rehabilitation</li>
+                    </ul>
+                </div>
 
-    <!-- Vision Section -->
-    <section class="py-24 px-10 md:px-20 bg-white">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-            <div class="reveal-left">
-                <img src="https://images.unsplash.com/photo-1516703094088-05396602064c?q=80&w=2070&auto=format&fit=crop" alt="Our Vision" class="shadow-2xl grayscale hover:grayscale-0 transition-all duration-1000">
-            </div>
-            <div class="reveal-right">
-                <span class="text-gold tracking-[0.3em] uppercase text-xs mb-4 block">Our Vision</span>
-                <h2 class="text-4xl serif text-navy mb-8">Dignity in Every Detail.</h2>
-                <p class="text-gray-600 mb-8 text-lg leading-relaxed">Homely Health Care was founded on the principle that healthcare is more than just medical intervention—it is a commitment to the person's dignity, comfort, and unique life story. We strive to be the gold standard in private home care, combining clinical excellence with five-star service.</p>
-                <div class="space-y-6">
-                    <div class="flex items-start space-x-4">
-                        <div class="w-10 h-10 rounded-full border border-gold flex items-center justify-center text-gold italic serif">V</div>
-                        <div>
-                            <h4 class="font-bold text-navy uppercase text-xs tracking-widest mb-1">Vetted Professionals</h4>
-                            <p class="text-sm text-gray-500">Every member of our team undergoes rigorous background checks and continuous training.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start space-x-4">
-                        <div class="w-10 h-10 rounded-full border border-gold flex items-center justify-center text-gold italic serif">B</div>
-                        <div>
-                            <h4 class="font-bold text-navy uppercase text-xs tracking-widest mb-1">Bespoke Plans</h4>
-                            <p class="text-sm text-gray-500">No two lives are the same. Our care plans are as unique as the individuals we serve.</p>
-                        </div>
-                    </div>
+                <!-- Service 2 -->
+                <div class="service-card glass-panel p-16 rounded-sm reveal-up">
+                    <span class="gold-text text-5xl font-serif italic mb-10 block">02</span>
+                    <h3 class="text-4xl font-bold mb-8">Luxury Companionship</h3>
+                    <p class="text-lg text-white/60 mb-10 leading-relaxed font-light">
+                        Sophisticated lifestyle support and companionship for discerning individuals who value intellectual engagement, social interaction, and seamless daily management.
+                    </p>
+                    <ul class="space-y-4 text-sm tracking-widest uppercase text-white/40">
+                        <li>• Cultural & Social Accompaniment</li>
+                        <li>• Lifestyle Concierge</li>
+                        <li>• Travel Support & Logistics</li>
+                    </ul>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="service-card glass-panel p-16 rounded-sm reveal-up">
+                    <span class="gold-text text-5xl font-serif italic mb-10 block">03</span>
+                    <h3 class="text-4xl font-bold mb-8">Palliative Excellence</h3>
+                    <p class="text-lg text-white/60 mb-10 leading-relaxed font-light">
+                        Compassionate, dignifying end-of-life care focused on pain management, emotional support, and maintaining the highest quality of life with absolute discretion.
+                    </p>
+                    <ul class="space-y-4 text-sm tracking-widest uppercase text-white/40">
+                        <li>• Holistic Pain Relief</li>
+                        <li>• Emotional & Family Support</li>
+                        <li>• Continuous Dignified Care</li>
+                    </ul>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="service-card glass-panel p-16 rounded-sm reveal-up">
+                    <span class="gold-text text-5xl font-serif italic mb-10 block">04</span>
+                    <h3 class="text-4xl font-bold mb-8">Specialized Therapies</h3>
+                    <p class="text-lg text-white/60 mb-10 leading-relaxed font-light">
+                        Access to elite physiotherapy, occupational therapy, and nutritional consultation, all delivered at home to support your holistic wellbeing and peak performance.
+                    </p>
+                    <ul class="space-y-4 text-sm tracking-widest uppercase text-white/40">
+                        <li>• Physical Rehabilitation</li>
+                        <li>• Cognitive Support</li>
+                        <li>• Nutritional Masterplans</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Mission Statement -->
-    <section class="py-24 px-10 bg-navy text-white text-center">
-        <div class="max-w-3xl mx-auto">
-            <div class="w-20 h-[1px] bg-gold mx-auto mb-10"></div>
-            <h2 class="text-3xl md:text-5xl serif mb-10 leading-relaxed italic">"Our mission is to empower individuals to live full, independent lives within the sanctuary of their own homes."</h2>
-            <div class="w-20 h-[1px] bg-gold mx-auto mt-10"></div>
-        </div>
-    </section>
-
     <!-- Footer -->
-    <footer id="contact" class="bg-navy pt-24 pb-10 px-10 border-t border-white/5">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-16 mb-20 text-white/70 text-sm">
-            <div class="col-span-1 md:col-span-1">
-                <div class="text-2xl font-bold tracking-widest uppercase serif text-white mb-6">Homely</div>
-                <p class="leading-relaxed">Dedicated to redefining the standard of home care through excellence, dignity, and personalized support.</p>
-            </div>
-            <div>
-                <h4 class="text-white uppercase tracking-[0.2em] text-xs font-bold mb-8 italic serif">Head Office</h4>
-                <p class="leading-loose">Suite 6a, Wessex House, Charminster, <br> Bournemouth, BH8 8QS</p>
-            </div>
-            <div>
-                <h4 class="text-white uppercase tracking-[0.2em] text-xs font-bold mb-8 italic serif">Contact</h4>
-                <p class="leading-loose">01202 948 898<br>info@homelyhealth.uk</p>
-            </div>
-            <div>
-                <h4 class="text-white uppercase tracking-[0.2em] text-xs font-bold mb-8 italic serif">Navigation</h4>
-                <ul class="space-y-4">
-                    <li><a href="index.html" class="hover:text-gold transition-colors">Home</a></li>
-                    <li><a href="about.html" class="hover:text-gold transition-colors">About Us</a></li>
-                    <li><a href="services.html" class="hover:text-gold transition-colors">Services</a></li>
-                    <li><a href="join-us.html" class="hover:text-gold transition-colors">Careers</a></li>
-                </ul>
-            </div>
+    <footer class="py-20 border-t border-white/10 text-white/40">
+        <div class="container mx-auto px-12 flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0 text-xs tracking-widest uppercase">
+            <p>&copy; 2026 Homely Health Care. All Rights Reserved.</p>
+            <p class="gold-text italic font-serif normal-case text-lg">Pioneering Private Excellence.</p>
         </div>
     </footer>
 
     <script>
-        gsap.registerPlugin(ScrollTrigger);
+        // WebGL - Interactive Particle Aura
+        const canvas = document.querySelector('#webgl');
+        const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-        // Scroll Reveals
-        gsap.utils.toArray('.reveal-up').forEach(el => {
-            gsap.from(el, {
-                scrollTrigger: el,
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+        camera.position.z = 20;
+
+        const particlesCount = 3000;
+        const positions = new Float32Array(particlesCount * 3);
+
+        for(let i = 0; i < particlesCount; i++) {
+            const distance = 10 + Math.random() * 5;
+            const theta = THREE.MathUtils.randFloatSpread(360); 
+            const phi = THREE.MathUtils.randFloatSpread(360); 
+
+            positions[i * 3] = distance * Math.sin(theta) * Math.cos(phi);
+            positions[i * 3 + 1] = distance * Math.sin(theta) * Math.sin(phi);
+            positions[i * 3 + 2] = distance * Math.cos(theta);
+        }
+
+        const geometry = new THREE.BufferGeometry();
+        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+        const material = new THREE.PointsMaterial({
+            size: 0.05,
+            color: 0xD4AF37,
+            transparent: true,
+            opacity: 0.3,
+            blending: THREE.AdditiveBlending
+        });
+
+        const points = new THREE.Points(geometry, material);
+        scene.add(points);
+
+        // Interaction
+        let mouseX = 0, mouseY = 0;
+        window.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth - 0.5);
+            mouseY = (e.clientY / window.innerHeight - 0.5);
+        });
+
+        const tick = () => {
+            points.rotation.y += 0.002;
+            points.rotation.x += (mouseY * 0.1 - points.rotation.x) * 0.05;
+            points.rotation.y += (mouseX * 0.1 - points.rotation.y) * 0.05;
+
+            renderer.render(scene, camera);
+            requestAnimationFrame(tick);
+        };
+        tick();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // GSAP
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.utils.toArray('.reveal-up').forEach(elem => {
+            gsap.from(elem, {
+                scrollTrigger: { trigger: elem, start: "top 90%" },
+                y: 100,
                 opacity: 0,
-                y: 50,
-                duration: 1.2,
-                ease: 'power3.out'
+                duration: 1.5,
+                ease: "power4.out"
             });
         });
 
-        gsap.from('.reveal-left', {
-            scrollTrigger: '.reveal-left',
-            opacity: 0,
-            x: -100,
-            duration: 1.5,
-            ease: 'power3.out'
-        });
-
-        gsap.from('.reveal-right', {
-            scrollTrigger: '.reveal-right',
-            opacity: 0,
-            x: 100,
-            duration: 1.5,
-            ease: 'power3.out'
+        ScrollTrigger.create({
+            start: "top -50",
+            onUpdate: self => {
+                if (self.direction === 1) {
+                    gsap.to("#navbar", { backgroundColor: "rgba(10, 17, 40, 0.9)", backdropFilter: "blur(10px)", py: "1.5rem" });
+                } else {
+                    gsap.to("#navbar", { backgroundColor: "transparent", backdropFilter: "blur(0px)", py: "2rem" });
+                }
+            }
         });
     </script>
 </body>
